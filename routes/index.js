@@ -30,7 +30,7 @@ router.post('/sentences', function(request, response, next) {
   });
 });
 
-// GET /getSentences/[startingIndex]
+// GET /sentences (all)
 router.get('/sentences', function(request, response, next) {
   Sentence.find(function(error, sentences) {
     if (error) {
@@ -42,6 +42,25 @@ router.get('/sentences', function(request, response, next) {
   });
 });
 
+// Get /sentences/:sentenceId
+router.get('/sentences/:sentenceId', function(request, response, next) {
+
+  Sentence.findById(request.params.sentenceId,
+    function dbCallback (error, sentence) {
+      if (error) {
+        return next(error);
+      }
+      if (!sentence) {
+        return next(new Error('can\t find sentence'));
+      }
+
+      // We've got a sentence, send it to the client as JSON
+      response.json(sentence);
+    });
+
+});
+
+// Should add middleware if we end up using sentenceId a lot
 
 
 module.exports = router;
