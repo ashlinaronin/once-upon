@@ -5,6 +5,13 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Sentence = mongoose.model('Sentence');
 
+// set up Gridfs
+var mongooseConn = mongoose.connection;
+var fs = require('fs');
+var Grid = require('gridfs-stream');
+// Grid.mongo = mongoose.mongo;
+var gfs = Grid(mongooseConn.db, mongoose.mongo);
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -57,8 +64,34 @@ router.get('/sentences/:sentenceId', function(request, response, next) {
       // We've got a sentence, send it to the client as JSON
       response.json(sentence);
     });
-
 });
+
+
+
+router.get('/save', function(request, response, next) {
+    // Streaming to GridFS
+    // Filename to store in MongoDB
+    var writeStream = gfs.createWriteStream({
+      filename: 'mongo_file.txt'
+    });
+    fs.createReadStream('testfile.txt').pipe(writeStream);
+
+    writeStream.on('error', function (err) {
+      console.log('error saving ' + file.filename);
+      return next(err); // early return on err
+      // response.json({error: err});
+    });
+
+    writeStream.on('close', function (file) {
+      // do something with 'file'
+      console.log(file.filename + ' written To DB');
+      response.json({filename: file.filename});
+    });
+});
+
+router.get('/read', function(request, response, next) {
+
+})
 
 // Should add middleware if we end up using sentenceId a lot
 
