@@ -9,7 +9,21 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'partials/main.html',
     controller: 'SentencesCtrl',
     resolve: {
-      sentencePromsie: ['SentencesFactory', function(SentencesFactory) {
+      sentencePromise: ['SentencesFactory', function(SentencesFactory) {
+        return SentencesFactory.getAll();
+      }]
+    }
+  });
+
+  // not sure we really need the resolve here because
+  // we may not be displaying data at this state
+  // but we'll try it for now
+  $stateProvider.state('record', {
+    url: "/record",
+    templateUrl: 'partials/record.html',
+    controller: 'RecordCtrl',
+    resolve: {
+      sentencePromise: ['SentencesFactory', function(SentencesFactory) {
         return SentencesFactory.getAll();
       }]
     }
