@@ -1,19 +1,28 @@
 <div class="page-header">
-  <h1>once.upon</h1>
+  <h1>once.upon recording test</h1>
 </div>
 
-<div id="sentences">
+<!-- <div id="sentences">
   <ul>
     <li ng-repeat="sentence in sentences">
       {{sentence.text}}
     </li>
   </ul>
+</div> -->
 
-
-<form id="addSentence" ng-submit="addSentence()" method="post">
+<!-- <form id="addSentence" ng-submit="addSentence()" method="post">
   <h3>Add a new sentence</h3>
   <div class="form-group">
     <input class="form-control" type="text" placeholder="your text here" ng-model="text">
   </div>
   <button class="btn btn-primary" type="submit">post</button>
-</form>
+</form> -->
+
+<h3>recognized text shown below:</h3>
+<textarea name="recognizedText" rows="8" cols="40"></textarea>
+<button type="button" name="start" id="start" ng-click="start()">record</button>
+<button type="button" name="export" id="export" ng-click="export()">export</button>
+
+<div id="message">
+  {{message}}
+</div>
