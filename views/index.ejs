@@ -3,27 +3,22 @@
         <title>once.upon</title>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-        <!-- <script src="javascripts/angularApp.js"></script>
-        <script src="javascripts/services/PostsFactory.js"></script>
-        <script src="javascripts/services/AuthFactory.js"></script>
-        <script src="javascripts/controllers/MainController.js"></script>
-        <script src="javascripts/controllers/PostsController.js"></script>
-        <script src="javascripts/controllers/AuthController.js"></script>
-        <script src="javascripts/controllers/NavController.js"></script> -->
+        <script src="javascripts/angularApp.js"></script>
+        <!-- <script src="javascripts/services/PostsFactory.js"></script> -->
+        <!-- <script src="javascripts/services/AuthFactory.js"></script> -->
+        <script src="javascripts/controllers/SentencesCtrl.js"></script>
+        <!-- <script src="javascripts/controllers/PostsController.js"></script> -->
+        <!-- <script src="javascripts/controllers/AuthController.js"></script> -->
+        <!-- <script src="javascripts/controllers/NavController.js"></script> -->
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
-    <body>
+    <body ng-app="onceUpon">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <!-- <ui-view></ui-view> -->
-                    hello
+                    <ui-view></ui-view>
 
-                    <form id="addSentence" action="/sentences" method="post">
-                      <input type="text" name="text" value="">
-                      <button type="submit" name="submit">submit</button>
-                    </form>
 
                 </div>
             </div>
