@@ -69,29 +69,46 @@ router.get('/sentences/:sentenceId', function(request, response, next) {
 
 
 router.get('/save', function(request, response, next) {
-    // Streaming to GridFS
-    // Filename to store in MongoDB
-    var writeStream = gfs.createWriteStream({
-      filename: 'mongo_file.txt'
-    });
-    fs.createReadStream('testfile.txt').pipe(writeStream);
+  // Streaming to GridFS
+  // Filename to store in MongoDB
+  var writeStream = gfs.createWriteStream({
+    filename: 'cherryDb.mp3',
+    mode: 'w',
+    content_type: 'audio/mpeg'
+  });
 
-    writeStream.on('error', function (err) {
-      console.log('error saving ' + file.filename);
-      return next(err); // early return on err
-      // response.json({error: err});
-    });
+  fs.createReadStream('cherry.mp3').pipe(writeStream);
 
-    writeStream.on('close', function (file) {
-      // do something with 'file'
-      console.log(file.filename + ' written To DB');
-      response.json({filename: file.filename});
-    });
+  writeStream.on('error', function (err) {
+    console.log('error saving ' + file.filename);
+    return next(err); // early return on err
+    // response.json({error: err});
+  });
+
+  writeStream.on('close', function (file) {
+    // do something with 'file'
+    console.log(file.filename + ' written To DB');
+    response.json({filename: file.filename});
+  });
 });
 
-router.get('/read', function(request, response, next) {
 
-})
+router.get('/read', function(request, response, next) {
+  var readStream = gfs.createReadStream({
+    filename: 'cherryDb.mp3'
+  });
+
+  // Error handling, e.g. file does not exist
+  readStream.on('error', function (err) {
+    return next(err);
+  });
+
+  readStream.pipe(response);
+});
+
+
+
+
 
 // Should add middleware if we end up using sentenceId a lot
 
