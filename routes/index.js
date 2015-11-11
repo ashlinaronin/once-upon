@@ -107,12 +107,14 @@ router.get('/read', function(request, response, next) {
 });
 
 router.post('/saveRecording', function(request, response, next) {
-  // do we need to do somethign special with the blob here?
+  // var sentence = new Sentence();
   var sentence = new Sentence(request.body);
-  console.dir(sentence);
+  // sentence.audio = new Buffer(request.body.audio, 'base64');
+  // sentence.timestamp = request.body.timestamp;
+  // sentence.text = request.body.text;
 
-  // Call Mongoose's built-in save function for Sentence
-  // and pass it a callback to handle error and success cases
+
+  // Save sentence to DB with Mongoose
   sentence.save(function(error, sentence) {
     if (error) {
       return next(error);
@@ -130,25 +132,22 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
         return next(error);
       }
       if (!sentence) {
-        return next(new Error('can\t find sentence'));
+        return next(new Error('Can\'t find sentence'));
       }
 
-      // We've got a sentence, send it to the client as JSON
-      // response.json(sentence);
-      response.writeHead(200, {'Content-Type': 'audio/x-aiff'});
-      var buff = new Buffer(sentence.audio, 'base64');
-      // console.dir(buff);
-      console.dir(sentence.audio);
-      response.write(buff, 'binary');
-      // console.dir(sentence.audio);
+
+
+      var base64Audio = new Buffer(sentence.audio, 'base64');
+      response.writeHead(200, {
+        'Content-Type': 'audio/x-wav'
+        // 'Content-Length': base64Audio.length
+      });
 
       // response.write(sentence.audio);
+      response.write(base64Audio);
       response.end();
-      // buff.pipe(response);
-
     });
 });
-
 
 
 

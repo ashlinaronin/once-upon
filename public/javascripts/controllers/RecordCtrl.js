@@ -29,48 +29,22 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) 
       $scope.rec.exportWAV(function blobCallback(blob) {
         $scope.rec.clear();
 
-        if ($scope.object.sendToServer) {
-          // Create an Object url
-          var url = (window.URL || window.webkitURL).createObjectURL(blob);
-
-          // console.dir(url);
-
+        var reader = new FileReader();
+        reader.onload = function(event) {
           $.ajax({
-            type: "POST",
-            url: "/saveRecording",
+            type: 'POST',
+            url: '/saveRecording',
             data: {
-              audio: url,
-              timestamp: new Date(),
-              text: $scope.text
+              audio: event.target.result,
+              text: $scope.text,
+              timestamp: new Date()
             },
-            dataType: 'json',
-            success: function(data, textStatus, jqXHR) {
-              console.log('success');
-            }
+            dataType: 'text'
+          }).done(function(data) {
+            console.log(data);
           });
-
-          $scope.text = '';
-
-          // Create a new ajax request and send it via the ObjectURL
-        //   var request = new XMLHttpRequest();
-        //
-        //   // what are these parameters exactly?
-        //   request.open("GET", url, true);
-        //   request.responseType = blob;
-        //   request.onload = function() {
-        //     // we have a blob
-        //
-        //     $.ajax({
-        //       type: "POST",
-        //       url: "/saveRecording",
-        //       data: {
-        //         audioBase64: request.response,
-        //       }
-        //     });
-        //     console.dir(request.response);
-        //   }
-        //   request.send();
         }
+        reader.readAsDataURL(blob);
       });
     }
 
