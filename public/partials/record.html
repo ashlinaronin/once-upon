@@ -18,10 +18,13 @@
   <button class="btn btn-primary" type="submit">post</button>
 </form> -->
 
-<h3>recognized text shown below:</h3>
-<textarea name="recognizedText" rows="8" cols="40"></textarea>
+<h3>type text below:</h3>
+<textarea name="text" id="text" ng-model="text" rows="8" cols="40"></textarea>
 <button type="button" name="start" id="start" ng-click="start()">record</button>
 <button type="button" name="export" id="export" ng-click="export()">export</button>
+
+<button type="button" name="playback" id="playback" ng-click="playback()">playback</button>
+
 
 <div id="message">
   {{message}}

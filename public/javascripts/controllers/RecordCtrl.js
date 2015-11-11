@@ -1,3 +1,6 @@
+// help from here
+// http://stackoverflow.com/questions/15014638/recorderjs-uploading-recorded-blob-via-ajax
+
 onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) {
     // Mirror the array of posts returned by the factory
     $scope.sentences = SentencesFactory.sentences;
@@ -25,25 +28,48 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) 
 
       $scope.rec.exportWAV(function blobCallback(blob) {
         $scope.rec.clear();
-        console.log('in blobback');
 
         if ($scope.object.sendToServer) {
-          console.log('in if');
           // Create an Object url
           var url = (window.URL || window.webkitURL).createObjectURL(blob);
 
-          console.dir(url);
-          // Create a new ajax request and send it via the ObjectURL
-          var request = new XMLHttpRequest();
+          // console.dir(url);
 
-          // what are these parameters exactly?
-          request.open("GET", url, true);
-          request.responseType = blob;
-          request.onload = function() {
-            // we have a blob
-            console.dir(request.response);
-          }
-          request.send();
+          $.ajax({
+            type: "POST",
+            url: "/saveRecording",
+            data: {
+              audio: url,
+              timestamp: new Date(),
+              text: $scope.text
+            },
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+              console.log('success');
+            }
+          });
+
+          $scope.text = '';
+
+          // Create a new ajax request and send it via the ObjectURL
+        //   var request = new XMLHttpRequest();
+        //
+        //   // what are these parameters exactly?
+        //   request.open("GET", url, true);
+        //   request.responseType = blob;
+        //   request.onload = function() {
+        //     // we have a blob
+        //
+        //     $.ajax({
+        //       type: "POST",
+        //       url: "/saveRecording",
+        //       data: {
+        //         audioBase64: request.response,
+        //       }
+        //     });
+        //     console.dir(request.response);
+        //   }
+        //   request.send();
         }
       });
     }
