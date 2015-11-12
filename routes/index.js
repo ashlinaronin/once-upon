@@ -12,6 +12,7 @@ var Grid = require('gridfs-stream');
 // Grid.mongo = mongoose.mongo;
 var gfs = Grid(mongooseConn.db, mongoose.mongo);
 
+// Some utilities to format and encode/decode streams
 var streamifier = require('streamifier');
 var base64 = require('base64-stream');
 
@@ -20,7 +21,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-//
 // Routes here for backend API
 // POST /saveSentence
 router.post('/sentences', function(request, response, next) {
@@ -69,88 +69,63 @@ router.get('/sentences/:sentenceId', function(request, response, next) {
     });
 });
 
-
-router.get('/save', function(request, response, next) {
-  // Streaming to GridFS
-  // Filename to store in MongoDB
-  var writeStream = gfs.createWriteStream({
-    filename: 'cherryDb.mp3',
-    mode: 'w',
-    content_type: 'audio/mpeg'
-  });
-
-  fs.createReadStream('cherry.mp3').pipe(writeStream);
-
-  writeStream.on('error', function (err) {
-    console.log('error saving ' + file.filename);
-    return next(err); // early return on err
-    // response.json({error: err});
-  });
-
-  writeStream.on('close', function (file) {
-    // do something with 'file'
-    console.log(file.filename + ' written To DB');
-    response.json({filename: file.filename});
-  });
-});
-
-
-router.get('/read', function(request, response, next) {
-  var readStream = gfs.createReadStream({
-    filename: 'cherryDb.mp3'
-  });
-
-  // Error handling, e.g. file does not exist
-  readStream.on('error', function (err) {
-    return next(err);
-  });
-
-  readStream.pipe(response);
-});
-
-
-
-
-
+// POST /saveRecording
 router.post('/saveRecording', function(request, response, next) {
    // dont bother with sentence stuff for right now
-  // var sentence = new Sentence();
-  // sentence.audio = split[1];
-  // sentence.timestamp = request.body.timestamp;
-  // sentence.text = request.body.text;
+  var sentence = new Sentence();
+  sentence.timestamp = request.body.timestamp;
+  sentence.text = request.body.text;
 
-  var split = request.body.audio.split('base64,');
-  var base64buff = new Buffer(split[1]);
+  sentence.save(function(error, sentence) {
+    if (error) {
+      return next(error);
+    }
+    console.log('in sentence save recording, id is ' + sentence._id);
+    // If no error, write the file to the DB with name corresponding to ID
+    // 1. Take off prefixing info in dataURL to get just data
+    // 2. Don't encode it to base64 because it's already encoded in base64
+    // Default will be utf8, which should work to hold the already-base64 encoded
+    var split = request.body.audio.split('base64,');
+    var base64string = new Buffer(split[1]);
+
+    var writeStream = gfs.createWriteStream({
+      filename: sentence._id + '.wav',
+      mode: 'w',
+      content_type: 'audio/wav'
+    });
+
+    // Make a stream out of the base64 string and pipe it to gridFS stream
+    streamifier.createReadStream(base64string).pipe(writeStream);
+
+    // Handlers for the stream that's actually writing to GFS
+    writeStream.on('error', function (err) {
+      console.log('error saving ' + file.filename);
+      return next(err); // early return on err
+    });
+
+    writeStream.on('close', function (file) {
+      // do something with 'file'
+      console.log(file.filename + ' written To DB');
+      response.json({filename: file.filename});
+    });
+
+  }); // end sentence.save
 
 
-  var writeStream = gfs.createWriteStream({
-    filename: 'file.wav',
-    mode: 'w',
-    content_type: 'audio/wav'
-  });
+}); // end POST /saveRecording
 
-  streamifier.createReadStream(base64buff).pipe(writeStream);
-
-  // Handlers for the stream that's actually writing to GFS
-  writeStream.on('error', function (err) {
-    console.log('error saving ' + file.filename);
-    return next(err); // early return on err
-  });
-
-  writeStream.on('close', function (file) {
-    // do something with 'file'
-    console.log(file.filename + ' written To DB');
-    response.json({filename: file.filename});
-  });
-});
-
+// GET /getRecording/:sentenceId
 router.get('/getRecording/:sentenceId', function(request, response, next) {
+  // Get this particular file from GridFS
   var readStream = gfs.createReadStream({
-    filename: 'file.wav'
+    filename: request.params.sentenceId + '.wav'
   });
 
+  // Write headers so that the browser knows it's an audio file
   response.writeHead(200,
-    {'Content-Type:': 'audio/wav'}
+    {'Content-Type:': 'audio/wav',
+    'Content-Disposition': 'attachment; filename="' +
+      request.params.sentenceId  + '.wav"'}
   );
 
   // Error handling, e.g. file does not exist
@@ -158,12 +133,13 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
     return next(err);
   });
 
+  // End the response when the stream of data is done
   readStream.on('end', function (data) {
     response.end();
   });
 
+  // Decode the base64 stream and pipe it to the response
   readStream.pipe(base64.decode()).pipe(response);
-  // response.end();
 });
 
 
