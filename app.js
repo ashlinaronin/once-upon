@@ -29,8 +29,8 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 // Allow larger data to be sent
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

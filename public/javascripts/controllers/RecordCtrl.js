@@ -1,9 +1,9 @@
 // help from here
 // http://stackoverflow.com/questions/15014638/recorderjs-uploading-recorded-blob-via-ajax
 
-onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) {
+onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, $http) {
     // Mirror the array of posts returned by the factory
-    $scope.sentences = SentencesFactory.sentences;
+    // $scope.sentences = SentencesFactory.sentences;
 
     // recorder object must be scoped to the whole controller
     $scope.rec;
@@ -28,23 +28,30 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) 
 
       $scope.rec.exportWAV(function blobCallback(blob) {
         $scope.rec.clear();
+        console.log('blob below:');
+        console.dir(blob);
 
         var reader = new FileReader();
         reader.onload = function(event) {
+          // var arrayBuffSize = event.target.result.byteLength;
+          // console.log('arraybuffsize: ' + arrayBuffSize);
           $.ajax({
             type: 'POST',
             url: '/saveRecording',
             data: {
               audio: event.target.result,
+              // audio: new Uint8Array(event.target.result),
               text: $scope.text,
               timestamp: new Date()
             },
-            dataType: 'text'
+            dataType: 'json'
+
           }).done(function(data) {
             console.log(data);
           });
         }
         reader.readAsDataURL(blob);
+        // reader.readAsArrayBuffer(blob);
       });
     }
 
@@ -63,9 +70,11 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) 
       console.log('The following getUserMedia error occured: ' + err);
     }
 
-    // Wrap code in document ready to run only when this partial is done loading
-    angular.element(document).ready(function() {
 
+
+
+    // Initialize microphone when this partial is loaded
+    angular.element(document).ready(function() {
       // Support multiple browser implementations of getUserMedia
       navigator.getUserMedia = (navigator.getUserMedia ||
                                 navigator.webkitGetUserMedia ||
@@ -76,7 +85,5 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory) 
         {audio:true, video: false},
         successCallback, errorCallback
       );
-
-
     });
 });

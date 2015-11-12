@@ -15,17 +15,11 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
     }
   });
 
-  // not sure we really need the resolve here because
-  // we may not be displaying data at this state
-  // but we'll try it for now
+
+  // Stoped resolving all sentences here because it was slowing everything down
   $stateProvider.state('record', {
     url: "/record",
     templateUrl: 'partials/record.html',
-    controller: 'RecordCtrl',
-    resolve: {
-      sentencePromise: ['SentencesFactory', function(SentencesFactory) {
-        return SentencesFactory.getAll();
-      }]
-    }
+    controller: 'RecordCtrl'
   });
 });

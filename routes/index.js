@@ -107,18 +107,32 @@ router.get('/read', function(request, response, next) {
 });
 
 router.post('/saveRecording', function(request, response, next) {
-  // var sentence = new Sentence();
-  var sentence = new Sentence(request.body);
+  var sentence = new Sentence();
+  // var sentence = new Sentence(request.body);
+  console.log('we got to saverec');
+  // console.dir(request.body.audio);
+
+  var split = request.body.audio.split('base64,');
+
+  // sentence.audio = request.body.audio;
   // sentence.audio = new Buffer(request.body.audio, 'base64');
-  // sentence.timestamp = request.body.timestamp;
-  // sentence.text = request.body.text;
+
+  // just take base64 data after data:...base64,
+  // sentence.audio = new Buffer(split[1], );
+
+  // should already be base64, no need to convert it to buffer again
+  sentence.audio = split[1];
+  sentence.timestamp = request.body.timestamp;
+  sentence.text = request.body.text;
 
 
   // Save sentence to DB with Mongoose
   sentence.save(function(error, sentence) {
     if (error) {
+      console.log('error in saving');
       return next(error);
     }
+    console.log('saved sentence ' + sentence._id);
 
     // If no error, send added sentence back to the client.
     response.json(sentence);
@@ -137,14 +151,14 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
 
 
 
-      var base64Audio = new Buffer(sentence.audio, 'base64');
       response.writeHead(200, {
-        'Content-Type': 'audio/x-wav'
+        'Content-Type': 'audio/wav'
         // 'Content-Length': base64Audio.length
       });
 
+      var base64Audio = new Buffer(sentence.audio, 'base64').pipe(response);
       // response.write(sentence.audio);
-      response.write(base64Audio);
+      // response.write(base64Audio);
       response.end();
     });
 });
