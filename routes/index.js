@@ -12,6 +12,9 @@ var Grid = require('gridfs-stream');
 // Grid.mongo = mongoose.mongo;
 var gfs = Grid(mongooseConn.db, mongoose.mongo);
 
+var streamifier = require('streamifier');
+var base64 = require('base64-stream');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -67,7 +70,6 @@ router.get('/sentences/:sentenceId', function(request, response, next) {
 });
 
 
-
 router.get('/save', function(request, response, next) {
   // Streaming to GridFS
   // Filename to store in MongoDB
@@ -106,61 +108,62 @@ router.get('/read', function(request, response, next) {
   readStream.pipe(response);
 });
 
+
+
+
+
 router.post('/saveRecording', function(request, response, next) {
-  var sentence = new Sentence();
-  // var sentence = new Sentence(request.body);
-  console.log('we got to saverec');
-  // console.dir(request.body.audio);
+   // dont bother with sentence stuff for right now
+  // var sentence = new Sentence();
+  // sentence.audio = split[1];
+  // sentence.timestamp = request.body.timestamp;
+  // sentence.text = request.body.text;
 
   var split = request.body.audio.split('base64,');
-
-  // sentence.audio = request.body.audio;
-  // sentence.audio = new Buffer(request.body.audio, 'base64');
-
-  // just take base64 data after data:...base64,
-  // sentence.audio = new Buffer(split[1], );
-
-  // should already be base64, no need to convert it to buffer again
-  sentence.audio = split[1];
-  sentence.timestamp = request.body.timestamp;
-  sentence.text = request.body.text;
+  var base64buff = new Buffer(split[1]);
 
 
-  // Save sentence to DB with Mongoose
-  sentence.save(function(error, sentence) {
-    if (error) {
-      console.log('error in saving');
-      return next(error);
-    }
-    console.log('saved sentence ' + sentence._id);
+  var writeStream = gfs.createWriteStream({
+    filename: 'file.wav',
+    mode: 'w',
+    content_type: 'audio/wav'
+  });
 
-    // If no error, send added sentence back to the client.
-    response.json(sentence);
+  streamifier.createReadStream(base64buff).pipe(writeStream);
+
+  // Handlers for the stream that's actually writing to GFS
+  writeStream.on('error', function (err) {
+    console.log('error saving ' + file.filename);
+    return next(err); // early return on err
+  });
+
+  writeStream.on('close', function (file) {
+    // do something with 'file'
+    console.log(file.filename + ' written To DB');
+    response.json({filename: file.filename});
   });
 });
 
 router.get('/getRecording/:sentenceId', function(request, response, next) {
-  Sentence.findById(request.params.sentenceId,
-    function dbCallback (error, sentence) {
-      if (error) {
-        return next(error);
-      }
-      if (!sentence) {
-        return next(new Error('Can\'t find sentence'));
-      }
+  var readStream = gfs.createReadStream({
+    filename: 'file.wav'
+  });
 
+  response.writeHead(200,
+    {'Content-Type:': 'audio/wav'}
+  );
 
+  // Error handling, e.g. file does not exist
+  readStream.on('error', function (err) {
+    return next(err);
+  });
 
-      response.writeHead(200, {
-        'Content-Type': 'audio/wav'
-        // 'Content-Length': base64Audio.length
-      });
+  readStream.on('end', function (data) {
+    response.end();
+  });
 
-      var base64Audio = new Buffer(sentence.audio, 'base64').pipe(response);
-      // response.write(sentence.audio);
-      // response.write(base64Audio);
-      response.end();
-    });
+  readStream.pipe(base64.decode()).pipe(response);
+  // response.end();
 });
 
 
