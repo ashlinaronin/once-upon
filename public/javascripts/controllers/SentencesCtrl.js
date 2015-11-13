@@ -6,7 +6,8 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
       console.log('in $scope.addSentence, $scope.text is ' + $scope.text);
       if ($scope.text) {
         SentencesFactory.create({
-          text: $scope.text
+          text: $scope.text,
+          timestamp: new Date()
         });
 
         // Clear text box after adding new sentence
@@ -14,4 +15,13 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
       }
     }
 
-});
+    // Handlers to play/pause audio on mouseover/mouseleave
+    $scope.playAudio = function(event) {
+      event.target.nextElementSibling.play();
+    }
+
+    $scope.pauseAudio = function(event) {
+      event.target.nextElementSibling.pause();
+    }
+
+}); // end controller

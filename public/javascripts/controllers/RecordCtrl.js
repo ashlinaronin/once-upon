@@ -9,7 +9,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
       console.log('recording');
     }
 
-    $scope.export = function() {
+    $scope.saveRecording = function() {
       $scope.rec.stop();
       console.log('stopped recording');
 

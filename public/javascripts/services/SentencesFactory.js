@@ -9,6 +9,9 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
   var factory = {};
   factory.sentences = [];
 
+  // // This will be key-value pairs where key = sentenceId and val =
+  // factory.audioFiles = {};
+
   /* Add this sentence by sending it to the Node server API
   ** at /sentences via an HTTP POST request. */
   factory.create = function(sentence) {
@@ -25,6 +28,15 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
       angular.copy(data, factory.sentences);
     });
   }
+
+  // This may get slow, want to figure out how to speed things up
+  // with streaming so we don't have to wait for it.
+  // maybe this isn't done in factory at all....
+  // factory.getAudio = function(sentenceId) {
+  //   return $http.get('/getRecording/' + sentenceId).success(function(data) {
+  //
+  //   });
+  // }
 
   return factory;
 });

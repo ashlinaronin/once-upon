@@ -4,8 +4,13 @@
 
 <div id="sentences">
   <ul>
-    <li ng-repeat="sentence in sentences">
-      {{sentence.text}}
+    <li ng-mouseover="playAudio($event)" ng-mouseleave="pauseAudio($event)"
+        ng-repeat="sentence in sentences" id="{{sentence._id}}">
+      <p>{{sentence.text}} {{sentence.timestamp}}</p>
+      <audio src="test.wav" id="testAudio">
+        Your browser does not support the <code>audio</code> element.
+      </audio>
+
     </li>
   </ul>
 </div>
