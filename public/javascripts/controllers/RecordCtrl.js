@@ -31,6 +31,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
           }).done(function(data) {
             console.log(data);
+            $scope.apply();
           });
         }
         reader.readAsDataURL(blob);

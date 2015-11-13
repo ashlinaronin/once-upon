@@ -6,8 +6,16 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
   ** state actually finishes loading. */
   $stateProvider.state('home', {
     url: "",
-    templateUrl: 'partials/main.html',
-    controller: 'SentencesCtrl',
+    views: {
+      'sentences': {
+        templateUrl: 'partials/main.html',
+        controller: 'SentencesCtrl'
+      },
+      'record' : {
+        templateUrl: 'partials/record.html',
+        controller: 'RecordCtrl'
+      }
+    },
     resolve: {
       sentencePromise: ['SentencesFactory', function(SentencesFactory) {
         return SentencesFactory.getAll();
@@ -22,15 +30,4 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'partials/record.html',
     controller: 'RecordCtrl'
   });
-
-  // Directive here for now
-  // Won't work yet, need to modify
-  var ngSrcClean = ['$sce', function($sce) {
-    return function(scope, element, attr) {
-      scope.$watch(attr.ngSrc, function ngSrcCleanWatchAction(value) {
-        element.ngSrc($sce.getTrustedHtml(value) || '');
-      });
-    };
-  }];
-
 });

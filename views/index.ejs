@@ -20,7 +20,9 @@
   </head>
   <body ng-app="onceUpon">
     <div class="container">
-      <ui-view></ui-view>
+      <!-- using two ui-views with angular ui router -->
+      <div ui-view="sentences"></div>
+      <div ui-view="record"></div>
     </div>
   </body>
 </html>

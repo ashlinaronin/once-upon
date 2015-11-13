@@ -116,10 +116,16 @@ router.post('/saveRecording', function(request, response, next) {
 
 // GET /getRecording/:sentenceId
 router.get('/getRecording/:sentenceId', function(request, response, next) {
-  // Get this particular file from GridFS
-  var readStream = gfs.createReadStream({
-    filename: request.params.sentenceId + '.wav'
-  });
+  // Trying to check for sentences that somehow don't have audio...
+  // This doesn't quite work yet...
+  // Sentence.findOne({_id: request.params.sentenceId}, function(sentence) {
+  //   if (!sentence) {
+  //     console.log('no exist')
+  //     return next();
+  //   } else {
+  //     console.log('yes si exist');
+  //   }
+  // });
 
   // Write headers so that the browser knows it's an audio file
   response.writeHead(200,
@@ -127,6 +133,12 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
     'Content-Disposition': 'attachment; filename="' +
       request.params.sentenceId  + '.wav"'}
   );
+
+  // Get this particular file from GridFS
+  var readStream = gfs.createReadStream({
+    filename: request.params.sentenceId + '.wav'
+  });
+
 
   // Error handling, e.g. file does not exist
   readStream.on('error', function (err) {
@@ -137,6 +149,9 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
   readStream.on('end', function (data) {
     response.end();
   });
+
+
+
 
   // Decode the base64 stream and pipe it to the response
   readStream.pipe(base64.decode()).pipe(response);
