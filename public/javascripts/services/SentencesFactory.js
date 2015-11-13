@@ -18,23 +18,20 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
       // Read the blob as data url and send it to the backend w/ ajax
       var reader = new FileReader();
       reader.onload = function(event) {
-        $.ajax({
-          type: 'POST',
-          url: '/saveRecording',
+        $http({
+          method: 'POST',
+          url: 'saveRecording',
           data: {
             audio: event.target.result,
             text: text,
             timestamp: new Date()
-          },
-          dataType: 'json'
-
-        }).done(function(data) {
-          console.log(data);
-
-          // Not sure this is the fastest way to do it,
-          // but it does work to make sure the display is updated when
-          // a new sentence is added.
+          }
+        }).then(function successCallback(response) {
+          console.log(response);
           factory.getAll();
+        }, function errorCallback(response) {
+          // Called when an error occurs
+          console.log(response);
         });
       }
       reader.readAsDataURL(blob);

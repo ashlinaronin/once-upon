@@ -19,36 +19,6 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
       $scope.SentencesFactory.saveSentence($scope.rec, $scope.text);
     }
 
-    // $scope.saveRecording = function() {
-    //   $scope.rec.stop();
-    //   console.log('stopped recording');
-    //
-    //   $scope.rec.exportWAV(function blobCallback(blob) {
-    //     $scope.rec.clear();
-    //
-    //     // Read the blob as data url and send it to the backend w/ ajax
-    //     var reader = new FileReader();
-    //     reader.onload = function(event) {
-    //       $.ajax({
-    //         type: 'POST',
-    //         url: '/saveRecording',
-    //         data: {
-    //           audio: event.target.result,
-    //           text: $scope.text,
-    //           timestamp: new Date()
-    //         },
-    //         dataType: 'json'
-    //
-    //       }).done(function(data) {
-    //         console.log(data);
-    //         $scope.apply();
-    //       });
-    //     }
-    //     reader.readAsDataURL(blob);
-    //   });
-    // }
-
-
     // getUserMedia success and error callbacks
     var gumSuccess = function (stream) {
       // Support various implementations of AudioContext

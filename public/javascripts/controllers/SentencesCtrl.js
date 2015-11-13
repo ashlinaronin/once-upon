@@ -26,6 +26,8 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
 
     // Play back story from whichever list item we're at
     $scope.playFrom = function(event) {
+      // console.dir(event.target);
+
 
     }
 
