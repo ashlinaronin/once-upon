@@ -7,7 +7,7 @@
     <li ng-mouseover="playAudio($event)" ng-mouseleave="pauseAudio($event)"
         ng-repeat="sentence in sentences" id="{{sentence._id}}">
       <p>{{sentence.text}} {{sentence.timestamp}}</p>
-      <audio ng-src="getRecording/{{sentence._id}}" id="testAudio">
+      <audio once-get-audio="{{sentence._id}}" id="testAudio">
         Your browser does not support the <code>audio</code> element.
       </audio>
 
