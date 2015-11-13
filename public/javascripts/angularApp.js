@@ -1,4 +1,4 @@
-var onceUpon = angular.module('onceUpon', ['ui.router']);
+var onceUpon = angular.module('onceUpon', ['ui.router', 'ngSanitize']);
 
 onceUpon.config(function($stateProvider, $urlRouterProvider) {
   /* By using the resolve property here, we make sure that anytime our home state
@@ -22,4 +22,15 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'partials/record.html',
     controller: 'RecordCtrl'
   });
+
+  // Directive here for now
+  // Won't work yet, need to modify
+  var ngSrcClean = ['$sce', function($sce) {
+    return function(scope, element, attr) {
+      scope.$watch(attr.ngSrc, function ngSrcCleanWatchAction(value) {
+        element.ngSrc($sce.getTrustedHtml(value) || '');
+      });
+    };
+  }];
+
 });
