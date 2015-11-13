@@ -9,6 +9,9 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
   var factory = {};
   factory.sentences = [];
 
+  var lookup = {};
+
+
   // // This will be key-value pairs where key = sentenceId and val =
   // factory.audioFiles = {};
 
@@ -32,11 +35,17 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
   // This may get slow, want to figure out how to speed things up
   // with streaming so we don't have to wait for it.
   // maybe this isn't done in factory at all....
-  // factory.getAudio = function(sentenceId) {
-  //   return $http.get('/getRecording/' + sentenceId).success(function(data) {
-  //
-  //   });
-  // }
+  factory.getAudio = function(sentenceId) {
+    return $http.get('/getRecording/' + sentenceId).success(function(data) {
+      var thisSentence = $.grep(factory.sentences, function() {
+        return (sentence._id === sentenceId);
+      });
+
+      thisSentence.audio = data;
+      // why do we need angular copy?
+      // angular.copy(data, factory.sentences[])
+    });
+  }
 
   return factory;
 });

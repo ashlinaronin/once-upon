@@ -24,4 +24,9 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
       event.target.nextElementSibling.pause();
     }
 
+    // Play back story from whichever list item we're at
+    $scope.playFrom = function(event) {
+
+    }
+
 }); // end controller
