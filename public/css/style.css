@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,10 +7,10 @@ a {
 }
 
 li {
-  background: gray;
+  background: #f4f4f4;
   cursor:default;
 }
 
 li:hover {
-  color: white;
+  color: gray;
 }

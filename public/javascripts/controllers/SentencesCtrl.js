@@ -2,6 +2,9 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
     // Mirror the array of posts returned by the factory
     $scope.sentences = SentencesFactory.sentences;
 
+    // Keep track of the currently playing sentence
+    $scope.playing = null;
+
     $scope.addSentence = function() {
       console.log('in $scope.addSentence, $scope.text is ' + $scope.text);
       if ($scope.text) {
@@ -27,8 +30,6 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
     // Play back story from whichever list item we're at
     $scope.playFrom = function(event) {
       // console.dir(event.target);
-
-
     }
 
 }); // end controller
