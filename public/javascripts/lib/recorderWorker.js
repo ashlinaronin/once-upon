@@ -37,7 +37,6 @@ function record(inputBuffer){
 }
 
 function exportWAV(type){
-  console.log('in exportwav worker');
   var buffers = [];
   for (var channel = 0; channel < numChannels; channel++){
     buffers.push(mergeBuffers(recBuffers[channel], recLength));

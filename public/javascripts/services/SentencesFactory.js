@@ -9,19 +9,36 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
   var factory = {};
   factory.sentences = [];
 
-  var lookup = {};
+  // Moved this from the RecordCtrl to the factory so stuff will be updated
+  // Should probably use angular's built in http instead of jquery!
+  factory.saveSentence = function(recorder, text) {
+    recorder.exportWAV(function blobCallback(blob) {
+      recorder.clear();
 
+      // Read the blob as data url and send it to the backend w/ ajax
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        $.ajax({
+          type: 'POST',
+          url: '/saveRecording',
+          data: {
+            audio: event.target.result,
+            text: text,
+            timestamp: new Date()
+          },
+          dataType: 'json'
 
-  // // This will be key-value pairs where key = sentenceId and val =
-  // factory.audioFiles = {};
+        }).done(function(data) {
+          console.log(data);
 
-  /* Add this sentence by sending it to the Node server API
-  ** at /sentences via an HTTP POST request. */
-  factory.create = function(sentence) {
-    return $http.post('/sentences', sentence, {})
-      .success(function(data) {
-        factory.sentences.push(data);
-      });
+          // Not sure this is the fastest way to do it,
+          // but it does work to make sure the display is updated when
+          // a new sentence is added.
+          factory.getAll();
+        });
+      }
+      reader.readAsDataURL(blob);
+    });
   }
 
   /* Get all sentences and deep copy them to update the factory. */
@@ -32,53 +49,6 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
     });
   }
 
-  // Moving this from the RecordCtrl to the factory so stuff will be updated
-  // 
-  factory.saveAudio = function(recorder) {
-      recorder.stop();
-      console.log('stopped recording');
-
-      recorder.exportWAV(function blobCallback(blob) {
-        recorder.clear();
-
-
-
-        // Read the blob as data url and send it to the backend w/ ajax
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          $.ajax({
-            type: 'POST',
-            url: '/saveRecording',
-            data: {
-              audio: event.target.result,
-              text: $scope.text,
-              timestamp: new Date()
-            },
-            dataType: 'json'
-
-          }).done(function(data) {
-            console.log(data);
-            // $scope.apply();
-          });
-        }
-        reader.readAsDataURL(blob);
-      });
-  }
-
-  // This may get slow, want to figure out how to speed things up
-  // with streaming so we don't have to wait for it.
-  // maybe this isn't done in factory at all....
-  factory.getAudio = function(sentenceId) {
-    return $http.get('/getRecording/' + sentenceId).success(function(data) {
-      var thisSentence = $.grep(factory.sentences, function() {
-        return (sentence._id === sentenceId);
-      });
-
-      thisSentence.audio = data;
-      // why do we need angular copy?
-      // angular.copy(data, factory.sentences[])
-    });
-  }
 
   return factory;
 });

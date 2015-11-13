@@ -4,39 +4,49 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.context;
     $scope.mediaStreamSource;
 
+    $scope.SentencesFactory = SentencesFactory;
+
     $scope.start = function() {
       $scope.rec.record();
       console.log('recording');
     }
 
-    $scope.saveRecording = function() {
+    $scope.save = function() {
       $scope.rec.stop();
-      console.log('stopped recording');
 
-      $scope.rec.exportWAV(function blobCallback(blob) {
-        $scope.rec.clear();
-
-        // Read the blob as data url and send it to the backend w/ ajax
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          $.ajax({
-            type: 'POST',
-            url: '/saveRecording',
-            data: {
-              audio: event.target.result,
-              text: $scope.text,
-              timestamp: new Date()
-            },
-            dataType: 'json'
-
-          }).done(function(data) {
-            console.log(data);
-            $scope.apply();
-          });
-        }
-        reader.readAsDataURL(blob);
-      });
+      // Factory will do the actual work of saving the recording
+      // We pass it the recorder object to do so
+      $scope.SentencesFactory.saveSentence($scope.rec, $scope.text);
     }
+
+    // $scope.saveRecording = function() {
+    //   $scope.rec.stop();
+    //   console.log('stopped recording');
+    //
+    //   $scope.rec.exportWAV(function blobCallback(blob) {
+    //     $scope.rec.clear();
+    //
+    //     // Read the blob as data url and send it to the backend w/ ajax
+    //     var reader = new FileReader();
+    //     reader.onload = function(event) {
+    //       $.ajax({
+    //         type: 'POST',
+    //         url: '/saveRecording',
+    //         data: {
+    //           audio: event.target.result,
+    //           text: $scope.text,
+    //           timestamp: new Date()
+    //         },
+    //         dataType: 'json'
+    //
+    //       }).done(function(data) {
+    //         console.log(data);
+    //         $scope.apply();
+    //       });
+    //     }
+    //     reader.readAsDataURL(blob);
+    //   });
+    // }
 
 
     // getUserMedia success and error callbacks
