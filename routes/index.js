@@ -9,7 +9,6 @@ var Sentence = mongoose.model('Sentence');
 var mongooseConn = mongoose.connection;
 var fs = require('fs');
 var Grid = require('gridfs-stream');
-// Grid.mongo = mongoose.mongo;
 var gfs = Grid(mongooseConn.db, mongoose.mongo);
 
 // Some utilities to format and encode/decode streams
@@ -80,7 +79,7 @@ router.post('/saveRecording', function(request, response, next) {
     if (error) {
       return next(error);
     }
-    console.log('in sentence save recording, id is ' + sentence._id);
+
     // If no error, write the file to the DB with name corresponding to ID
     // 1. Take off prefixing info in dataURL to get just data
     // 2. Don't encode it to base64 because it's already encoded in base64
