@@ -13,8 +13,6 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.final = null;
     $scope.recognizing = false;
 
-
-
     $scope.start = function() {
       $scope.rec.record();
       $scope.recognition.start();

@@ -5,19 +5,8 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl($scope, SentencesFac
     // Keep track of the currently playing sentence
     $scope.playing = null;
 
-    $scope.addSentence = function() {
-      console.log('in $scope.addSentence, $scope.text is ' + $scope.text);
-      if ($scope.text) {
-        SentencesFactory.create({
-          text: $scope.text,
-          timestamp: new Date()
-        });
-
-        // Clear text box after adding new sentence
-        $scope.text = '';
-      }
-    }
-
+    // These handlers should actually all be directives
+    // Because controllers should not manipulate the DOM
     // Handlers to play/pause audio on mouseover/mouseleave
     $scope.playAudio = function(event) {
       event.target.nextElementSibling.play();
