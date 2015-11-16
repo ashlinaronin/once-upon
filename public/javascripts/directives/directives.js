@@ -22,6 +22,7 @@ onceUpon.directive('onceAudio', function() {
       // var nextAudio = element.parent().next().find('audio');
 
       // If we have a next sentence, set up a binding to play it next
+      // Using convoluted jqLite selectors here because jQuery wasn't working
       var nextSentence = element.context.parentElement.nextElementSibling;
       if (nextSentence) {
         element.bind('ended', function() {
