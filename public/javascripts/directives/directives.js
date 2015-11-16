@@ -17,12 +17,18 @@ onceUpon.directive('onceGetAudio', function() {
       // won't actually load with ng-src here.  Maybe because
       // of the order that the DOM is processed.
       element.attr('src', '/getRecording/' + sentenceId);
-    });
 
-    // Play the next sentence when this one finishes
-    element.bind('ended', function() {
+      // Very strange behavior with jQuery... just selects itself over and over
+      // var nextAudio = element.parent().next().find('audio');
+
+      // If we have a next sentence, set up a binding to play it next
       var nextSentence = element.context.parentElement.nextElementSibling;
-      if (nextSentence) { nextSentence.lastElementChild.play() }
+      if (nextSentence) {
+        element.bind('ended', function() {
+          nextSentence.lastElementChild.play();
+        });
+      }
+
     });
   }
 
@@ -50,7 +56,7 @@ onceUpon.directive('onceGetAudio', function() {
 onceUpon.directive('oncePlayFrom', function(PlayFactory) {
   function link(scope, element, attrs) {
     element.bind('click', function() {
-      element.context.lastElementChild.play();
+      element.find('audio')[0].play();
     });
   };
 
