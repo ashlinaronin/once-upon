@@ -2,7 +2,7 @@
 **
 */
 
-onceUpon.directive('onceGetAudio', function() {
+onceUpon.directive('onceAudio', function() {
   /* This directive is restricted to matching by attribute name
   ** because of the use case: <audio once-get-audio>.
   ** From the Angular docs: 'Use an attribute when you are
@@ -11,7 +11,7 @@ onceUpon.directive('onceGetAudio', function() {
   ** once-get-audio.
   */
   function link(scope, element, attrs) {
-    attrs.$observe('onceGetAudio', function(sentenceId) {
+    attrs.$observe('onceAudio', function(sentenceId) {
       // Use plain ol' src here, not ng-src, because we are
       // basically doing what ng-src does, and the audio
       // won't actually load with ng-src here.  Maybe because
@@ -42,7 +42,7 @@ onceUpon.directive('onceGetAudio', function() {
   return {
     restrict: 'A',
     scope: {
-      onceGetAudio: '@'
+      onceAudio: '@'
     },
     link: link
   };
