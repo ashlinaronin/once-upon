@@ -1,3 +1,7 @@
+/*
+**
+*/
+
 onceUpon.directive('onceGetAudio', function() {
   /* This directive is restricted to matching by attribute name
   ** because of the use case: <audio once-get-audio>.
@@ -31,4 +35,31 @@ onceUpon.directive('onceGetAudio', function() {
     link: link
   };
 
+});
+
+
+/*
+** Directive to play the whole story starting from a given sentence.
+*/
+onceUpon.directive('oncePlayFrom', function(PlayFactory) {
+  function link(scope, element, attrs) {
+    element.bind('click', function() {
+      // console.dir(element.context.lastElementChild);
+      // element.context.lastElementChild.play();
+      PlayFactory.playFrom(element);
+
+
+      // This should play the next one
+      // element.context.nextElementSibling.lastElementChild.play();
+
+    });
+  };
+
+  return {
+    restrict: 'A',
+    scope: {
+      onceGetAudio: '@'
+    },
+    link: link
+  }
 });

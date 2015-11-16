@@ -4,10 +4,12 @@
 
 <div id="sentences">
   <ul>
-    <li ng-mouseover="playAudio($event)" ng-mouseleave="pauseAudio($event)"
-        ng-click="playFrom($event)" ng-repeat="sentence in sentences" id="{{sentence._id}}">
+    <li once-play-from="{{sentence._id}}" ng-repeat="sentence in sentences">
+
+    <!-- <li ng-mouseover="playAudio($event)" ng-mouseleave="pauseAudio($event)"
+        ng-click="playFrom($event)" ng-repeat="sentence in sentences" id="{{sentence._id}}"> -->
       <p>{{sentence.text}}</p>
-      <audio once-get-audio="{{sentence._id}}" id="testAudio">
+      <audio once-get-audio="{{sentence._id}}" id="{{sentence._id}}">
         Your browser does not support the <code>audio</code> element.
       </audio>
 
