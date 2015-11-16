@@ -18,6 +18,12 @@ onceUpon.directive('onceGetAudio', function() {
       // of the order that the DOM is processed.
       element.attr('src', '/getRecording/' + sentenceId);
     });
+
+    // Play the next sentence when this one finishes
+    element.bind('ended', function() {
+      var nextSentence = element.context.parentElement.nextElementSibling;
+      if (nextSentence) { nextSentence.lastElementChild.play() }
+    });
   }
 
   // Return the directive we've created, including the link function
@@ -44,14 +50,7 @@ onceUpon.directive('onceGetAudio', function() {
 onceUpon.directive('oncePlayFrom', function(PlayFactory) {
   function link(scope, element, attrs) {
     element.bind('click', function() {
-      // console.dir(element.context.lastElementChild);
-      // element.context.lastElementChild.play();
-      PlayFactory.playFrom(element);
-
-
-      // This should play the next one
-      // element.context.nextElementSibling.lastElementChild.play();
-
+      element.context.lastElementChild.play();
     });
   };
 
