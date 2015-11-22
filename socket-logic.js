@@ -27,9 +27,10 @@ var setup = function(io) {
 
 
   var checkStatus = function(socket) {
-    if (connected.length === 1) {
-      socket.join('active');
+    // If this socket is number one in line now, set it to active
+    if (connected.indexOf(socket) === 0) {
       socket.leave('waiting');
+      socket.join('active');
       // if socket is in waiting room remove it here!!
       io.to(socket.id).emit('status', 'active');
     } else {
