@@ -14,6 +14,10 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
       'record' : {
         templateUrl: 'partials/record.html',
         controller: 'RecordCtrl'
+      },
+      'status' : {
+        templateUrl: 'partials/status.html',
+        controller: 'StatusCtrl'
       }
     },
     resolve: {

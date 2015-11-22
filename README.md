@@ -5,3 +5,7 @@ mongod &
 
 sudo npm install
 npm start
+
+
+
+modified package.json to run 'node app.js' instead of 'node ./bin/www'

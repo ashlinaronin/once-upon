@@ -159,7 +159,6 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
 
 
 
-// Should add middleware if we end up using sentenceId a lot
-
+// TODO: Should add middleware if we end up using sentenceId a lot
 
 module.exports = router;
