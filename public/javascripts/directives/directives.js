@@ -54,7 +54,7 @@ onceUpon.directive('onceAudio', function() {
 /*
 ** Directive to play the whole story starting from a given sentence.
 */
-onceUpon.directive('oncePlayFrom', function(PlayFactory) {
+onceUpon.directive('oncePlayFrom', function() {
   function link(scope, element, attrs) {
     element.bind('click', function() {
       element.find('audio')[0].play();
