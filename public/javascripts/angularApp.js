@@ -1,4 +1,4 @@
-var onceUpon = angular.module('onceUpon', ['ui.router', 'ngSanitize']);
+var onceUpon = angular.module('onceUpon', ['ui.router']);
 
 onceUpon.config(function($stateProvider, $urlRouterProvider) {
   /* By using the resolve property here, we make sure that anytime our home state

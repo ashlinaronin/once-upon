@@ -1,18 +1,13 @@
-onceUpon.controller('StatusCtrl', function StatusCtrl($scope) {
-  $scope.statusTxt = "";
+onceUpon.controller('StatusCtrl', function StatusCtrl($scope, StatusFactory) {
+  $scope.userStatus = StatusFactory.userStatus;
 
-  angular.element(document).ready(function() {
-
-    var socket = io();
-
-    socket.on('status', function(msg) {
-      $scope.statusTxt = msg;
-      console.log('status from server: ' + msg);
-
-      // Every custom event handler needs to apply its scope
-      $scope.$apply();
-    });
-
-
+  // Watch for changes to userStatus in StatusFactory service
+  // Convoluted syntax is safer
+  // We need both to watch scope here and apply it in service
+  $scope.$watch(function() {
+    return StatusFactory.userStatus;
+  }, function(newValue, oldValue) {
+    $scope.userStatus = newValue;
   });
+
 });
