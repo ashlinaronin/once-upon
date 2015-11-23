@@ -1,5 +1,5 @@
-onceUpon.controller('StatusCtrl', function StatusCtrl($scope, StatusFactory) {
-  $scope.userStatus = StatusFactory.userStatus;
+onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
+  $scope.userStatus = SocketFactory.userStatus;
 
   $scope.statusColor = 'red';
 
@@ -7,7 +7,7 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, StatusFactory) {
   // Convoluted syntax is safer
   // We need both to watch scope here and apply it in service
   $scope.$watch(function() {
-    return StatusFactory.userStatus;
+    return SocketFactory.userStatus;
   }, function(newValue, oldValue) {
     $scope.userStatus = newValue;
 
