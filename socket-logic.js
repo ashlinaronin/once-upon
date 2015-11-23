@@ -12,6 +12,24 @@ var setup = function(io) {
       console.log(socket.id);
     });
 
+    // maybe can refactor these three...
+    // if we get a begin recording msg, pass it on to everyone
+    socket.on('begin recording', function(msg) {
+      console.log(msg.userId + ' began recording');
+      io.emit('begin recording', msg);
+    });
+
+    // if we get a word, pass it on to everyone
+    socket.on('word', function(msg) {
+      console.log('got word ' + msg.text);
+      io.emit('word', msg);
+    });
+
+    // if we get an end recording msg, pass it on to everyone
+    socket.on('end recording', function(msg) {
+      io.emit('end recording', msg);
+    });
+
     socket.on('disconnect', function() {
       console.log(socket.id + ' disconnected');
       connected.splice(connected.indexOf(socket), 1);
@@ -38,7 +56,6 @@ var setup = function(io) {
       io.to(socket.id).emit('status', 'waiting in position ' + (connected.length - 1));
     }
   }
-
 
 }
 

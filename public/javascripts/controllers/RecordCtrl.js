@@ -1,5 +1,9 @@
-onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, $http) {
+onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, SocketFactory, $http) {
     $scope.SentencesFactory = SentencesFactory;
+
+    // connect current message to socket factory so we can emit it
+    // should be bound automatically??
+    $scope.SocketFactory = SocketFactory;
 
     // recorder object must be scoped to the whole controller
     $scope.rec;
@@ -47,6 +51,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
         $scope.recognition.onstart = function() {
           console.log('started recognition');
           $scope.recognizing = true;
+          $scope.SocketFactory.beginRecording();
 
           // Every custom event handler needs to apply its scope
           $scope.$apply();
@@ -64,15 +69,23 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
           // Display interim results
           if (!event.results[sentenceIndex].isFinal) {
             $scope.interim = sentence;
+            $scope.SocketFactory.updateText(sentence);
             $scope.$apply();
           } else {
             $scope.final = sentence;
             // $scope.heardSentences.push(sentence);
 
+
+            // $scope.SocketFactory.endRecording();
+
             // Set the text to this sentence transcription
             // and save all to the db
             $scope.text = sentence;
             $scope.save();
+
+            // Now we're not sending the end recording message til after
+            // db success callback
+            $scope.SocketFactory.endRecording();
 
             // We've got a final result, clear the interim results.
             $scope.interim = null;

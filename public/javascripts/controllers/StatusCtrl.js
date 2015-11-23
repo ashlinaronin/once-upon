@@ -1,6 +1,8 @@
 onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.userStatus = SocketFactory.userStatus;
 
+  $scope.currentMessage = SocketFactory.currentMessage;
+
   $scope.statusColor = 'red';
 
   // Watch for changes to userStatus in StatusFactory service

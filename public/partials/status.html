@@ -1,3 +1,7 @@
 <div id="user-status" ng-class="statusColor">
-Current status: {{userStatus}}
+  Current status: {{userStatus}}
+</div>
+
+<div id="current-message" ng-show="currentMessage.inProgress">
+  {{currentMessage.userId}} says: {{currentMessage.text}}
 </div>
