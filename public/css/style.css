@@ -14,3 +14,11 @@ li {
 li:hover {
   color: gray;
 }
+
+.active {
+  color: green;
+}
+
+.waiting {
+  color: red;
+}
