@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var PubSub = require('pubsub-js');
 
 // Set up mongoose by loading our data models
 // Must be before routes, users and app
@@ -24,7 +24,7 @@ var server = app.listen(3000, function() {
 var io = require('socket.io').listen(server);
 // Require an external module containing the socket logic
 // and pass it the io object so it can access it
-require('./socket-logic')(io);
+require('./socket-logic')(io, PubSub);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

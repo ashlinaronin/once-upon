@@ -153,7 +153,8 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
       navigator.getUserMedia = (navigator.getUserMedia ||
                                 navigator.webkitGetUserMedia ||
                                 navigator.mozGetUserMedia ||
-                                navigator.msGetUserMedia);
+                                navigator.msGetUserMedia ||
+                                navigator.mediaDevices.getUserMedia);
 
       navigator.getUserMedia(
         {audio:true, video: false},

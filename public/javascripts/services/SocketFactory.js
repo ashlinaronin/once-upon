@@ -1,4 +1,4 @@
-onceUpon.factory('SocketFactory', function SocketFactory(
+onceUpon.factory('SocketFactory', function SocketFactory(SentencesFactory,
 $rootScope, $timeout) {
   var factory = {};
   var socket;
@@ -78,13 +78,15 @@ $rootScope, $timeout) {
 
         // maybe it's just taking awhile to save the recordings
         // so let's try with a timeout here
-        if (msg.userId === socket.io.engine.id) {
-          console.log('i ended teh recording');
+        // if (msg.userId === socket.io.engine.id) {
+        //   console.log('i ended teh recording');
+        //
+        // } else {
+        //   console.log('somebody else ended the recording, so im gonna get all now');
+        //   SentencesFactory.getAll();
+        // }
 
-        } else {
-          console.log('somebody else ended the recording, so im gonna get all now');
-          // SentencesFactory.getAll();
-        }
+        SentencesFactory.getAll();
         // $timeout(SentencesFactory.getAll(), 2000);
       });
     });

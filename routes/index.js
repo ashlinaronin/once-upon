@@ -15,6 +15,8 @@ var gfs = Grid(mongooseConn.db, mongoose.mongo);
 var streamifier = require('streamifier');
 var base64 = require('base64-stream');
 
+var PubSub = require('pubsub-js');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -106,6 +108,9 @@ router.post('/saveRecording', function(request, response, next) {
       // do something with 'file'
       console.log(file.filename + ' written To DB');
       response.json({filename: file.filename});
+
+      PubSub.publish( 'FILE_AUDIO_UPLOADED');
+
     });
 
   }); // end sentence.save

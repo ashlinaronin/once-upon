@@ -1,4 +1,4 @@
-onceUpon.factory('SentencesFactory', function SentencesFactory($http, SocketFactory) {
+onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
   /* This factory is what negotiates between the front-end UI in angular
   ** and the backend API written in Node/Express.
   ** Angular doesn't communicate with MongoDB directly; rather, it sends
@@ -27,7 +27,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, SocketFact
             timestamp: new Date()
           }
         }).then(function successCallback(response) {
-          SocketFactory.endRecording();
+          // SocketFactory.endRecording();
           factory.getAll();
         }, function errorCallback(response) {
           // Called when an error occurs

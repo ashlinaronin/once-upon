@@ -1,5 +1,14 @@
-var setup = function(io) {
+var setup = function(io, PubSub) {
   var connected = [];
+
+  var onAudioFileUploadedSubscriber = function(msg, data) {
+    console.log("onAudioFileUploadedSubscriber" + msg + data);
+    io.emit('end recording');
+
+  }
+
+  var token = PubSub.subscribe('FILE_AUDIO_UPLOADED', onAudioFileUploadedSubscriber);
+
 
   io.on('connection', function(socket) {
     connected.push(socket);
