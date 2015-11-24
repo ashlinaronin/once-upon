@@ -26,6 +26,8 @@ onceUpon.directive('onceAudio', function() {
       var nextSentence = element.context.parentElement.nextElementSibling;
       if (nextSentence) {
         element.bind('ended', function() {
+          element.parent().removeClass('playing');
+          angular.element(nextSentence).addClass('playing');
           nextSentence.lastElementChild.play();
         });
       }
@@ -58,6 +60,7 @@ onceUpon.directive('oncePlayFrom', function() {
   function link(scope, element, attrs) {
     element.bind('click', function() {
       element.find('audio')[0].play();
+      element.addClass('playing');
     });
   };
 

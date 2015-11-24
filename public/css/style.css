@@ -22,3 +22,7 @@ li:hover {
 .waiting {
   color: red;
 }
+
+.playing {
+  color: orange;
+}
