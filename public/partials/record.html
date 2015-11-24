@@ -1,6 +1,7 @@
-<div id="speech-results">
-  <p><strong>your contribution</strong>: {{interim}}</p>
+<div id="record" ng-show="SocketFactory.userStatus == 'active'">
+  <div id="speech-results">
+    <p><strong>your contribution</strong>: {{interim}}</p>
+  </div>
+  <button type="button" name="start" id="start" ng-click="start()">i'm ready</button>
+  <!-- <button type="button" name="export" id="export" ng-click="save()">stop/save</button> -->
 </div>
-<!-- <textarea name="text" id="text" ng-model="text" rows="8" cols="40"></textarea> -->
-<button type="button" name="start" id="start" ng-click="start()">start</button>
-<button type="button" name="export" id="export" ng-click="save()">stop/save</button>
