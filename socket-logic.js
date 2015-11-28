@@ -72,16 +72,18 @@ var setup = function(io, PubSub) {
     });
   }
 
+
+
   // Check user status for a particular socket and send it a message telling
   // its current status
   // Eventually want to change this to send just the index of the waiting
   // socket so we don't have to parse string, but for now it's easier to read
   var checkStatusAndEmitMessage = function(socket) {
     if (recordQueue.indexOf(socket) === 0) {
-      io.to(socket.id).emit('status', 'active');
+      io.to(socket.id).emit('status', ['active', null]);
     } else {
       io.to(socket.id).emit('status',
-        'waiting in position ' + recordQueue.indexOf(socket));
+        ['waiting', recordQueue.indexOf(socket)]);
     }
   }
 

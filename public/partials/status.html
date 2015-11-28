@@ -1,7 +1,11 @@
 <div id="user-status" ng-class="statusColor">
   Current status: {{userStatus}}
+    <span ng-if="userStatusMessage && userStatus == 'waiting'"> in position {{userStatusMessage}}</span>
+    <span ng-if="userStatusMessage && userStatus == 'active'"> for {{userStatusMessage}} more seconds</span>
+    <p ng-if="userStatusMessage == 0 && userStatus == 'active'">Sorry, let's give someone else a turn!</p>
 </div>
 
 <div id="current-message" ng-show="currentMessage.inProgress">
   {{currentMessage.userId}} says: {{currentMessage.text}}
+
 </div>

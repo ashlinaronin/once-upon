@@ -5,6 +5,7 @@ $rootScope, $timeout) {
 
 
   factory.userStatus = null;
+  factory.userStatusMessage = null;
   factory.currentMessage = {
     userId: null,
     inProgress: false,
@@ -43,6 +44,32 @@ $rootScope, $timeout) {
   }
 
 
+  // This gets called when a user becomes active
+  // They have 30 seconds to think about what they want to say before starting
+  // the recording
+  factory.countdownToRecord = function() {
+    var count = 30;
+
+    var updateCountdown = function() {
+      console.log('countdown: ' + count);
+      // Update userstatusmessage outside of factory
+      $rootScope.$apply(function() {
+        factory.userStatusMessage = count;
+        console.log('updated userStatusMessage: ' + count);
+      });
+
+      if (count === 0) {
+        console.log('sorry, your time is up! let someone else take a turn...');
+        clearInterval(countdownClock);
+      }
+      count--;
+    }
+
+    updateCountdown(); // run it once first to avoid delay
+    var countdownClock = setInterval(updateCountdown, 1000);
+  }
+
+
 
   // When the page has loaded, fire up Socket.io client and listen for
   // status messages
@@ -50,10 +77,16 @@ $rootScope, $timeout) {
     socket = io();
 
     socket.on('status', function(msg) {
+      if (msg[0] === 'active') {
+        factory.countdownToRecord();
+      }
+
       // Every custom event handler needs to apply its scope
       // Syntax is a bit different in service
       $rootScope.$apply(function() {
-        factory.userStatus = msg;
+        factory.userStatus = msg[0]; // 'waiting' or 'active'
+        factory.userStatusMessage = msg[1]; // waiting position or other info
+        console.log('updated userStatusMessage: ' + factory.userStatusMessage);
       });
     });
 

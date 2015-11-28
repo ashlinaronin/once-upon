@@ -1,6 +1,9 @@
 onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.userStatus = SocketFactory.userStatus;
 
+  // holed waiting position or active countdown time
+  $scope.userStatusMessage = SocketFactory.userStatusMessage;
+
   $scope.currentMessage = SocketFactory.currentMessage;
 
   $scope.statusColor = 'red';
@@ -19,6 +22,13 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     } else {
       $scope.statusColor = 'waiting';
     }
+  });
+
+  // I'm kind of amazed we need another watch for this, but whatevs
+  $scope.$watch(function() {
+    return SocketFactory.userStatusMessage;
+  }, function(newValue, oldValue) {
+    $scope.userStatusMessage = newValue;
   });
 
 });
