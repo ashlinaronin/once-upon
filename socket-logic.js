@@ -1,22 +1,30 @@
 var setup = function(io, PubSub) {
-  var connected = [];
+  var recordQueue = [];
 
-  var onAudioFileUploadedSubscriber = function(msg, data) {
+  // Called when Mongo db tells us via PubSub that audio upload finished
+  var onAudioFileUploadedSubscriber = function(msg, data, socket) {
     console.log("onAudioFileUploadedSubscriber: " + msg);
+
+    // Send the message to everyone that the recording has finished
     io.emit('end recording');
-  }
+
+    // we move the active user to the end of the queue and send everybody
+    // a message telling them their new status
+    recordQueue.push(recordQueue.shift());
+    updateAllSocketStatuses();
+
+  };
 
   var token = PubSub.subscribe('FILE_AUDIO_UPLOADED', onAudioFileUploadedSubscriber);
 
 
   io.on('connection', function(socket) {
-    connected.push(socket);
-
-    // Put new user in the appropriate room
-    checkStatus(socket);
+    // Assume user will be waiting by default
+    recordQueue.push(socket);
+    checkStatusAndEmitMessage(socket);
 
     console.log('got a connection, users connected:');
-    connected.forEach(function(socket) {
+    recordQueue.forEach(function(socket) {
       console.log(socket.id);
     });
 
@@ -39,29 +47,41 @@ var setup = function(io, PubSub) {
     });
 
     socket.on('disconnect', function() {
+      // Take this socket out of the queue
+      var queuePosition = recordQueue.indexOf(socket);
+      if (queuePosition > -1) {
+        recordQueue.splice(queuePosition, 1);
+      } else {
+        console.log('some weird error with socket disconnection');
+      }
+
       console.log(socket.id + ' disconnected');
-      connected.splice(connected.indexOf(socket), 1);
 
       // now that somebody disconnected, we should check everybody else's status
-      connected.forEach(function(socket) {
-        checkStatus(socket);
-      });
-      console.log(connected.length + ' users connected');
+      updateAllSocketStatuses();
+      console.log(recordQueue.length + ' users connected');
     });
+
+
+
   });
 
+  var updateAllSocketStatuses = function() {
+    recordQueue.forEach(function(socket) {
+      checkStatusAndEmitMessage(socket);
+    });
+  }
 
-
-  var checkStatus = function(socket) {
-    // If this socket is number one in line now, set it to active
-    if (connected.indexOf(socket) === 0) {
-      socket.leave('waiting');
-      socket.join('active');
-      // if socket is in waiting room remove it here!!
+  // Check user status for a particular socket and send it a message telling
+  // its current status
+  // Eventually want to change this to send just the index of the waiting
+  // socket so we don't have to parse string, but for now it's easier to read
+  var checkStatusAndEmitMessage = function(socket) {
+    if (recordQueue.indexOf(socket) === 0) {
       io.to(socket.id).emit('status', 'active');
     } else {
-      socket.join('waiting');
-      io.to(socket.id).emit('status', 'waiting in position ' + (connected.length - 1));
+      io.to(socket.id).emit('status',
+        'waiting in position ' + recordQueue.indexOf(socket));
     }
   }
 

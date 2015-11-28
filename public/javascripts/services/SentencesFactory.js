@@ -44,23 +44,24 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   factory.getAll = function() {
     return $http.get('/sentences').success(function(data) {
       // Create a deep copy of the return data so it will be updated everywhere
-      angular.copy(data, factory.sentences);
-      // factory.sentences = data;
+      // Not really sure this is necessary/'best practice'?
+      // angular.copy(data, factory.sentences);
+      factory.sentences = data;
       factory.latestTimestamp =
         factory.sentences[factory.sentences.length-1].timestamp;
-      console.log('latest timestamp: ' + factory.latestTimestamp);
     });
   }
 
   // Get new sentences and add them to factory.sentences array
+  // Then update latest timestamp so next time we don't get extra sentences
   factory.getNew = function() {
     if (factory.latestTimestamp) {
       return $http.get('/sentences/new/' + factory.latestTimestamp)
         .success(function(data) {
           factory.sentences = factory.sentences.concat(data);
+          factory.latestTimestamp = new Date().toISOString();
       });
     } else {
-      console.log('no timestamp saved yet, getting all');
       return factory.getAll();
     }
   }

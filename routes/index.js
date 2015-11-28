@@ -58,6 +58,10 @@ router.get('/sentences', function(request, response, next) {
 // $gt = greater than
 // $lt = less than
 router.get('/sentences/new/:timestamp', function(request, response, next) {
+  if (!request.params.timestamp) {
+    return next('no timestamp in get req');
+  }
+
   Sentence.find({
     'timestamp': {
       '$gt': request.params.timestamp,

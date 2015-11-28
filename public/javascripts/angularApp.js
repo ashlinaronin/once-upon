@@ -22,7 +22,6 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
     },
     resolve: {
       sentencePromise: ['SentencesFactory', function(SentencesFactory) {
-        console.log('i am resolving sentence promise in angular home state');
         return SentencesFactory.getAll();
       }]
     }

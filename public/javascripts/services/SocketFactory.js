@@ -72,24 +72,11 @@ $rootScope, $timeout) {
       });
     });
 
+    // Whoever was recording has finished, so we should get new messages
     socket.on('end recording', function(msg) {
       $rootScope.$apply(function() {
         factory.currentMessage.inProgress = false;
-
-        // maybe it's just taking awhile to save the recordings
-        // so let's try with a timeout here
-        // if (msg.userId === socket.io.engine.id) {
-        //   console.log('i ended teh recording');
-        //
-        // } else {
-        //   console.log('somebody else ended the recording, so im gonna get all now');
-        //   SentencesFactory.getAll();
-        // }
-
-        // SentencesFactory.getAll();
-        console.log('client got end recording msg, i should call sentencesfactory.getNew now');
         SentencesFactory.getNew();
-        // $timeout(SentencesFactory.getAll(), 2000);
       });
     });
   });
