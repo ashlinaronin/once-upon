@@ -2,6 +2,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.container {
+  padding-bottom: 200px;
+}
+
 a {
   color: #00B7FF;
 }

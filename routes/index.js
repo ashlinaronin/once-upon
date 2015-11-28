@@ -43,12 +43,33 @@ router.post('/sentences', function(request, response, next) {
 
 // GET /sentences (all)
 router.get('/sentences', function(request, response, next) {
+  console.log('in sentences get all');
   Sentence.find(function(error, sentences) {
     if (error) {
       return next(error);
     }
 
     // If no error, send retrieved sentences back to client
+    response.json(sentences);
+  });
+});
+
+// GET any sentences posted between timestamp and now
+// $gt = greater than
+// $lt = less than
+router.get('/sentences/new/:timestamp', function(request, response, next) {
+  Sentence.find({
+    'timestamp': {
+      '$gt': request.params.timestamp,
+      '$lt': new Date()
+    }
+  },
+  function dbCallback (error, sentences) {
+    if (error) {
+      return next(error);
+    }
+
+    // if no error, send back sentences
     response.json(sentences);
   });
 });

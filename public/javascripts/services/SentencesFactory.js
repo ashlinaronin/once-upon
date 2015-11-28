@@ -1,4 +1,4 @@
-onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
+onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope) {
   /* This factory is what negotiates between the front-end UI in angular
   ** and the backend API written in Node/Express.
   ** Angular doesn't communicate with MongoDB directly; rather, it sends
@@ -8,6 +8,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
 
   var factory = {};
   factory.sentences = [];
+  factory.latestTimestamp = null;
 
   // Moved this from the RecordCtrl to the factory so stuff will be updated
   // Should probably use angular's built in http instead of jquery!
@@ -28,7 +29,8 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
           }
         }).then(function successCallback(response) {
           // SocketFactory.endRecording();
-          factory.getAll();
+          // factory.getAll();
+          console.log('file reader finished reading blob');
         }, function errorCallback(response) {
           // Called when an error occurs
           console.log('Error saving audio file: ' + response);
@@ -43,7 +45,24 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http) {
     return $http.get('/sentences').success(function(data) {
       // Create a deep copy of the return data so it will be updated everywhere
       angular.copy(data, factory.sentences);
+      // factory.sentences = data;
+      factory.latestTimestamp =
+        factory.sentences[factory.sentences.length-1].timestamp;
+      console.log('latest timestamp: ' + factory.latestTimestamp);
     });
+  }
+
+  // Get new sentences and add them to factory.sentences array
+  factory.getNew = function() {
+    if (factory.latestTimestamp) {
+      return $http.get('/sentences/new/' + factory.latestTimestamp)
+        .success(function(data) {
+          factory.sentences = factory.sentences.concat(data);
+      });
+    } else {
+      console.log('no timestamp saved yet, getting all');
+      return factory.getAll();
+    }
   }
 
 

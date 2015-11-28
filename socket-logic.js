@@ -2,9 +2,8 @@ var setup = function(io, PubSub) {
   var connected = [];
 
   var onAudioFileUploadedSubscriber = function(msg, data) {
-    console.log("onAudioFileUploadedSubscriber" + msg + data);
+    console.log("onAudioFileUploadedSubscriber: " + msg);
     io.emit('end recording');
-
   }
 
   var token = PubSub.subscribe('FILE_AUDIO_UPLOADED', onAudioFileUploadedSubscriber);

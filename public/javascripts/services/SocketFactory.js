@@ -86,7 +86,9 @@ $rootScope, $timeout) {
         //   SentencesFactory.getAll();
         // }
 
-        SentencesFactory.getAll();
+        // SentencesFactory.getAll();
+        console.log('client got end recording msg, i should call sentencesfactory.getNew now');
+        SentencesFactory.getNew();
         // $timeout(SentencesFactory.getAll(), 2000);
       });
     });

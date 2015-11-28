@@ -26,6 +26,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.save = function() {
       $scope.rec.stop();
       $scope.recognition.stop();
+      console.log('in $scope.save');
 
       // Factory will do the actual work of saving the recording
       // We pass it the recorder object to do so
@@ -75,13 +76,14 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
             $scope.final = sentence;
             // $scope.heardSentences.push(sentence);
 
-
+            // $scope.recognition.stop();
             // $scope.SocketFactory.endRecording();
 
             // Set the text to this sentence transcription
             // and save all to the db
             $scope.text = sentence;
             $scope.save();
+
 
             // Now we're not sending the end recording message til after
             // db success callback
