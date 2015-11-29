@@ -60,6 +60,17 @@ $rootScope, $timeout) {
 
       if (count === 0) {
         console.log('sorry, your time is up! let someone else take a turn...');
+        // factory.userStatus = 'waiting';
+        var newMsg = {
+          userId: socket.io.engine.id,
+          inProgress: false,
+          text: null
+        };
+
+        // tell the server that the active contributor has lost their chance
+        // and we should push them back to the end of the line
+        socket.emit('countdown over', newMsg);
+
         clearInterval(countdownClock);
       }
       count--;

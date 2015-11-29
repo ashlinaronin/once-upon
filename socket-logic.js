@@ -46,6 +46,14 @@ var setup = function(io, PubSub) {
       io.emit('end recording', msg);
     });
 
+    // this means the user lost their chance to record, bump em in line
+    socket.on('countdown over', function(msg) {
+      // we might as well send this msg to everyone for potential future use
+      io.emit('countdown over', msg);
+      recordQueue.push(recordQueue.shift());
+      updateAllSocketStatuses();
+    });
+
     socket.on('disconnect', function() {
       // Take this socket out of the queue
       var queuePosition = recordQueue.indexOf(socket);
