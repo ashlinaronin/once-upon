@@ -1,34 +1,44 @@
 onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
-  $scope.userStatus = SocketFactory.userStatus;
-
-  // holed waiting position or active countdown time
-  $scope.userStatusMessage = SocketFactory.userStatusMessage;
-
+  // Tie scoped status vars to SocketFactory
+  $scope.userPosition = SocketFactory.userPosition;
+  $scope.totalUsers = SocketFactory.totalUsers;
+  $scope.remainingTime = SocketFactory.remainingTime;
   $scope.currentMessage = SocketFactory.currentMessage;
+  $scope.countingDown = SocketFactory.countingDown;
 
-  $scope.statusColor = 'red';
 
-  // Watch for changes to userStatus in StatusFactory service
-  // Convoluted syntax is safer
-  // We need both to watch scope here and apply it in service
+
+  // Really should refactor these... but scope watchgroup was not working...
   $scope.$watch(function() {
-    return SocketFactory.userStatus;
-  }, function(newValue, oldValue) {
-    $scope.userStatus = newValue;
-
-    // Color updating can be refactored, maybe into directive
-    if ($scope.userStatus === 'active') {
-      $scope.statusColor = 'active';
-    } else {
-      $scope.statusColor = 'waiting';
-    }
+    return SocketFactory.userPosition;
+  }, function(newVal, oldVal) {
+    $scope.userPosition = newVal;
   });
 
-  // I'm kind of amazed we need another watch for this, but whatevs
   $scope.$watch(function() {
-    return SocketFactory.userStatusMessage;
-  }, function(newValue, oldValue) {
-    $scope.userStatusMessage = newValue;
+    return SocketFactory.totalUsers;
+  }, function(newVal, oldVal) {
+    $scope.totalUsers = newVal;
   });
+
+  $scope.$watch(function() {
+    return SocketFactory.remainingTime;
+  }, function(newVal, oldVal) {
+    $scope.remainingTime = newVal;
+  });
+
+  $scope.$watch(function() {
+    return SocketFactory.currentMessage;
+  }, function(newVal, oldVal) {
+    $scope.currentMessage = newVal;
+  });
+
+  $scope.$watch(function() {
+    return SocketFactory.countingDown;
+  }, function(newVal, oldVal) {
+    $scope.countingDown = newVal;
+  });
+
+
 
 });

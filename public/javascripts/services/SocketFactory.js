@@ -3,17 +3,30 @@ $rootScope, $timeout) {
   var factory = {};
   var socket;
 
+  factory.userPosition = null;
+  factory.totalUsers = null;
+  factory.remainingTime = null;
 
-  factory.userStatus = null;
-  factory.userStatusMessage = null;
   factory.currentMessage = {
     userId: null,
     inProgress: false,
     text: null
   };
 
-  // logic to send messages from this user
+  // factory.countdownClock;
+  factory.countingDown = false;
+
+
+
+  /////////////////////// Logic to send outgoing socket messages to the server
+  // This user just began recording, tell the server so it can tell everyone
   factory.beginRecording = function() {
+    // if the user has begun recording, stop the clock and clear the time on it
+    $rootScope.$apply(function() {
+      // clearInterval(factory.countdownClock);
+      factory.countingDown = false;
+    });
+
     var newMsg = {
       userId: socket.io.engine.id,
       inProgress: true,
@@ -23,6 +36,7 @@ $rootScope, $timeout) {
     factory.currentMessage = newMsg;
   }
 
+  // This user just recorded new text, tell the server so it can tell everyone
   factory.updateText = function(currentText) {
     var newMsg = {
       userId: socket.io.engine.id,
@@ -33,6 +47,7 @@ $rootScope, $timeout) {
     factory.currentMessage = newMsg;
   }
 
+  // This user just finished recording, tell the server so it can tell everyone
   factory.endRecording = function() {
     var newMsg = {
       userId: socket.io.engine.id,
@@ -44,23 +59,34 @@ $rootScope, $timeout) {
   }
 
 
-  // This gets called when a user becomes active
-  // They have 30 seconds to think about what they want to say before starting
-  // the recording
+  // This gets called when a user becomes active. They have 30 seconds to think
+  // about what they want to say before starting the recording.
   factory.countdownToRecord = function() {
+    // Reset countdown first to make sure we don't have any lingering data
+    var countdownClock;
     var count = 30;
+    factory.countingDown = true;
 
     var updateCountdown = function() {
-      console.log('countdown: ' + count);
-      // Update userstatusmessage outside of factory
+      // check first if elsewhere we stopped counting bc user started recording
+      // if so, turn off the clock and reset count
+      if (!factory.countingDown) {
+        count = 30;
+        clearInterval(countdownClock);
+        return; // just to make sure clock doesn't keep running
+      }
+
+      // Update remainingTime outside of factory
       $rootScope.$apply(function() {
-        factory.userStatusMessage = count;
-        console.log('updated userStatusMessage: ' + count);
+        factory.remainingTime = count;
       });
 
+      // If user has run out of time...
       if (count === 0) {
-        console.log('sorry, your time is up! let someone else take a turn...');
-        // factory.userStatus = 'waiting';
+        $rootScope.$apply(function() {
+          factory.countingDown = false;
+        });
+
         var newMsg = {
           userId: socket.io.engine.id,
           inProgress: false,
@@ -72,35 +98,40 @@ $rootScope, $timeout) {
         socket.emit('countdown over', newMsg);
 
         clearInterval(countdownClock);
+        return; // just to make sure clock doesn't keep running
       }
+
+      // decrement count
       count--;
     }
 
     updateCountdown(); // run it once first to avoid delay
-    var countdownClock = setInterval(updateCountdown, 1000);
+    countdownClock = setInterval(updateCountdown, 1000);
   }
 
 
 
-  // When the page has loaded, fire up Socket.io client and listen for
-  // status messages
+  //////////////////// Logic to process incoming socket messages from the server
   angular.element(document).ready(function() {
     socket = io();
 
+    // Update user status and conditionally start countdown
     socket.on('status', function(msg) {
-      if (msg[0] === 'active') {
+      // only start the countdown if a) this socket is 1st,
+      // b) there are other users, and
+      // c) we're not already counting down
+      if ((msg.userPosition == 0) && (msg.totalUsers !== 1) && (!factory.countingDown)) {
         factory.countdownToRecord();
       }
 
       // Every custom event handler needs to apply its scope
       // Syntax is a bit different in service
       $rootScope.$apply(function() {
-        factory.userStatus = msg[0]; // 'waiting' or 'active'
-        factory.userStatusMessage = msg[1]; // waiting position or other info
-        console.log('updated userStatusMessage: ' + factory.userStatusMessage);
+        factory.userPosition = msg.userPosition; // 'waiting' or 'active'
+        factory.totalUsers = msg.totalUsers; // waiting position or other info
+        console.dir('in rootscope apply, factoryuserpos : ' + factory.userPosition);
       });
     });
-
 
     // Logic to process pushed live recordings from other users
     socket.on('begin recording', function(msg) {
@@ -110,6 +141,7 @@ $rootScope, $timeout) {
       });
     });
 
+    // Display a word that we've gotten from another client via the server
     socket.on('word', function(msg) {
       $rootScope.$apply(function() {
         factory.currentMessage.text = msg.text;

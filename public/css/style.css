@@ -19,13 +19,22 @@ li:hover {
   color: gray;
 }
 
+/* status classes*/
 .active {
   color: green;
 }
-
+.countdown {
+  color: purple;
+}
+.countdown-over {
+  color: brown;
+}
 .waiting {
   color: red;
 }
+
+
+
 
 .playing {
   color: orange;

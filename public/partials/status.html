@@ -1,11 +1,24 @@
-<div id="user-status" ng-class="statusColor">
-  Current status: {{userStatus}}
-    <span ng-if="userStatusMessage && userStatus == 'waiting'"> in position {{userStatusMessage}}</span>
-    <span ng-if="userStatusMessage && userStatus == 'active'"> for {{userStatusMessage}} more seconds</span>
-    <p ng-if="userStatusMessage == 0 && userStatus == 'active'">Sorry, let's give someone else a turn!</p>
+<div id="user-status">
+  Current status:
+  <span ng-show="userPosition === 0 && !remainingTime" class="active">active</span>
+  <span ng-show="userPosition === 0 && remainingTime" class="countdown">active, {{remainingTime}} seconds left to contribute</span>
+  <span ng-show="userPosition === 0 && remainingTime === 0" class="countdown-over">Sorry, let's give someone else a turn!</span>
+  <span ng-show="userPosition !== 0" class="waiting">waiting in position {{userPosition}}, {{totalUsers}} total users</span>
 </div>
+
+<p>
+  userPosition: {{userPosition}}
+</p>
+
+<p>
+  remainingTime: {{remainingTime}}
+</p>
+
+<p>
+  countingDown: {{countingDown}}
+</p>
+
 
 <div id="current-message" ng-show="currentMessage.inProgress">
   {{currentMessage.userId}} says: {{currentMessage.text}}
-
 </div>

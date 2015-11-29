@@ -21,7 +21,10 @@ var setup = function(io, PubSub) {
   io.on('connection', function(socket) {
     // Assume user will be waiting by default
     recordQueue.push(socket);
-    checkStatusAndEmitMessage(socket);
+
+    // Update everyone's status so ppl can see there is a new connection
+    updateAllSocketStatuses();
+    // checkStatusAndEmitMessage(socket);
 
     console.log('got a connection, users connected:');
     recordQueue.forEach(function(socket) {
@@ -74,6 +77,7 @@ var setup = function(io, PubSub) {
 
   });
 
+  // everytime we update all socket statuses, tell everyone how many people are waiting
   var updateAllSocketStatuses = function() {
     recordQueue.forEach(function(socket) {
       checkStatusAndEmitMessage(socket);
@@ -81,18 +85,13 @@ var setup = function(io, PubSub) {
   }
 
 
-
-  // Check user status for a particular socket and send it a message telling
-  // its current status
-  // Eventually want to change this to send just the index of the waiting
-  // socket so we don't have to parse string, but for now it's easier to read
+  // Send this socket a message detailing its current waiting position and total
+  // number of users
   var checkStatusAndEmitMessage = function(socket) {
-    if (recordQueue.indexOf(socket) === 0) {
-      io.to(socket.id).emit('status', ['active', null]);
-    } else {
-      io.to(socket.id).emit('status',
-        ['waiting', recordQueue.indexOf(socket)]);
-    }
+    io.to(socket.id).emit('status', {
+      userPosition: recordQueue.indexOf(socket),
+      totalUsers: recordQueue.length
+    });
   }
 
 }
