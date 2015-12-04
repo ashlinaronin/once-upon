@@ -1,0 +1,18 @@
+#status-panel {
+  #status-panel-content {
+    ul#status-list {
+      list-style: none;
+      line-height: 3.0;
+      font-family: 'Cutive Mono', monospace;
+      li {
+        font-size: larger;
+      }
+      li.waiting-status {
+
+      }
+      li.active-status {
+        color: aqua;
+      }
+    }
+  }
+}

@@ -1,3 +1,15 @@
-#hud-wrapper {
-  padding: 30px;
+#sentences-panel {
+  #sentences-panel-content {
+    ul#sentences-list {
+      list-style: none;
+      // line-height: 1.8;
+      font-family: 'Cutive Mono', monospace;
+      font-size: smaller;
+      li {
+        margin: 0 0 25px 0;
+      }
+      li.sentence {}
+      li.active-sentence {}
+    }
+  }
 }
