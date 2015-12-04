@@ -1,27 +1,19 @@
 body {
   margin: 0;
-  // color: white;
   background-color: black;
 }
 
 .container {
-  // margin-top: 30px;
-
   margin-right: 20px;
 }
 
 #title-banner-wrap {
   background-color: black;
-  // width: 96%;
-  // height: 100%;
   margin-right: 100px;
 
   #title-banner-text {
     margin-left: 40px;
-    // margin-right: 140px;
     padding: 35px;
-    // margin-top: 20px;
-    // border: 1px solid white;
 
     h1 {
       font-family: 'Autopiaregular', Georgia, serif;
@@ -30,7 +22,6 @@ body {
       position: relative;
       padding: 20px;
       border: 1px solid white;
-      // margin-right: ;
       margin-top: 0;
 
       // folded corner - not quite perfect...
@@ -87,20 +78,15 @@ $zen-gutter-width: 0px;
   #status-panel {
     @include zen-grid-item(3, 1, left);
     background-color: #323033;
-    // border: 1px solid black;
-    // min-width:
-
   }
   #sentences-panel {
     @include zen-grid-item(5, 1, right);
     background-color: black;
   }
   #record-panel {
-    // min-height: 100%;
     @include zen-clear(left);
     @include zen-grid-item(3, 1, left);
     background-color: #323033;
-    // border: 1px solid black;
   }
 
 }

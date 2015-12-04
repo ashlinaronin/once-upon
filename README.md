@@ -1,11 +1,24 @@
-Just beginning development on this project. Much to do. Learning a lot about the MEAN stack.
+# portfolio
+By Ashlin Aronin, 28-Nov-2015
 
-start mongo and tell it to run in the background (&)
-mongod &
+A basic portfolio featuring some of my projects and interests.
 
-sudo npm install
-npm start
+## Installation Instructions
+* Make sure you have Node and MongoDB installed.
+* Run NPM to install dependencies.
+* Start the app.
+* Visit localhost:3000 and enjoy!
+```sh
+$ cd once-upon
+$ mongod &
+$ npm install
+$ npm start
+```
 
 
+## Technologies Used
+Node, Express, Mongoose, Socket.io, PubSub, Angular, Recorder.js, Web Speech API, jQuery, Zen Grids, SASS, Compass.
 
-modified package.json to run 'node app.js' instead of 'node ./bin/www'
+## License
+MIT License, Copyright (c) 2015 Ashlin Aronin
+=======

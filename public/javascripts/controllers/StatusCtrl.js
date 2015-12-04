@@ -6,6 +6,8 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.currentMessage = SocketFactory.currentMessage;
   $scope.countingDown = SocketFactory.countingDown;
 
+  // Helper so we can use ng-repeat as a for loop, a feature that
+  // already exists in Angular 2 apparently
   $scope.range = function(n) {
     var negArray = [];
     for (var i = (n-1); i >= 0; i--) {

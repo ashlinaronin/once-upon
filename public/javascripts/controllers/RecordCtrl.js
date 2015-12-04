@@ -2,7 +2,6 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.SentencesFactory = SentencesFactory;
 
     // connect current message to socket factory so we can emit it
-    // should be bound automatically??
     $scope.SocketFactory = SocketFactory;
 
     // recorder object must be scoped to the whole controller
