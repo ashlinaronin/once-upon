@@ -180,8 +180,13 @@ nav#navbar #navbar-content {
   width: 90px;
   height: 90px;
   margin-left: 30px;
+  cursor: pointer;
 }
-/* line 27, ../sass/components/_record.scss */
+/* line 11, ../sass/components/_record.scss */
+#record-panel img:hover, #record-panel img:focus {
+  opacity: 0.8;
+}
+/* line 31, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;

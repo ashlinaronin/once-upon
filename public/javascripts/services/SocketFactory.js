@@ -129,7 +129,6 @@ $rootScope, $timeout) {
       $rootScope.$apply(function() {
         factory.userPosition = msg.userPosition; // 'waiting' or 'active'
         factory.totalUsers = msg.totalUsers; // waiting position or other info
-        console.dir('in rootscope apply, factoryuserpos : ' + factory.userPosition);
       });
     });
 
@@ -153,6 +152,8 @@ $rootScope, $timeout) {
       $rootScope.$apply(function() {
         factory.currentMessage.inProgress = false;
         SentencesFactory.getNew();
+        // TODO: move this to directive later
+        $("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
       });
     });
   });

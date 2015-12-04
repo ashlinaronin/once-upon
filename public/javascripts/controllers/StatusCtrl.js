@@ -33,7 +33,6 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     return SocketFactory.remainingTime;
   }, function(newVal, oldVal) {
     $scope.remainingTime = newVal;
-    console.log('newVal');
   });
 
   $scope.$watch(function() {
