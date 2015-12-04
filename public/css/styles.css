@@ -165,30 +165,45 @@ nav#navbar #navbar-content {
 
 /* line 1, ../sass/components/_record.scss */
 #record-panel {
+  height: 300px;
+  overflow: visible;
   padding: 30px;
 }
-/* line 4, ../sass/components/_record.scss */
+/* line 6, ../sass/components/_record.scss */
 #record-panel img {
   width: 90px;
   height: 90px;
   margin-left: 30px;
 }
+/* line 12, ../sass/components/_record.scss */
+#record-panel #speech-results {
+  font-family: 'Cutive Mono', monospace;
+  font-size: larger;
+  padding: 30px;
+}
 
-/* line 3, ../sass/components/_sentences.scss */
+/* line 1, ../sass/components/_sentences.scss */
+#sentences-panel {
+  height: 500px;
+  overflow: scroll;
+  padding-top: 25px;
+  padding-bottom: 30px;
+}
+/* line 7, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
   font-family: 'Cutive Mono', monospace;
   font-size: smaller;
 }
-/* line 8, ../sass/components/_sentences.scss */
+/* line 12, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 12, ../sass/components/_sentences.scss */
+/* line 16, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence {
   position: relative;
 }
-/* line 14, ../sass/components/_sentences.scss */
+/* line 18, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence:before {
   content: "";
   position: absolute;

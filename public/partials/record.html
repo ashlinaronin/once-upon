@@ -11,6 +11,20 @@
 <!-- <div id="record-panel"> -->
   <!-- record img here -->
   <!-- <p> -->
-    <img id="record-img" src="images/large.png" />
+  <!-- <div id="speech-results">
+    <p>
+      <strong>your contribution</strong>: {{interim}}
+    </p>
+  </div> -->
+<div id="record">
+  <img role="button" ng-click="start()" id="record-img" src="images/large.png" ng-show="SocketFactory.userPosition == 0"/>
+</div>
+  <!-- <button type="button" name="start" id="start" ng-click="start()"> -->
+  <!-- </button> -->
+<div id="speech-results" ng-show="(SocketFactory.userPosition == 0) && recognizing">
+  <p>
+    <em>you</em>: {{interim}}
+  </p>
+</div>
   <!-- </p> -->
 <!-- </div> -->

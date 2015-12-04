@@ -1,8 +1,4 @@
-<!-- <div class="page-header">
-  <h1>once.upon</h1>
-</div>
-
-<div id="sentences">
+<!-- <div id="sentences">
   <ul>
     <li once-play-from="{{sentence._id}}" ng-repeat="sentence in sentences">
       <p>{{sentence.text}}</p>
@@ -16,15 +12,23 @@
 
 
 
-<div id="sentences-panel">
+<!-- <div id="sentences-panel"> -->
   <div id="sentences-panel-content">
     <ul id="sentences-list">
-      <li class="sentence">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
-      <li class="sentence">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</li>
+      <li once-play-from="{{sentence._id}}" ng-repeat="sentence in sentences" class="sentence">
+        <p>{{sentence.text}}</p>
+        <audio once-audio="{{sentence._id}}" id="{{sentence._id}}">
+          Your browser does not support the <code>audio</code> element.
+        </audio>
+      </li>
+
+
+
+      <!-- <li class="sentence">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</li>
       <li class="sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
       <li class="sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
       <li class="sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
-      <li class="active-sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
+      <li class="active-sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li> -->
     </ul>
   </div>
-</div>
+<!-- </div> -->

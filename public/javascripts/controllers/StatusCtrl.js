@@ -6,6 +6,14 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.currentMessage = SocketFactory.currentMessage;
   $scope.countingDown = SocketFactory.countingDown;
 
+  $scope.range = function(n) {
+    var negArray = [];
+    for (var i = n; i >= 0; i--) {
+      negArray.push(i);
+    }
+    return negArray;
+  }
+
 
 
   // Really should refactor these... but scope watchgroup was not working...
@@ -25,6 +33,7 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     return SocketFactory.remainingTime;
   }, function(newVal, oldVal) {
     $scope.remainingTime = newVal;
+    console.log('newVal');
   });
 
   $scope.$watch(function() {
