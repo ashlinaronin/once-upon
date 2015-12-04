@@ -1,5 +1,5 @@
 // TODO: need a factory to keep track of what is playing so we can stop it
-onceUpon.directive('onceAudio', function() {
+onceUpon.directive('onceAudio', function(SentencesFactory) {
   /* This directive is restricted to matching by attribute name
   ** because of the use case: <audio once-get-audio>.
   ** From the Angular docs: 'Use an attribute when you are
@@ -15,20 +15,32 @@ onceUpon.directive('onceAudio', function() {
       // of the order that the DOM is processed.
       element.attr('src', '/getRecording/' + sentenceId);
 
-      // Very strange behavior with jQuery... just selects itself over and over
-      // var nextAudio = element.parent().next().find('audio');
+      scope.sentences = SentencesFactory.sentences;
 
-      // If we have a next sentence, set up a binding to play it next
-      // Using convoluted jqLite selectors here because jQuery wasn't working
-      var nextSentence = element.context.parentElement.nextElementSibling;
-      if (nextSentence) {
-        element.bind('ended', function() {
-          element.parent().removeClass('playing');
-          angular.element(nextSentence).addClass('playing');
-          nextSentence.lastElementChild.play();
-        });
-      }
+      // Reset bindings whenever we get new sentences
+      scope.$watch(function() {
+        return SentencesFactory.sentences;
+      },
+      function(newVal, oldVal) {
+        scope.sentences = newVal;
+        var thisIndex = SentencesFactory.sentences.indexOf(scope.sentence);
+        var numSentences = SentencesFactory.sentences.length;
 
+        if (thisIndex < (numSentences-1)) { // there is a next sentence
+          element.bind('ended', function() {
+            var nextSentence = element.context.parentElement.nextElementSibling;
+            element.parent().removeClass('playing');
+            angular.element(nextSentence).addClass('playing');
+            nextSentence.lastElementChild.play();
+            SentencesFactory.currentlyPlaying = nextSentence;
+          });
+        } else { // no next sentence
+          element.bind('ended', function() {
+            SentencesFactory.currentlyPlaying = null;
+            element.parent().removeClass('playing');
+          });
+        }
+      });
     });
   }
 
@@ -42,7 +54,8 @@ onceUpon.directive('onceAudio', function() {
   return {
     restrict: 'A',
     scope: {
-      onceAudio: '@'
+      onceAudio: '@',
+      sentence: '='
     },
     link: link
   };
@@ -53,11 +66,13 @@ onceUpon.directive('onceAudio', function() {
 /*
 ** Directive to play the whole story starting from a given sentence.
 */
-onceUpon.directive('oncePlayFrom', function() {
+onceUpon.directive('oncePlayFrom', function(SentencesFactory) {
   function link(scope, element, attrs) {
     element.bind('click', function() {
       element.find('audio')[0].play();
       element.addClass('playing');
+      SentencesFactory.currentlyPlaying = element[0];
+      console.dir(SentencesFactory.currentlyPlaying);
     });
   };
 

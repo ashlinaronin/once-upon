@@ -19,7 +19,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.start = function() {
       $scope.rec.record();
       $scope.recognition.start();
-      console.log('recording');
+      // console.log('recording');
     }
 
     $scope.save = function() {
@@ -48,7 +48,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
         // Do these things when speech recognition is enabled
         $scope.recognition.onstart = function() {
-          console.log('started recognition');
+          // console.log('started recognition');
           $scope.recognizing = true;
           $scope.SocketFactory.beginRecording();
 
