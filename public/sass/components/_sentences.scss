@@ -12,7 +12,17 @@
       li {
         margin: 0 0 25px 0;
       }
-      li.sentence {}
+      li.sentence {
+        cursor: pointer;
+        &:hover, &:focus {
+          background: linear-gradient(to right, #333333, black);
+        }
+        &.playing {
+          background: linear-gradient(to left, #333, black);
+        }
+      }
+
+      // not being used rn
       li.active-sentence {
         position: relative;
         &:before {

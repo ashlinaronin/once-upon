@@ -81,6 +81,7 @@ $zen-gutter-width: 0px;
   margin-left: 75px;
   margin-right: 100px;
   border: 1px solid white;
+  overflow: scroll;
   @include zen-grid-container();
 
   #status-panel {

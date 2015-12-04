@@ -1,37 +1,9 @@
-<!-- <div id="user-status">
-  Current status:
-  <span ng-show="userPosition === 0 && !remainingTime" class="active">active</span>
-  <span ng-show="userPosition === 0 && remainingTime" class="countdown">active, {{remainingTime}} seconds left to contribute</span>
-  <span ng-show="userPosition === 0 && remainingTime === 0" class="countdown-over">Sorry, let's give someone else a turn!</span>
-  <span ng-show="userPosition !== 0" class="waiting">waiting in position {{userPosition}}, {{totalUsers}} total users</span>
+<div id="status-panel-content">
+  <ul id="status-list">
+    <li ng-repeat="user in range(totalUsers) track by $index"
+      ng-class="(userPosition == user) ? 'active-status' : 'waiting-status'">
+      {{$last ? 'speaking' : 'waiting'}}
+      <span ng-show="((userPosition == user) && (user == 0) && (countingDown))">{{remainingTime}}</span>
+    </li>
+  </ul>
 </div>
--->
-<!-- <p>
-  userPosition: {{userPosition}}
-</p>
-
-<p>
-  remainingTime: {{remainingTime}}
-</p>
-
-<p>
-  countingDown: {{countingDown}}
-</p>
-hello {{countingDown}} {{remainingTime}}
-
-
-<div id="current-message" ng-show="currentMessage.inProgress">
-  {{currentMessage.userId}} says: {{currentMessage.text}}
-</div> -->
-
-
-
-  <div id="status-panel-content">
-    <ul id="status-list">
-      <li ng-repeat="user in range(totalUsers) track by $index"
-        ng-class="(userPosition == user) ? 'active-status' : 'waiting-status'">
-        {{$last ? 'speaking' : 'waiting'}}
-        <span ng-show="((userPosition == user) && (user == 0) && (countingDown))">{{remainingTime}}</span>
-      </li>
-    </ul>
-  </div>

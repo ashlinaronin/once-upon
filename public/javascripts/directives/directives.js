@@ -1,7 +1,4 @@
-/*
-**
-*/
-
+// TODO: need a factory to keep track of what is playing so we can stop it
 onceUpon.directive('onceAudio', function() {
   /* This directive is restricted to matching by attribute name
   ** because of the use case: <audio once-get-audio>.

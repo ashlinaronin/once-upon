@@ -71,6 +71,7 @@ body {
   margin-left: 75px;
   margin-right: 100px;
   border: 1px solid white;
+  overflow: scroll;
 }
 /* line 45, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-1.5/stylesheets/zen/_grids.scss */
 #hud-wrapper:before, #hud-wrapper:after {
@@ -81,7 +82,7 @@ body {
 #hud-wrapper:after {
   clear: both;
 }
-/* line 86, ../sass/_globals.scss */
+/* line 87, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -96,7 +97,7 @@ body {
   word-wrap: break-word;
   background-color: #323033;
 }
-/* line 93, ../sass/_globals.scss */
+/* line 94, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -111,7 +112,7 @@ body {
   word-wrap: break-word;
   background-color: black;
 }
-/* line 97, ../sass/_globals.scss */
+/* line 98, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -175,7 +176,7 @@ nav#navbar #navbar-content {
   height: 90px;
   margin-left: 30px;
 }
-/* line 12, ../sass/components/_record.scss */
+/* line 27, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;
@@ -199,11 +200,23 @@ nav#navbar #navbar-content {
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 16, ../sass/components/_sentences.scss */
+/* line 15, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
+  cursor: pointer;
+}
+/* line 17, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
+  background: linear-gradient(to right, #333333, #000000);
+}
+/* line 20, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
+  background: linear-gradient(to left, #333333, #000000);
+}
+/* line 26, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence {
   position: relative;
 }
-/* line 18, ../sass/components/_sentences.scss */
+/* line 28, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence:before {
   content: "";
   position: absolute;
