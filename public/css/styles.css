@@ -12,30 +12,63 @@ body {
 
 /* line 13, ../sass/_globals.scss */
 #title-banner-wrap {
-  background-color: red;
-  height: 100%;
+  background-color: black;
+  margin-right: 100px;
 }
-/* line 18, ../sass/_globals.scss */
+/* line 19, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
-  margin-right: 140px;
   padding: 35px;
 }
-/* line 24, ../sass/_globals.scss */
+/* line 26, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   display: inline;
+  color: white;
+  position: relative;
   padding: 20px;
   border: 1px solid white;
   margin-top: 0;
 }
+/* line 37, ../sass/_globals.scss */
+#title-banner-wrap #title-banner-text h1:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #fff #000;
+}
 
-/* line 40, ../sass/_globals.scss */
+/* line 51, ../sass/_globals.scss */
+#upper-bg-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 350px;
+  background: url("../images/background.png");
+  background-size: cover;
+}
+
+/* line 60, ../sass/_globals.scss */
+#lower-bg-wrap {
+  position: absolute;
+  top: 350px;
+  right: 0;
+  width: 80px;
+  height: 420px;
+  background: url("../images/background.png");
+  background-size: cover;
+}
+
+/* line 76, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
-  padding-left: 30px;
+  padding-left: 0px;
   padding-right: 30px;
-  margin-left: 40px;
+  margin-left: 75px;
   margin-right: 100px;
   border: 1px solid white;
 }
@@ -48,7 +81,7 @@ body {
 #hud-wrapper:after {
   clear: both;
 }
-/* line 49, ../sass/_globals.scss */
+/* line 86, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -61,10 +94,9 @@ body {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   word-wrap: break-word;
-  background-color: grey;
-  border: 1px solid black;
+  background-color: #323033;
 }
-/* line 55, ../sass/_globals.scss */
+/* line 93, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -79,7 +111,7 @@ body {
   word-wrap: break-word;
   background-color: black;
 }
-/* line 59, ../sass/_globals.scss */
+/* line 97, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -93,8 +125,7 @@ body {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   word-wrap: break-word;
-  background-color: grey;
-  border: 1px solid black;
+  background-color: #323033;
 }
 
 /* line 9, ../sass/components/_navbar.scss */
@@ -117,7 +148,7 @@ nav#navbar #navbar-header {
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
   margin-top: 35px;
-  margin-left: -15px;
+  margin-left: -11px;
 }
 /* line 30, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
@@ -153,6 +184,20 @@ nav#navbar #navbar-content {
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
+/* line 12, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence {
+  position: relative;
+}
+/* line 14, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 80%;
+  left: -20px;
+  top: 4%;
+  border-right: 2px solid #037C83;
+}
 
 /* line 3, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list {
@@ -166,5 +211,5 @@ nav#navbar #navbar-content {
 }
 /* line 13, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
-  color: aqua;
+  color: #71B8B8;
 }

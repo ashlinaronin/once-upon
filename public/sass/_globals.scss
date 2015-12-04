@@ -11,45 +11,83 @@ body {
 }
 
 #title-banner-wrap {
-  background-color: red;
+  background-color: black;
   // width: 96%;
-  height: 100%;
+  // height: 100%;
+  margin-right: 100px;
 
   #title-banner-text {
     margin-left: 40px;
-    margin-right: 140px;
+    // margin-right: 140px;
     padding: 35px;
     // margin-top: 20px;
+    // border: 1px solid white;
 
     h1 {
       font-family: 'Autopiaregular', Georgia, serif;
       display: inline;
-      // position: relative;
+      color: white;
+      position: relative;
       padding: 20px;
       border: 1px solid white;
       // margin-right: ;
       margin-top: 0;
 
+      // folded corner - not quite perfect...
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-width: 0 16px 16px 0;
+        border-style: solid;
+        border-color: #fff #000;
+      }
+
     }
   }
 }
 
+#upper-bg-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 350px;
+  background: url('../images/background.png');
+  background-size: cover;
+}
+#lower-bg-wrap {
+  position: absolute;
+  top: 350px;
+  right: 0;
+  width: 80px;
+  height: 420px;
+  // background-color: orange;
+
+  background: url('../images/background.png');
+  background-size: cover;
+}
+
 /////////// Grid
+// TODO: add media queries to stack blocks when necessary
 $zen-column-count: 8;
 $zen-gutter-width: 0px;
 #hud-wrapper {
   color: white;
-  padding-left: 30px;
+  // padding-left: 30px;
+  padding-left: 0px;
   padding-right: 30px;
-  margin-left: 40px;
+  margin-left: 75px;
   margin-right: 100px;
   border: 1px solid white;
   @include zen-grid-container();
 
   #status-panel {
     @include zen-grid-item(3, 1, left);
-    background-color: grey;
-    border: 1px solid black;
+    background-color: #323033;
+    // border: 1px solid black;
+    // min-width:
 
   }
   #sentences-panel {
@@ -60,8 +98,8 @@ $zen-gutter-width: 0px;
     // min-height: 100%;
     @include zen-clear(left);
     @include zen-grid-item(3, 1, left);
-    background-color: grey;
-    border: 1px solid black;
+    background-color: #323033;
+    // border: 1px solid black;
   }
 
 }

@@ -9,7 +9,21 @@
         margin: 0 0 25px 0;
       }
       li.sentence {}
-      li.active-sentence {}
+      li.active-sentence {
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          width: 2px;
+          height: 80%;
+          left: -20px;
+          top: 4%;
+          border-right: 2px solid #037C83;
+          // border: 4px solid green;
+          // height: 80%;
+          // background-color: green;
+        }
+      }
     }
   }
 }
