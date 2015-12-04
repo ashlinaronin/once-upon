@@ -8,7 +8,7 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
 
   $scope.range = function(n) {
     var negArray = [];
-    for (var i = n; i >= 0; i--) {
+    for (var i = (n-1); i >= 0; i--) {
       negArray.push(i);
     }
     return negArray;
