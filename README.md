@@ -1,4 +1,4 @@
-# once upon
+# once.upon
 By Ashlin Aronin, 4-Dec-2015
 
 An eternal communal fable in the browser. Record contributions to the story
