@@ -1,7 +1,9 @@
 # portfolio
-By Ashlin Aronin, 28-Nov-2015
+By Ashlin Aronin, 4-Dec-2015
 
-A basic portfolio featuring some of my projects and interests.
+An eternal communal fable in the browser. Users record contributions to the story
+one at a time and watch each other's contributions.
+Thanks to Andre Brown for designing the interface!
 
 ## Installation Instructions
 * Make sure you have Node and MongoDB installed.
