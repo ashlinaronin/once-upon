@@ -1,8 +1,9 @@
-# portfolio
+# once upon
 By Ashlin Aronin, 4-Dec-2015
 
-An eternal communal fable in the browser. Users record contributions to the story
-one at a time and watch each other's contributions.
+An eternal communal fable in the browser. Record contributions to the story
+one at a time and watch each other's contributions in real time. Listen
+back from any point to hear the tale read by its many makers.
 Thanks to Andre Brown for designing the interface!
 
 ## Installation Instructions
