@@ -8,7 +8,7 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
     url: "",
     views: {
       'sentences': {
-        templateUrl: 'partials/main.html',
+        templateUrl: 'partials/sentences.html',
         controller: 'SentencesCtrl'
       },
       'record' : {

@@ -6,11 +6,10 @@
     <link rel="stylesheet" href="css/styles.css" charset="utf-8">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/autopia" type="text/css"/>
     <link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css' />
-    <title>hello</title>
+    <title>once.upon</title>
   </head>
-  <body>
+  <body ngApp="onceUpon">
     <div class="container">
-
       <nav id="navbar">
         <div id="navbar-header">
           <h2>what?</h2>
@@ -29,46 +28,33 @@
       </div>
 
       <div id="hud-wrapper">
-        <div id="status-panel">
-          <div id="status-panel-content">
-            <ul id="status-list">
-              <li class="waiting-status">queued</li>
-              <li class="waiting-status">queued</li>
-              <li class="waiting-status">next</li>
-              <li class="active-status"><strong>speaking</strong></li>
-            </ul>
-          </div>
-        </div>
-
-        <div id="sentences-panel">
-          <div id="sentences-panel-content">
-            <ul id="sentences-list">
-              <li class="sentence">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
-              <li class="sentence">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</li>
-              <li class="sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
-              <li class="sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
-              <li class="sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
-              <li class="active-sentence">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </li>
-            </ul>
-          </div>
-        </div>
-
-
-        <div id="record-panel">
-          <!-- record img here -->
-          <!-- <p> -->
-            <img id="record-img" src="images/large.png" />
-          <!-- </p> -->
-        </div>
-
-
-      </div> <!-- end hud-wrap-->
-
-      <div id="upper-bg-wrap">
-      </div>
-      <div id="lower-bg-wrap">
+        <div ui-view="status"></div>
+        <div ui-view="sentences"></div>
+        <div ui-view="record"></div>
       </div>
 
+      <div id="upper-bg-wrap"></div>
+      <div id="lower-bg-wrap"></div>
     </div>
+
+    <!-- libs -->
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="javascripts/lib/blob-util.js"></script>
+    <script src="javascripts/lib/recorder.js"></script>
+    <script src="javascripts/lib/recorderWorker.js"></script>
+
+    <!-- app -->
+    <script src="javascripts/angularApp.js"></script>
+    <script src="javascripts/services/SocketFactory.js"></script>
+    <script src="javascripts/services/SentencesFactory.js"></script>
+    <script src="javascripts/directives/directives.js"></script>
+    <script src="javascripts/controllers/SentencesCtrl.js"></script>
+    <script src="javascripts/controllers/RecordCtrl.js"></script>
+    <script src="javascripts/controllers/StatusCtrl.js"></script>
+
+
   </body>
 </html>

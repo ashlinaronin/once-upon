@@ -1,4 +1,4 @@
-<div id="user-status">
+<!-- <div id="user-status">
   Current status:
   <span ng-show="userPosition === 0 && !remainingTime" class="active">active</span>
   <span ng-show="userPosition === 0 && remainingTime" class="countdown">active, {{remainingTime}} seconds left to contribute</span>
@@ -21,4 +21,17 @@
 
 <div id="current-message" ng-show="currentMessage.inProgress">
   {{currentMessage.userId}} says: {{currentMessage.text}}
+</div> -->
+
+
+
+<div id="status-panel">
+  <div id="status-panel-content">
+    <ul id="status-list">
+      <li class="waiting-status">queued</li>
+      <li class="waiting-status">queued</li>
+      <li class="waiting-status">next</li>
+      <li class="active-status"><strong>speaking</strong></li>
+    </ul>
+  </div>
 </div>
