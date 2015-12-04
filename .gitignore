@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 .Trashes
 public/.sass-cache
+public/bower_components
