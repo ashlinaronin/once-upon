@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>microm test</title>
+  </head>
+  <body>
+    <button name="start" id="start">start</button>
+    <button name="stop" id="stop">stop</button>
+    <button name="play" id="play">play</button>
+    <button name="download" id="download">download</button>
+
+
+    <script src="bower_components/microm/dist/microm.js"></script>
+    <script>
+      var microm = new Microm();
+      console.dir(microm);
+      var mp3 = null;
+
+      start();
+      setTimeout(stop, 1500);
+
+      var startBtn = document.getElementById('start');
+      var stopBtn = document.getElementById('stop');
+      var playBtn = document.getElementById('play');
+      var dlBtn = document.getElementById('download');
+
+      startBtn.onclick = start();
+      stopBtn.onclick = stop();
+      playBtn.onclick = play();
+      dlBtn.onclick = download();
+
+
+      function start() {
+        microm.startUserMedia().then(function() {
+          console.log('recording...')
+        }).catch(function() {
+          console.log('error recording');
+        });
+      }
+
+      function stop() {
+        microm.stop().then(function(result) {
+          mp3 = result;
+          console.log(mp3.url, mp3.blob, mp3.buffer);
+
+          play();
+          download();
+        });
+      }
+
+      function play() {
+        microm.play();
+      }
+
+      function download() {
+        var fileName = 'cat_voice';
+        microm.download(fileName);
+      }
+    </script>
+  </body>
+</html>
