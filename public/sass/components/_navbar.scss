@@ -16,7 +16,12 @@ nav#navbar {
   // border: 1px solid black;
   overflow: hidden;
   background: url('../images/textural.png');
+  // cursor: pointer;
   // background
+  a {
+    text-decoration: none;
+    color: black;
+  }
 
   #navbar-header  {
     // background-color: green;

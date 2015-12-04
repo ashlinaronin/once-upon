@@ -140,6 +140,11 @@ nav#navbar {
   background: url("../images/textural.png");
 }
 /* line 21, ../sass/components/_navbar.scss */
+nav#navbar a {
+  text-decoration: none;
+  color: black;
+}
+/* line 26, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
   bottom: 50px;
@@ -151,11 +156,11 @@ nav#navbar #navbar-header {
   margin-top: 35px;
   margin-left: -11px;
 }
-/* line 30, ../sass/components/_navbar.scss */
+/* line 35, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
   font-family: 'Autopiaregular', Georgia, serif;
 }
-/* line 35, ../sass/components/_navbar.scss */
+/* line 40, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content {
   position: relative;
   top: 80px;
