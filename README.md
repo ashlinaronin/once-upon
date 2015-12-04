@@ -20,7 +20,7 @@ $ npm start
 
 
 ## Technologies Used
-Node, Express, Mongoose, Socket.io, PubSub, Angular, Recorder.js, Web Speech API, jQuery, Zen Grids, SASS, Compass.
+Node, Express, Mongoose, Socket.io, PubSub, Angular, Recorder.js, Web Speech API, jQuery, Zen Grids, Sass, Compass.
 
 ## License
 MIT License, Copyright (c) 2015 Ashlin Aronin
