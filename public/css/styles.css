@@ -251,3 +251,9 @@ nav#navbar #navbar-content {
 #status-panel #status-panel-content ul#status-list li.active-status {
   color: #71B8B8;
 }
+/* line 17, ../sass/components/_status.scss */
+#status-panel #status-panel-content #current-message {
+  font-family: 'Cutive Mono', monospace;
+  font-size: larger;
+  padding: 30px;
+}
