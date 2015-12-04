@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+.container {
+  margin-top: 30px;
+  margin-right: 20px;
+}
+
+/////////// Grid
+$zen-column-count: 8;
+$zen-gutter-width: 10px;
+#hud-wrapper {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 40px;
+  @include zen-grid-container();
+
+  #status-panel {
+    @include zen-grid-item(3, 1, left);
+    background-color: blue;
+  }
+  #sentences-panel {
+    @include zen-grid-item(5, 1, right);
+    background-color: green;
+  }
+  #record-panel {
+    @include zen-clear(left);
+    @include zen-grid-item(3, 1, left);
+    background-color: red;
+  }
+
+}

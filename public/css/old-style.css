@@ -1,0 +1,41 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  padding-bottom: 200px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+li {
+  background: #f4f4f4;
+  cursor:default;
+}
+
+li:hover {
+  color: gray;
+}
+
+/* status classes*/
+.active {
+  color: green;
+}
+.countdown {
+  color: purple;
+}
+.countdown-over {
+  color: brown;
+}
+.waiting {
+  color: red;
+}
+
+
+
+
+.playing {
+  color: orange;
+}
