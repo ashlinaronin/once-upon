@@ -3,12 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <base href="/"></base>
+
     <link rel="stylesheet" href="css/styles.css" charset="utf-8">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/autopia" type="text/css"/>
     <link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css' />
     <title>once.upon</title>
   </head>
-  <body ngApp="onceUpon">
+  <body ng-app="onceUpon">
     <div class="container">
       <nav id="navbar">
         <div id="navbar-header">
@@ -28,9 +30,10 @@
       </div>
 
       <div id="hud-wrapper">
-        <div ui-view="status"></div>
-        <div ui-view="sentences"></div>
-        <div ui-view="record"></div>
+        <div ui-view="status" id="status-panel"></div>
+        <div ui-view="sentences" id="sentences-panel"></div>
+        <div ui-view="record" id="record-panel"></div>
+
       </div>
 
       <div id="upper-bg-wrap"></div>
@@ -51,10 +54,9 @@
     <script src="javascripts/services/SocketFactory.js"></script>
     <script src="javascripts/services/SentencesFactory.js"></script>
     <script src="javascripts/directives/directives.js"></script>
+    <script src="javascripts/controllers/StatusCtrl.js"></script>
     <script src="javascripts/controllers/SentencesCtrl.js"></script>
     <script src="javascripts/controllers/RecordCtrl.js"></script>
-    <script src="javascripts/controllers/StatusCtrl.js"></script>
-
 
   </body>
 </html>
