@@ -15,33 +15,25 @@ body {
   background-color: black;
   margin-right: 100px;
 }
-/* line 14, ../sass/_globals.scss */
+/* line 15, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
+  padding-bottom: 20px;
 }
-/* line 18, ../sass/_globals.scss */
+/* line 20, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
-  display: inline;
   color: white;
   position: relative;
   padding: 20px;
-  border: 1px solid white;
+  background: url("../images/title-box.svg");
+  background-repeat: no-repeat;
   margin-top: 0;
-}
-/* line 28, ../sass/_globals.scss */
-#title-banner-wrap #title-banner-text h1:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 16px 16px 0;
-  border-style: solid;
-  border-color: #fff #000;
+  margin-bottom: 0;
 }
 
-/* line 42, ../sass/_globals.scss */
+/* line 47, ../sass/_globals.scss */
 #upper-bg-wrap {
   position: absolute;
   top: 0;
@@ -52,7 +44,7 @@ body {
   background-size: cover;
 }
 
-/* line 51, ../sass/_globals.scss */
+/* line 56, ../sass/_globals.scss */
 #lower-bg-wrap {
   position: absolute;
   top: 350px;
@@ -63,69 +55,68 @@ body {
   background-size: cover;
 }
 
-/* line 67, ../sass/_globals.scss */
+/* line 72, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
+  position: relative;
   padding-left: 0px;
   padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
   border: 1px solid white;
+  border-image: url("../images/hud-box.svg") 30 30 stretch;
   overflow: scroll;
 }
-/* line 45, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-1.5/stylesheets/zen/_grids.scss */
-#hud-wrapper:before, #hud-wrapper:after {
+/* line 69, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
+#hud-wrapper:before {
   content: "";
   display: table;
 }
-/* line 50, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-1.5/stylesheets/zen/_grids.scss */
+/* line 73, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
 #hud-wrapper:after {
+  content: "";
+  display: table;
   clear: both;
 }
-/* line 78, ../sass/_globals.scss */
+/* line 93, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
   margin-left: 0%;
-  margin-right: -37.5%;
+  margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   box-sizing: border-box;
-  word-wrap: break-word;
   background-color: #323033;
+  position: relative;
 }
-/* line 82, ../sass/_globals.scss */
+/* line 100, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
   margin-right: 0%;
-  margin-left: -62.5%;
+  margin-left: -100%;
   padding-left: 0px;
   padding-right: 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   box-sizing: border-box;
-  word-wrap: break-word;
   background-color: black;
 }
-/* line 86, ../sass/_globals.scss */
+/* line 123, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
   width: 37.5%;
   margin-left: 0%;
-  margin-right: -37.5%;
+  margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   box-sizing: border-box;
-  word-wrap: break-word;
   background-color: #323033;
 }
 
@@ -216,11 +207,11 @@ nav#navbar #navbar-content {
 }
 /* line 17, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
-  background: linear-gradient(to right, #333333, #000000);
+  background: linear-gradient(to right, #333333, black);
 }
 /* line 20, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
-  background: linear-gradient(to left, #333333, #000000);
+  background: linear-gradient(to left, #333, black);
 }
 /* line 26, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence {
