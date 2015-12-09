@@ -1,4 +1,5 @@
 #status-panel {
+  margin-left: -50px;
   #status-panel-content {
     ul#status-list {
       list-style: none;
@@ -17,7 +18,6 @@
     #current-message {
       font-family: 'Cutive Mono', monospace;
       font-size: larger;
-      // padding-left: 30px;
       padding: 30px;
     }
   }

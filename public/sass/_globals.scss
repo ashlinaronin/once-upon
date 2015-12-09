@@ -9,7 +9,6 @@ body {
 
 #title-banner-wrap {
   background-color: black;
-  // background: url('../images/title-box.svg');
   margin-right: 100px;
 
   #title-banner-text {
@@ -19,28 +18,13 @@ body {
 
     h1 {
       font-family: 'Autopiaregular', Georgia, serif;
-    //   display: inline;
       color: white;
       position: relative;
       padding: 20px;
-    //   border: 1px solid white;
       background: url('../images/title-box.svg');
       background-repeat: no-repeat;
       margin-top: 0;
       margin-bottom: 0;
-      
-
-      // folded corner - not quite perfect...
-    //   &:before {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     right: 0;
-    //     border-width: 0 16px 16px 0;
-    //     border-style: solid;
-    //     border-color: #fff #000;
-    //   }
-
     }
   }
 }
@@ -60,8 +44,6 @@ body {
   right: 0;
   width: 80px;
   height: 420px;
-  // background-color: orange;
-
   background: url('../images/background.png');
   background-size: cover;
 }
@@ -79,6 +61,7 @@ $zen-gutters: 0px;
   margin-right: 100px;
   border: 25px solid transparent;
   border-image:url('../images/hud-box.svg') 20 20 stretch;
+  border-image-outset: -1;
   overflow: scroll;
   @include zen-grid-container();
 
@@ -86,34 +69,12 @@ $zen-gutters: 0px;
     @include zen-grid-item(3, 1, left);
     background-color: #323033;
     position: relative;
-
-
   }
   #sentences-panel {
     @include zen-grid-item(5, 1, right);
     background-color: black;
-    // position: relative;
-    // overflow: visible;
-
-    // Top right corner
-    // &:after {
-    //     content: "";
-    //     position: absolute;
-    //     background: url('../images/hud-top-right-corner.svg');
-    //     background-repeat: no-repeat;
-    //     background-size: contain;
-    //     overflow: visible;
-    //
-    //     width: 20px;
-    //     height: 20px;
-    //     right: 0;
-    //     top: 0;
-    //     z-index: 99;
-    //   //   border-right: 2px solid #037C83;
-    // }
   }
   #record-panel {
-    // @include zen-clear(left);
     @include zen-new-row(left);
     @include zen-grid-item(3, 1, left);
     background-color: #323033;

@@ -15,13 +15,13 @@ body {
   background-color: black;
   margin-right: 100px;
 }
-/* line 15, ../sass/_globals.scss */
+/* line 14, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 20, ../sass/_globals.scss */
+/* line 19, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -33,7 +33,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 48, ../sass/_globals.scss */
+/* line 32, ../sass/_globals.scss */
 #upper-bg-wrap {
   position: absolute;
   top: 0;
@@ -44,7 +44,7 @@ body {
   background-size: cover;
 }
 
-/* line 57, ../sass/_globals.scss */
+/* line 41, ../sass/_globals.scss */
 #lower-bg-wrap {
   position: absolute;
   top: 350px;
@@ -55,7 +55,7 @@ body {
   background-size: cover;
 }
 
-/* line 73, ../sass/_globals.scss */
+/* line 55, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -65,6 +65,7 @@ body {
   margin-right: 100px;
   border: 25px solid transparent;
   border-image: url("../images/hud-box.svg") 20 20 stretch;
+  border-image-outset: -1;
   overflow: scroll;
 }
 /* line 69, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
@@ -78,7 +79,7 @@ body {
   display: table;
   clear: both;
 }
-/* line 85, ../sass/_globals.scss */
+/* line 68, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -92,7 +93,7 @@ body {
   background-color: #323033;
   position: relative;
 }
-/* line 92, ../sass/_globals.scss */
+/* line 73, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -105,7 +106,7 @@ body {
   box-sizing: border-box;
   background-color: black;
 }
-/* line 115, ../sass/_globals.scss */
+/* line 77, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -166,18 +167,18 @@ nav#navbar #navbar-content {
   overflow: visible;
   padding: 30px;
 }
-/* line 6, ../sass/components/_record.scss */
+/* line 5, ../sass/components/_record.scss */
 #record-panel img {
   width: 90px;
   height: 90px;
   margin-left: 30px;
   cursor: pointer;
 }
-/* line 11, ../sass/components/_record.scss */
+/* line 10, ../sass/components/_record.scss */
 #record-panel img:hover, #record-panel img:focus {
   opacity: 0.8;
 }
-/* line 31, ../sass/components/_record.scss */
+/* line 32, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;
@@ -228,21 +229,25 @@ nav#navbar #navbar-content {
   border-right: 2px solid #037C83;
 }
 
-/* line 3, ../sass/components/_status.scss */
+/* line 1, ../sass/components/_status.scss */
+#status-panel {
+  margin-left: -50px;
+}
+/* line 4, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list {
   list-style: none;
   line-height: 3.0;
   font-family: 'Cutive Mono', monospace;
 }
-/* line 7, ../sass/components/_status.scss */
+/* line 8, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li {
   font-size: larger;
 }
-/* line 13, ../sass/components/_status.scss */
+/* line 14, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
   color: #71B8B8;
 }
-/* line 17, ../sass/components/_status.scss */
+/* line 18, ../sass/components/_status.scss */
 #status-panel #status-panel-content #current-message {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;
