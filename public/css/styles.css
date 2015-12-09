@@ -33,7 +33,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 47, ../sass/_globals.scss */
+/* line 48, ../sass/_globals.scss */
 #upper-bg-wrap {
   position: absolute;
   top: 0;
@@ -44,7 +44,7 @@ body {
   background-size: cover;
 }
 
-/* line 56, ../sass/_globals.scss */
+/* line 57, ../sass/_globals.scss */
 #lower-bg-wrap {
   position: absolute;
   top: 350px;
@@ -55,7 +55,7 @@ body {
   background-size: cover;
 }
 
-/* line 72, ../sass/_globals.scss */
+/* line 73, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -63,8 +63,8 @@ body {
   padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
-  border: 1px solid white;
-  border-image: url("../images/hud-box.svg") 30 30 stretch;
+  border: 25px solid transparent;
+  border-image: url("../images/hud-box.svg") 20 20 stretch;
   overflow: scroll;
 }
 /* line 69, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
@@ -78,7 +78,7 @@ body {
   display: table;
   clear: both;
 }
-/* line 93, ../sass/_globals.scss */
+/* line 85, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -92,7 +92,7 @@ body {
   background-color: #323033;
   position: relative;
 }
-/* line 100, ../sass/_globals.scss */
+/* line 92, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -105,7 +105,7 @@ body {
   box-sizing: border-box;
   background-color: black;
 }
-/* line 123, ../sass/_globals.scss */
+/* line 115, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;

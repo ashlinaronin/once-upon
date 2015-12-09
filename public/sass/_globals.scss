@@ -28,6 +28,7 @@ body {
       background-repeat: no-repeat;
       margin-top: 0;
       margin-bottom: 0;
+      
 
       // folded corner - not quite perfect...
     //   &:before {
@@ -71,22 +72,13 @@ $zen-columns: 8;
 $zen-gutters: 0px;
 #hud-wrapper {
   color: white;
-  // padding-left: 30px;
   position: relative;
   padding-left: 0px;
   padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
-  border: 1px solid white;
-  // background: url('../images/hud-box.svg');
-  // background-size: contain;
-  // background-repeat: no-repeat;
-  border-image:url('../images/hud-box.svg') 30 30 stretch;
-
-
-
-
-
+  border: 25px solid transparent;
+  border-image:url('../images/hud-box.svg') 20 20 stretch;
   overflow: scroll;
   @include zen-grid-container();
 
