@@ -1,5 +1,5 @@
 node_modules
 .DS_Store
 .Trashes
-public/.sass-cache
-.sass-cache
+public/.sass-cache/*
+.sass-cache/*
