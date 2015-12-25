@@ -17,22 +17,24 @@
       console.dir(microm);
       var mp3 = null;
 
-      start();
-      setTimeout(stop, 1500);
+      // start();
+      // setTimeout(stop, 1500);
 
       var startBtn = document.getElementById('start');
       var stopBtn = document.getElementById('stop');
       var playBtn = document.getElementById('play');
       var dlBtn = document.getElementById('download');
 
-      startBtn.onclick = start();
-      stopBtn.onclick = stop();
-      playBtn.onclick = play();
-      dlBtn.onclick = download();
+      // startBtn.onclick = start();
 
+      startBtn.onclick = start;
+      stopBtn.onclick = stop;
+      playBtn.onclick = play;
+      dlBtn.onclick = download;
 
       function start() {
-        microm.startUserMedia().then(function() {
+        console.log('in stdfgart');
+        microm.startRecording().then(function() {
           console.log('recording...')
         }).catch(function() {
           console.log('error recording');

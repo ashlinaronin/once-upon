@@ -1,7 +1,7 @@
 {
   "name": "microm",
   "main": "dist/microm.js",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://github.com/zzarcon/microm",
   "authors": [
     "zzarcon"
@@ -29,14 +29,13 @@
   "devDependencies": {
     "zepto": "~1.1.4"
   },
-  "_release": "0.2.3",
+  "_release": "0.2.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.3",
-    "commit": "7f2fa202e6778a8d65368eb3720ce0144cb691f6"
+    "tag": "v0.2.4",
+    "commit": "4e66b5be00acf3c155fe00a3eddb99e102e6554d"
   },
   "_source": "git://github.com/zzarcon/microm.git",
   "_target": "~0.2.3",
-  "_originalSource": "microm",
-  "_direct": true
+  "_originalSource": "microm"
 }
