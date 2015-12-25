@@ -45,6 +45,27 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
     });
   }
 
+  // dont do anything with recorder, just take blob and put it in db
+  factory.saveMP3ToDB = function(blob) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      $http({
+        method: 'POST',
+        url: 'saveRecording',
+        data: {
+          audio: event.target.result,
+          text: 'test',
+          timestamp: new Date()
+        }
+      }).then(function successCallback(response) {
+        // whatever after
+      }, function errorCallback(response) {
+        console.log('Error saving MP3 file to db: ' + response);
+      });
+    }
+    reader.readAsDataURL(blob);
+  }
+
   factory.encodeMono = function(channels, sampleRate, samples) {
         var buffer = [];
         mp3enc = new liblame.Mp3Encoder(channels, sampleRate, 192);
@@ -64,11 +85,12 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         }
         console.log('done encoding, size=', buffer.length);
         var blob = new Blob(buffer, {type: 'audio/mp3'});
-        var bUrl = window.URL.createObjectURL(blob);
-        console.log('Blob created, URL:', bUrl);
-        window.myAudioPlayer = document.createElement('audio');
-        window.myAudioPlayer.src = bUrl;
-        window.myAudioPlayer.setAttribute('controls', '');
+        factory.saveMP3ToDB(blob);
+        // var bUrl = window.URL.createObjectURL(blob);
+        // console.log('Blob created, URL:', bUrl);
+        // window.myAudioPlayer = document.createElement('audio');
+        // window.myAudioPlayer.src = bUrl;
+        // window.myAudioPlayer.setAttribute('controls', '');
         // window.myAudioPlayer.play();
     }
 
@@ -82,13 +104,8 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         console.dir(wav);
         samples = new Int16Array(event.target.result, wav.dataOffset, wav.dataLen / 2);
         factory.encodeMono(wav.channels, wav.sampleRate, samples);
-      }, function errorCallback(response) {
-          // Called when an error occurs
-          console.log('Error saving audio file: ' + response);
       };
       reader.readAsArrayBuffer(blob);
-      // console.log('wav:', wav);
-      // console.log('txt:', txt);
     });
   }
 
