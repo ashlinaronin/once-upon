@@ -115,9 +115,9 @@ router.post('/saveRecording', function(request, response, next) {
     var base64string = new Buffer(split[1]);
 
     var writeStream = gfs.createWriteStream({
-      filename: sentence._id + '.wav',
+      filename: sentence._id + '.mp3',
       mode: 'w',
-      content_type: 'audio/wav'
+      content_type: 'audio/mp3'
     });
 
     // Make a stream out of the base64 string and pipe it to gridFS stream
@@ -158,14 +158,14 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
 
   // Write headers so that the browser knows it's an audio file
   response.writeHead(200,
-    {'Content-Type:': 'audio/wav',
+    {'Content-Type:': 'audio/mp3',
     'Content-Disposition': 'attachment; filename="' +
-      request.params.sentenceId  + '.wav"'}
+      request.params.sentenceId  + '.mp3"'}
   );
 
   // Get this particular file from GridFS
   var readStream = gfs.createReadStream({
-    filename: request.params.sentenceId + '.wav'
+    filename: request.params.sentenceId + '.mp3'
   });
 
 

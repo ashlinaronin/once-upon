@@ -29,8 +29,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
       // Factory will do the actual work of saving the recording
       // We pass it the recorder object to do so
-      // $scope.SentencesFactory.saveSentence($scope.rec, $scope.text);
-      $scope.SentencesFactory.saveToMP3($scope.rec, $scope.text);
+      $scope.SentencesFactory.saveSentence($scope.rec, $scope.text);
     }
 
     // Initialize Speech Recognition object
