@@ -93,7 +93,7 @@ $rootScope, $timeout) {
           text: null
         };
 
-        // tell the server that the active contributor has lost their chance
+        // Tell the server that the active contributor has lost their chance
         // and we should push them back to the end of the line
         socket.emit('countdown over', newMsg);
 
@@ -129,13 +129,13 @@ $rootScope, $timeout) {
       $rootScope.$apply(function() {
         factory.userPosition = msg.userPosition; // 'waiting' or 'active'
         factory.totalUsers = msg.totalUsers; // waiting position or other info
-        console.dir('in rootscope apply, factoryuserpos : ' + factory.userPosition);
       });
     });
 
     // Logic to process pushed live recordings from other users
     socket.on('begin recording', function(msg) {
       $rootScope.$apply(function() {
+        factory.currentMessage.text = null;
         factory.currentMessage.inProgress = true;
         factory.currentMessage.userId = msg.userId;
       });
@@ -152,7 +152,10 @@ $rootScope, $timeout) {
     socket.on('end recording', function(msg) {
       $rootScope.$apply(function() {
         factory.currentMessage.inProgress = false;
+        factory.currentMessage.text = null;
         SentencesFactory.getNew();
+        // TODO: move this to directive later
+        $("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
       });
     });
   });

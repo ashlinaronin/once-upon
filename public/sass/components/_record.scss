@@ -1,5 +1,4 @@
 #record-panel {
-  // margin-left: 40px;
   height: 300px;
   overflow: visible;
   padding: 30px;
@@ -7,22 +6,28 @@
     width: 90px;
     height: 90px;
     margin-left: 30px;
+    cursor: pointer;
+    &:hover, &:focus {
+      opacity: 0.8;
+    }
   }
-  .animate-record {
-    // opacity: 1;
-    // line-height: 20px;
-    // padding: 10px;
-    // border: 1px solid black;
-    // background: white;
-    // & .ng-hide-remove, & .ng-hide-add {
-    //   transition: all linear 1.5s;
-    // }
-    // & .ng-hide {
-    //   opacity: 0;
-    //   line-height: 0;
-    //   padding: 0 10px;
-    // }
-  }
+
+  // trying to animate record button appearing / disappearing
+  // .animate-record {
+  //   // opacity: 1;
+  //   // line-height: 20px;
+  //   // padding: 10px;
+  //   // border: 1px solid black;
+  //   // background: white;
+  //   // & .ng-hide-remove, & .ng-hide-add {
+  //   //   transition: all linear 1.5s;
+  //   // }
+  //   // & .ng-hide {
+  //   //   opacity: 0;
+  //   //   line-height: 0;
+  //   //   padding: 0 10px;
+  //   // }
+  // }
 
   #speech-results {
     font-family: 'Cutive Mono', monospace;

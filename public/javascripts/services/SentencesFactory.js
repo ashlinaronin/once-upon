@@ -9,6 +9,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   var factory = {};
   factory.sentences = [];
   factory.latestTimestamp = null;
+  factory.currentlyPlaying = null;
 
   // Moved this from the RecordCtrl to the factory so stuff will be updated
   // Should probably use angular's built in http instead of jquery!
@@ -30,7 +31,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         }).then(function successCallback(response) {
           // SocketFactory.endRecording();
           // factory.getAll();
-          console.log('file reader finished reading blob');
+          // console.log('file reader finished reading blob');
         }, function errorCallback(response) {
           // Called when an error occurs
           console.log('Error saving audio file: ' + response);

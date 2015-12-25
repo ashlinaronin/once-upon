@@ -24,7 +24,6 @@ var setup = function(io, PubSub) {
 
     // Update everyone's status so ppl can see there is a new connection
     updateAllSocketStatuses();
-    // checkStatusAndEmitMessage(socket);
 
     console.log('got a connection, users connected:');
     recordQueue.forEach(function(socket) {

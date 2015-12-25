@@ -1,49 +1,30 @@
 body {
   margin: 0;
-  // color: white;
   background-color: black;
 }
 
 .container {
-  // margin-top: 30px;
-
   margin-right: 20px;
 }
 
 #title-banner-wrap {
   background-color: black;
-  // width: 96%;
-  // height: 100%;
   margin-right: 100px;
 
   #title-banner-text {
     margin-left: 40px;
-    // margin-right: 140px;
     padding: 35px;
-    // margin-top: 20px;
-    // border: 1px solid white;
+    padding-bottom: 20px;
 
     h1 {
       font-family: 'Autopiaregular', Georgia, serif;
-      display: inline;
       color: white;
       position: relative;
       padding: 20px;
-      border: 1px solid white;
-      // margin-right: ;
+      background: url('../images/title-box.svg');
+      background-repeat: no-repeat;
       margin-top: 0;
-
-      // folded corner - not quite perfect...
-      &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        border-width: 0 16px 16px 0;
-        border-style: solid;
-        border-color: #fff #000;
-      }
-
+      margin-bottom: 0;
     }
   }
 }
@@ -63,44 +44,40 @@ body {
   right: 0;
   width: 80px;
   height: 420px;
-  // background-color: orange;
-
   background: url('../images/background.png');
   background-size: cover;
 }
 
 /////////// Grid
 // TODO: add media queries to stack blocks when necessary
-$zen-column-count: 8;
-$zen-gutter-width: 0px;
+$zen-columns: 8;
+$zen-gutters: 0px;
 #hud-wrapper {
   color: white;
-  // padding-left: 30px;
+  position: relative;
   padding-left: 0px;
   padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
-  border: 1px solid white;
+  border: 25px solid transparent;
+  border-image:url('../images/hud-box.svg') 20 20 stretch;
+  border-image-outset: -1;
   overflow: scroll;
   @include zen-grid-container();
 
   #status-panel {
     @include zen-grid-item(3, 1, left);
     background-color: #323033;
-    // border: 1px solid black;
-    // min-width:
-
+    position: relative;
   }
   #sentences-panel {
     @include zen-grid-item(5, 1, right);
     background-color: black;
   }
   #record-panel {
-    // min-height: 100%;
-    @include zen-clear(left);
+    @include zen-new-row(left);
     @include zen-grid-item(3, 1, left);
     background-color: #323033;
-    // border: 1px solid black;
   }
 
 }

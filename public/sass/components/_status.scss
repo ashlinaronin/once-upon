@@ -1,4 +1,5 @@
 #status-panel {
+  margin-left: -50px;
   #status-panel-content {
     ul#status-list {
       list-style: none;
@@ -13,6 +14,11 @@
       li.active-status {
         color: #71B8B8;
       }
+    }
+    #current-message {
+      font-family: 'Cutive Mono', monospace;
+      font-size: larger;
+      padding: 30px;
     }
   }
 }
