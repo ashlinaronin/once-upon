@@ -1,27 +1,22 @@
 /* Import zen grids */
-/* line 1, ../sass/_globals.scss */
 body {
   margin: 0;
   background-color: black;
 }
 
-/* line 6, ../sass/_globals.scss */
 .container {
   margin-right: 20px;
 }
 
-/* line 10, ../sass/_globals.scss */
 #title-banner-wrap {
   background-color: black;
   margin-right: 100px;
 }
-/* line 14, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 19, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -33,7 +28,6 @@ body {
   margin-bottom: 0;
 }
 
-/* line 32, ../sass/_globals.scss */
 #upper-bg-wrap {
   position: absolute;
   top: 0;
@@ -44,7 +38,6 @@ body {
   background-size: cover;
 }
 
-/* line 41, ../sass/_globals.scss */
 #lower-bg-wrap {
   position: absolute;
   top: 350px;
@@ -55,7 +48,6 @@ body {
   background-size: cover;
 }
 
-/* line 55, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -64,22 +56,21 @@ body {
   margin-left: 75px;
   margin-right: 100px;
   border: 25px solid transparent;
-  border-image: url("../images/hud-box.svg") 20 20 stretch;
+  -webkit-border-image: url("../images/hud-box.svg") 20 20 stretch;
+       -o-border-image: url("../images/hud-box.svg") 20 20 stretch;
+          border-image: url("../images/hud-box.svg") 20 20 stretch;
   border-image-outset: -1;
   overflow: scroll;
 }
-/* line 69, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
 #hud-wrapper:before {
   content: "";
   display: table;
 }
-/* line 73, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
 #hud-wrapper:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 68, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -87,13 +78,10 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #323033;
   position: relative;
 }
-/* line 73, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -101,12 +89,9 @@ body {
   margin-left: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: black;
 }
-/* line 77, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -115,13 +100,10 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #323033;
 }
 
-/* line 9, ../sass/components/_navbar.scss */
 nav#navbar {
   position: absolute;
   left: 0;
@@ -131,28 +113,21 @@ nav#navbar {
   overflow: hidden;
   background: url("../images/textural-sm.png");
 }
-/* line 17, ../sass/components/_navbar.scss */
 nav#navbar a {
   text-decoration: none;
   color: black;
 }
-/* line 22, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
   bottom: 50px;
   -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
   margin-top: 35px;
   margin-left: -11px;
 }
-/* line 28, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
   font-family: 'Autopiaregular', Georgia, serif;
 }
-/* line 33, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content {
   position: relative;
   top: 80px;
@@ -161,64 +136,54 @@ nav#navbar #navbar-content {
   visibility: hidden;
 }
 
-/* line 1, ../sass/components/_record.scss */
 #record-panel {
   height: 300px;
   overflow: visible;
   padding: 30px;
 }
-/* line 5, ../sass/components/_record.scss */
 #record-panel img {
   width: 90px;
   height: 90px;
   margin-left: 30px;
   cursor: pointer;
 }
-/* line 10, ../sass/components/_record.scss */
 #record-panel img:hover, #record-panel img:focus {
   opacity: 0.8;
 }
-/* line 32, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;
   padding: 30px;
 }
 
-/* line 1, ../sass/components/_sentences.scss */
 #sentences-panel {
   height: 500px;
   overflow: scroll;
   padding-top: 25px;
   padding-bottom: 30px;
 }
-/* line 7, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
   font-family: 'Cutive Mono', monospace;
   font-size: smaller;
 }
-/* line 12, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 15, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
   cursor: pointer;
 }
-/* line 17, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
+  background: -webkit-linear-gradient(left, #333333, black);
   background: linear-gradient(to right, #333333, black);
 }
-/* line 20, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
+  background: -webkit-linear-gradient(right, #333, black);
   background: linear-gradient(to left, #333, black);
 }
-/* line 26, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence {
   position: relative;
 }
-/* line 28, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence:before {
   content: "";
   position: absolute;
@@ -229,25 +194,20 @@ nav#navbar #navbar-content {
   border-right: 2px solid #037C83;
 }
 
-/* line 1, ../sass/components/_status.scss */
 #status-panel {
   margin-left: -50px;
 }
-/* line 4, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list {
   list-style: none;
   line-height: 3.0;
   font-family: 'Cutive Mono', monospace;
 }
-/* line 8, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li {
   font-size: larger;
 }
-/* line 14, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
   color: #71B8B8;
 }
-/* line 18, ../sass/components/_status.scss */
 #status-panel #status-panel-content #current-message {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;

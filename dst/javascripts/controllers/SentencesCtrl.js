@@ -1,0 +1,1 @@
+onceUpon.controller("SentencesCtrl",["$scope","SentencesFactory","SocketFactory",function(e,n,c){e.sentences=n.sentences,e.$watch(function(){return n.sentences},function(n,c){e.sentences=n})}]);
