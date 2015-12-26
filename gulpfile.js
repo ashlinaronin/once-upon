@@ -1,6 +1,7 @@
 // todo: clean up
 // todo: add js concat for angular stuff , in order
 // add js concat for libs together with min, injection and bower
+// move everything front-end into src vs public?
 
 var gulp = require('gulp');
 var postcss = require('gulp-postcss');
