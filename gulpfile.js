@@ -2,6 +2,13 @@
 // todo: add js concat for angular stuff , in order
 // add js concat for libs together with min, injection and bower
 // move everything front-end into src vs public?
+// get gulp serve dist working
+// remove unnecessary dependencies
+// use a gulp plugin loader to simplify?
+// turn linting back on but make it so it doesnt interrupt the build process
+// if there are some small errors
+
+// use env variable dev or prod to grab minified cdn for libs
 
 var gulp = require('gulp');
 var postcss = require('gulp-postcss');
@@ -20,18 +27,21 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
+var env = require('gulp-env');
 var reload = browserSync.reload;
 
 var srcDir = './public';
 var destDir = './dst';
 
 // not using bower yet but i could
+// just custom one file can update later
 var paths = {
   html: './public/partials/*.html',
   img: './public/images/**',
   css: './public/css/*.css',
   scss: './public/sass/**/*.scss',
-  js: './public/javascripts/**/*.js'
+  js: './public/javascripts/**/*.js',
+  bower: './public/bower_components/lamejs/lame.all.js'
 }
 
 gulp.task('sass-dev', function() {
@@ -111,6 +121,11 @@ gulp.task('html', function() {
     .pipe(gulp.dest(destDir + '/partials'));
 });
 
+gulp.task('bower', function() {
+  return gulp.src(paths.bower)
+    .pipe(gulp.dest(destDir + '/bower_components/lamejs'));
+});
+
 
 gulp.task('clean', function() {
   return del(destDir);
@@ -132,6 +147,14 @@ gulp.task('nodemon', function(cb) {
   });
 });
 
+gulp.task('set-dist-env', function() {
+  return env({
+    vars: {
+      PUBLIC_DIR: 'dst'
+    }
+  });
+});
+
 // Watch and serve src with browsersync
 gulp.task('serve:dev', ['sass-dev', 'nodemon'], function() {
   browserSync.init({
@@ -148,10 +171,14 @@ gulp.task('serve:dev', ['sass-dev', 'nodemon'], function() {
 });
 
 // Clean, build and serve from dst folder with browsersync
-gulp.task('serve:dist', ['build'], function() {
+// not working yet
+// amke sure we serve from the new folder
+// so we pass an environment variable to app js
+gulp.task('serve:dist', ['build', 'set-dist-env', 'nodemon'], function() {
   browserSync.init({
     logPrefix: 'once-upon dist',
-    server: destDir
+    proxy: 'http://localhost:3000',
+    port: 7000
   });
 
   gulp.watch([paths.html], ['html', reload]);
@@ -164,7 +191,7 @@ gulp.task('serve:dist', ['build'], function() {
 gulp.task('build', ['clean'], function(cb) {
   runSequence(
     // ['jshint'], // linting first
-    ['sass-min', 'html', 'img', 'js-min'],
+    ['sass-min', 'html', 'img', 'js-min', 'bower'],
     cb // then optional callback
   );
 });

@@ -38,7 +38,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR || 'public')));
+
+// app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR)));
+
+
+console.log('env is ' + process.env.PUBLIC_DIR);
+
 
 app.use('/', routes);
 app.use('/users', users);
