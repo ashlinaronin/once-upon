@@ -208,6 +208,11 @@ nav#navbar #navbar-content.showing {
   padding: 30px;
 }
 
+/* line 42, ../sass/components/_record.scss */
+.no-getusermedia #record-panel, .no-speechrecognition #record-panel {
+  display: none;
+}
+
 /* line 1, ../sass/components/_sentences.scss */
 #sentences-panel {
   height: 500px;
@@ -275,4 +280,9 @@ nav#navbar #navbar-content.showing {
   font-family: 'Cutive Mono', monospace;
   font-size: larger;
   padding: 30px;
+}
+
+/* line 27, ../sass/components/_status.scss */
+.no-getusermedia #status-panel, .no-speechrecognition #status-panel {
+  display: none;
 }

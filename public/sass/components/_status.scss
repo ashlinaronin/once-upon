@@ -22,3 +22,8 @@
     }
   }
 }
+
+// Don't display record panel if no speech recognition or microphone
+.no-getusermedia #status-panel, .no-speechrecognition #status-panel {
+  display: none;
+}
