@@ -132,7 +132,7 @@ nav#navbar {
   z-index: 9000;
   background: url("../images/textural-sm.png");
   cursor: pointer;
-  transition: 0.4s linear all;
+  transition: all 0.3s ease-in-out;
 }
 /* line 23, ../sass/components/_navbar.scss */
 nav#navbar a {
@@ -164,8 +164,13 @@ nav#navbar #navbar-content {
   position: relative;
   left: 0;
   padding: 40px;
-  display: none;
+  opacity: 0;
   font-family: Georgia, serif;
+  transition: all 0.3s ease-in-out;
+}
+/* line 57, ../sass/components/_navbar.scss */
+nav#navbar #navbar-content.showing {
+  opacity: 1;
 }
 
 /* line 1, ../sass/components/_record.scss */

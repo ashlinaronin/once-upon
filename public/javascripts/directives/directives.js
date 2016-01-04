@@ -88,21 +88,22 @@ onceUpon.directive('oncePlayFrom', function(SentencesFactory) {
 
 
 onceUpon.directive('navbarExpand', function($animate) {
+  // not currently using 'show-content' attribute, delete it if we dont end up using it
   function link (scope, element, attrs) {
     element.bind('click', function() {
-      console.dir(element);
-      var contentDiv = element.find('#navbar-content');
+      var content = element.find('#navbar-content');
 
       if (element.hasClass('expanded')) {
-        $animate.removeClass(element, 'expanded');
-        console.log('element has expanded class');
+        $animate.removeClass(content, 'showing').then(function() {
+          $animate.removeClass(element, 'expanded');
+        });
       } else {
-        $animate.addClass(element, 'expanded');
-        console.log('element does not have expanded class');
+        $animate.addClass(element, 'expanded').then(function() {
+          $animate.addClass(content, 'showing');
+        });
       }
 
       scope.$apply(); // need to apply scope in all custom event handlers!
-
     });
   };
 

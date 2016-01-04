@@ -16,7 +16,7 @@ nav#navbar {
   z-index: 9000;
   background: url('../images/textural-sm.png');
   cursor: pointer;
-  transition: 0.4s linear all; // animate folding out navbar
+  transition: all 0.3s ease-in-out; // animate folding out navbar
 
 
 
@@ -47,32 +47,16 @@ nav#navbar {
   // shouldn't need all the prefixes here cuz we have a gulp task adding them
   #navbar-content {
     position: relative;
-    // width: 400px;
-    // height: 400px;
-    // top: 80px;
     left: 0;
     padding: 40px;
-    display: none;
+    // display: none;
+    opacity: 0;
     font-family: Georgia, serif;
-    // &.ng-enter, &.ng-move {
-    //   // -webkit-transition: 0.5s linear all;
-    //   // -moz-transition: 0.5s linear all;
-    //   // -o-transition: 0.5s linear all;
-    //   transition: 0.5s linear all;
-    //   opacity: 0;
-    // }
-    // &.ng-enter.ng-enter-active, &.ng-move.ng-move-active {
-    //   opacity: 1;
-    // }
-    // &.ng-leave {
-    //   // -webkit-animation:0.5s my_animation;
-    //   // -moz-animation:0.5s my_animation;
-    //   // -o-animation:0.5s my_animation;
-    //   animation:0.5s my_animation;
-    // }
-    // @keyframes my_animation {
-    //   from { opacity: 1; }
-    //   to { opacity: 0; }
-    // }
+    transition: all 0.3s ease-in-out;
+
+    &.showing {
+      // display: block;
+      opacity: 1;
+    }
   }
 }
