@@ -92,12 +92,19 @@ onceUpon.directive('navbarExpand', function($animate) {
   function link (scope, element, attrs) {
     element.bind('click', function() {
       var content = element.find('#navbar-content');
+      var onceTitle = element.parent().find('#title-banner-wrap');
+      var hudWrap = element.parent().find('#hud-wrapper');
 
       if (element.hasClass('expanded')) {
         $animate.removeClass(content, 'showing').then(function() {
           $animate.removeClass(element, 'expanded');
+          $animate.removeClass(onceTitle, 'pushed');
+          $animate.removeClass(hudWrap, 'pushed');
         });
+
       } else {
+        $animate.addClass(onceTitle, 'pushed');
+        $animate.addClass(hudWrap, 'pushed');
         $animate.addClass(element, 'expanded').then(function() {
           $animate.addClass(content, 'showing');
         });

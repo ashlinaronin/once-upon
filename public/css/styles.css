@@ -14,14 +14,16 @@ body {
 #title-banner-wrap {
   background-color: black;
   margin-right: 100px;
+  position: relative;
+  left: 0px;
 }
-/* line 14, ../sass/_globals.scss */
+/* line 21, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 19, ../sass/_globals.scss */
+/* line 26, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -33,7 +35,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 32, ../sass/_globals.scss */
+/* line 39, ../sass/_globals.scss */
 #upper-bg-wrap {
   position: absolute;
   top: 0;
@@ -44,7 +46,7 @@ body {
   background-size: cover;
 }
 
-/* line 41, ../sass/_globals.scss */
+/* line 48, ../sass/_globals.scss */
 #lower-bg-wrap {
   position: absolute;
   top: 350px;
@@ -55,17 +57,17 @@ body {
   background-size: cover;
 }
 
-/* line 55, ../sass/_globals.scss */
+/* line 62, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
+  left: 0;
   padding-left: 0px;
   padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
   border: 25px solid transparent;
   border-image: url("../images/hud-box.svg") 20 20 stretch;
-  border-image-outset: -1;
   overflow: scroll;
 }
 /* line 69, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
@@ -79,7 +81,7 @@ body {
   display: table;
   clear: both;
 }
-/* line 68, ../sass/_globals.scss */
+/* line 76, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -93,7 +95,7 @@ body {
   background-color: #323033;
   position: relative;
 }
-/* line 73, ../sass/_globals.scss */
+/* line 81, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -106,7 +108,7 @@ body {
   box-sizing: border-box;
   background-color: black;
 }
-/* line 77, ../sass/_globals.scss */
+/* line 85, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -119,6 +121,15 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #323033;
+}
+
+/* line 94, ../sass/_globals.scss */
+#title-banner-wrap, #hud-wrapper {
+  transition: 0.3s all ease-in-out;
+}
+/* line 96, ../sass/_globals.scss */
+#title-banner-wrap.pushed, #hud-wrapper.pushed {
+  left: 360px;
 }
 
 /* line 9, ../sass/components/_navbar.scss */
@@ -134,16 +145,16 @@ nav#navbar {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-/* line 23, ../sass/components/_navbar.scss */
+/* line 22, ../sass/components/_navbar.scss */
+nav#navbar.expanded {
+  width: 400px;
+}
+/* line 26, ../sass/components/_navbar.scss */
 nav#navbar a {
   text-decoration: none;
   color: black;
 }
-/* line 30, ../sass/components/_navbar.scss */
-nav#navbar.expanded {
-  width: 400px;
-}
-/* line 36, ../sass/components/_navbar.scss */
+/* line 31, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
   bottom: 50px;
@@ -155,11 +166,11 @@ nav#navbar #navbar-header {
   margin-top: 35px;
   margin-left: -11px;
 }
-/* line 42, ../sass/components/_navbar.scss */
+/* line 37, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
   font-family: 'Autopiaregular', Georgia, serif;
 }
-/* line 48, ../sass/components/_navbar.scss */
+/* line 43, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content {
   position: relative;
   left: 0;
@@ -168,7 +179,7 @@ nav#navbar #navbar-content {
   font-family: Georgia, serif;
   transition: all 0.3s ease-in-out;
 }
-/* line 57, ../sass/components/_navbar.scss */
+/* line 52, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content.showing {
   opacity: 1;
 }

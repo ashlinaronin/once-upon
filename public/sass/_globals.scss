@@ -10,6 +10,13 @@ body {
 #title-banner-wrap {
   background-color: black;
   margin-right: 100px;
+  position: relative;
+  left: 0px;
+
+  // transition: 0.3s all ease-in-out;
+  // &.pushed {
+  //   left: 340px;
+  // }
 
   #title-banner-text {
     margin-left: 40px;
@@ -55,13 +62,14 @@ $zen-gutters: 0px;
 #hud-wrapper {
   color: white;
   position: relative;
+  left: 0;
   padding-left: 0px;
   padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
   border: 25px solid transparent;
   border-image:url('../images/hud-box.svg') 20 20 stretch;
-  border-image-outset: -1;
+  // border-image-outset: -1;
   overflow: scroll;
   @include zen-grid-container();
 
@@ -80,4 +88,12 @@ $zen-gutters: 0px;
     background-color: #323033;
   }
 
+}
+
+// Animations for both hud and title wrapper sliding out to show navbar
+#title-banner-wrap, #hud-wrapper {
+  transition: 0.3s all ease-in-out;
+  &.pushed {
+    left: 360px;
+  }
 }
