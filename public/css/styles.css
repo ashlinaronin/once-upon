@@ -131,13 +131,19 @@ nav#navbar {
   overflow: hidden;
   z-index: 9000;
   background: url("../images/textural-sm.png");
+  cursor: pointer;
+  transition: 0.4s linear all;
 }
-/* line 18, ../sass/components/_navbar.scss */
+/* line 23, ../sass/components/_navbar.scss */
 nav#navbar a {
   text-decoration: none;
   color: black;
 }
-/* line 23, ../sass/components/_navbar.scss */
+/* line 30, ../sass/components/_navbar.scss */
+nav#navbar.expanded {
+  width: 400px;
+}
+/* line 36, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
   bottom: 50px;
@@ -149,11 +155,11 @@ nav#navbar #navbar-header {
   margin-top: 35px;
   margin-left: -11px;
 }
-/* line 29, ../sass/components/_navbar.scss */
+/* line 42, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
   font-family: 'Autopiaregular', Georgia, serif;
 }
-/* line 34, ../sass/components/_navbar.scss */
+/* line 48, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content {
   position: relative;
   left: 0;

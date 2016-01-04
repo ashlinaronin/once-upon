@@ -87,29 +87,29 @@ onceUpon.directive('oncePlayFrom', function(SentencesFactory) {
 
 
 
-onceUpon.directive('navbarExpand', function() {
+onceUpon.directive('navbarExpand', function($animate) {
   function link (scope, element, attrs) {
     element.bind('click', function() {
-      var currentWidth = element.width();
-      console.log('current width: ' + currentWidth);
+      console.dir(element);
+      var contentDiv = element.find('#navbar-content');
 
-      if (currentWidth === 40) {
-        console.log('i am small, i should get big now');
-      } else if (currentWidth === 400) {
-        console.log('i am big, i should get small now');
+      if (element.hasClass('expanded')) {
+        $animate.removeClass(element, 'expanded');
+        console.log('element has expanded class');
+      } else {
+        $animate.addClass(element, 'expanded');
+        console.log('element does not have expanded class');
       }
 
-      element.css('width', '400px');
+      scope.$apply(); // need to apply scope in all custom event handlers!
 
-      var contentDiv = element.find('#navbar-content');
-      contentDiv.show();
-      console.dir(contentDiv);
     });
   };
 
   return {
     restrict: 'A',
-    scope: {},
+    scope: true,
+    templateUrl: 'partials/navbar.html',
     link: link
   };
 });

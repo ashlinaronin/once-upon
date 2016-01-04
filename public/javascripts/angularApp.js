@@ -1,4 +1,4 @@
-var onceUpon = angular.module('onceUpon', ['ui.router']);
+var onceUpon = angular.module('onceUpon', ['ui.router', 'ngAnimate']);
 
 onceUpon.config(function($stateProvider, $urlRouterProvider) {
   /* By using the resolve property here, we make sure that anytime our home state

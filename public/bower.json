@@ -1,0 +1,26 @@
+{
+  "name": "once-upon",
+  "homepage": "https://github.com/ashlinaronin/once-upon",
+  "authors": [
+    "Ashlin Aronin <ashlinaronin@gmail.com>"
+  ],
+  "description": "A communal storytelling platform.",
+  "main": "javascripts/angularApp.js",
+  "moduleType": [],
+  "keywords": [
+    "etc"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.8",
+    "lamejs": "git://github.com/zzarcon/lamejs.git#master"
+  }
+}
