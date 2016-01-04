@@ -22,7 +22,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
       reader.onload = function(event) {
         var wav = liblame.WavHeader.readHeader(new DataView(event.target.result));
         samples = new Int16Array(event.target.result, wav.dataOffset, wav.dataLen / 2);
-        factory.encodeMonoMP3(wav.channels, wav.sampleRate, samples);
+        factory.encodeMonoMP3(wav.channels, wav.sampleRate, samples, text);
       };
       reader.readAsArrayBuffer(blob);
     });
@@ -30,7 +30,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
 
   // Actually encode the MP3 using LAMEjs.
   // Help from https://github.com/zhuker/lamejs/blob/master/example.html
-  factory.encodeMonoMP3 = function(channels, sampleRate, samples) {
+  factory.encodeMonoMP3 = function(channels, sampleRate, samples, text) {
     var buffer = [];
     mp3enc = new liblame.Mp3Encoder(channels, sampleRate, 192);
     var remaining = samples.length;
@@ -48,11 +48,11 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         buffer.push(new Int8Array(d));
     }
     var blob = new Blob(buffer, {type: 'audio/mp3'});
-    factory.saveMP3ToDB(blob);
+    factory.saveMP3ToDB(blob, text);
   }
 
   // Take encoded mp3 blob and send it to backend to be saved to DB
-  factory.saveMP3ToDB = function(blob) {
+  factory.saveMP3ToDB = function(blob, text) {
     var reader = new FileReader();
     reader.onload = function(event) {
       $http({
@@ -60,7 +60,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         url: 'saveRecording',
         data: {
           audio: event.target.result,
-          text: 'test',
+          text: text,
           timestamp: new Date()
         }
       }).then(function successCallback(response) {
