@@ -13,11 +13,6 @@ body {
   position: relative;
   left: 0px;
 
-  // transition: 0.3s all ease-in-out;
-  // &.pushed {
-  //   left: 340px;
-  // }
-
   #title-banner-text {
     margin-left: 40px;
     padding: 35px;
@@ -97,7 +92,6 @@ $zen-gutters: 0px;
     left: 360px;
   }
 }
-
 
 
 // If no WebSpeechAPI or speech recognition, just show sentences panel full-width

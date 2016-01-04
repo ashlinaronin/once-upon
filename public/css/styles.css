@@ -17,13 +17,13 @@ body {
   position: relative;
   left: 0px;
 }
-/* line 21, ../sass/_globals.scss */
+/* line 16, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 26, ../sass/_globals.scss */
+/* line 21, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -35,7 +35,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 39, ../sass/_globals.scss */
+/* line 34, ../sass/_globals.scss */
 #upper-bg-wrap {
   position: absolute;
   top: 0;
@@ -46,7 +46,7 @@ body {
   background-size: cover;
 }
 
-/* line 48, ../sass/_globals.scss */
+/* line 43, ../sass/_globals.scss */
 #lower-bg-wrap {
   position: absolute;
   top: 350px;
@@ -57,7 +57,7 @@ body {
   background-size: cover;
 }
 
-/* line 62, ../sass/_globals.scss */
+/* line 57, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -81,7 +81,7 @@ body {
   display: table;
   clear: both;
 }
-/* line 76, ../sass/_globals.scss */
+/* line 71, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 37.5%;
@@ -95,7 +95,7 @@ body {
   background-color: #323033;
   position: relative;
 }
-/* line 81, ../sass/_globals.scss */
+/* line 76, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 62.5%;
@@ -108,7 +108,7 @@ body {
   box-sizing: border-box;
   background-color: black;
 }
-/* line 85, ../sass/_globals.scss */
+/* line 80, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -123,21 +123,21 @@ body {
   background-color: #323033;
 }
 
-/* line 94, ../sass/_globals.scss */
+/* line 89, ../sass/_globals.scss */
 #title-banner-wrap, #hud-wrapper {
   transition: 0.3s all ease-in-out;
 }
-/* line 96, ../sass/_globals.scss */
+/* line 91, ../sass/_globals.scss */
 #title-banner-wrap.pushed, #hud-wrapper.pushed {
   left: 360px;
 }
 
-/* line 104, ../sass/_globals.scss */
+/* line 98, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
   padding: 0;
   border: 1px solid white;
 }
-/* line 107, ../sass/_globals.scss */
+/* line 101, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
   width: 100%;
