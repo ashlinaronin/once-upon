@@ -97,3 +97,15 @@ $zen-gutters: 0px;
     left: 360px;
   }
 }
+
+
+
+// If no WebSpeechAPI or speech recognition, just show sentences panel full-width
+.no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
+  padding: 0;
+  border: 1px solid white; // don't bother with fancy border on what we are now presuming, for better or for worse, is mobile
+  #sentences-panel {
+    @include zen-grid-item(8, 1, left);
+    background-color: black;
+  }
+}

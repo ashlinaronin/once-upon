@@ -132,6 +132,25 @@ body {
   left: 360px;
 }
 
+/* line 104, ../sass/_globals.scss */
+.no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
+  padding: 0;
+  border: 1px solid white;
+}
+/* line 107, ../sass/_globals.scss */
+.no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
+  float: left;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: black;
+}
+
 /* line 9, ../sass/components/_navbar.scss */
 nav#navbar {
   position: absolute;
