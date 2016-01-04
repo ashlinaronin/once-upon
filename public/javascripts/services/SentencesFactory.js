@@ -13,6 +13,8 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   factory.currentlyPlaying = null;
 
   // Given recorder object, export a wav blob, read it and pass it to mp3 encoder
+  // Pass text between various helper methods, perhaps not the most elegant solution
+  // but it works.
   factory.saveSentence = function(recorder, text) {
     recorder.exportWAV(function blobCallback(blob) {
       recorder.clear();
@@ -36,16 +38,16 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
     var remaining = samples.length;
     var maxSamples = 1152;
     for (var i = 0; remaining >= maxSamples; i += maxSamples) {
-        var mono = samples.subarray(i, i + maxSamples);
-        var mp3buf = mp3enc.encodeBuffer(mono);
-        if (mp3buf.length > 0) {
-            buffer.push(new Int8Array(mp3buf));
-        }
-        remaining -= maxSamples;
+      var mono = samples.subarray(i, i + maxSamples);
+      var mp3buf = mp3enc.encodeBuffer(mono);
+      if (mp3buf.length > 0) {
+        buffer.push(new Int8Array(mp3buf));
+      }
+      remaining -= maxSamples;
     }
     var d = mp3enc.flush();
     if(d.length > 0){
-        buffer.push(new Int8Array(d));
+      buffer.push(new Int8Array(d));
     }
     var blob = new Blob(buffer, {type: 'audio/mp3'});
     factory.saveMP3ToDB(blob, text);
