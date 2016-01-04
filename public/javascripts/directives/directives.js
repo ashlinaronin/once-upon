@@ -84,3 +84,32 @@ onceUpon.directive('oncePlayFrom', function(SentencesFactory) {
     link: link
   }
 });
+
+
+
+onceUpon.directive('navbarExpand', function() {
+  function link (scope, element, attrs) {
+    element.bind('click', function() {
+      var currentWidth = element.width();
+      console.log('current width: ' + currentWidth);
+
+      if (currentWidth === 40) {
+        console.log('i am small, i should get big now');
+      } else if (currentWidth === 400) {
+        console.log('i am big, i should get small now');
+      }
+
+      element.css('width', '400px');
+
+      var contentDiv = element.find('#navbar-content');
+      contentDiv.show();
+      console.dir(contentDiv);
+    });
+  };
+
+  return {
+    restrict: 'A',
+    scope: {},
+    link: link
+  };
+});
