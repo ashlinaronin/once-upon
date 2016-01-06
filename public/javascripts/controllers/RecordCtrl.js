@@ -1,18 +1,15 @@
 onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, SocketFactory, $http) {
     $scope.SentencesFactory = SentencesFactory;
-
-    // Connect current message to socket factory so we can emit it
     $scope.SocketFactory = SocketFactory;
 
-    // Recorder object must be scoped to the whole controller
+    // Recorder, context, and recognition objects must be scoped to the whole controller
     $scope.rec;
     $scope.context;
     $scope.mediaStreamSource;
-
-    // Recognition object scoped to the whole controller
     $scope.recognition;
+
+    // Keep track of current sentence values and state
     $scope.interim;
-    $scope.chunks = [];
     $scope.final = null;
     $scope.recognizing = false;
 
