@@ -10,5 +10,4 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       $scope.sentences = newValue;
     });
 
-
 });

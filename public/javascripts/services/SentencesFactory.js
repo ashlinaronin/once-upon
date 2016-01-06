@@ -1,5 +1,5 @@
 onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope) {
-  /* This factory is what negotiates between the front-end UI in angular
+  /* This factory negotiates between the front-end UI in angular
   ** and the backend API written in Node/Express.
   ** Angular doesn't communicate with MongoDB directly; rather, it sends
   ** and receives JSON objects to the Express API which then does the
@@ -12,9 +12,9 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   factory.latestTimestamp = null;
   factory.currentlyPlaying = null;
 
-  // Given recorder object, export a wav blob, read it and pass it to mp3 encoder
-  // Pass text between various helper methods, perhaps not the most elegant solution
-  // but it works.
+  // Given recorder object, export a wav blob, read it and pass to mp3 encoder.
+  // Pass text between various helper methods, which is perhaps not the most
+  // elegant solution but it works.
   factory.saveSentence = function(recorder, text) {
     recorder.exportWAV(function blobCallback(blob) {
       recorder.clear();
@@ -66,7 +66,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
           timestamp: new Date()
         }
       }).then(function successCallback(response) {
-        // Do something after http post req goes through
+        // Do something after http post req goes through, nothing yet
       }, function errorCallback(response) {
         console.log('Error saving MP3 file to db: ' + response);
       });
@@ -75,7 +75,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   }
 
 
-  /* Get all sentences and deep copy them to update the factory. */
+  /* Get all sentences and update the factory's data model. */
   factory.getAll = function() {
     return $http.get('/sentences').success(function(data) {
       factory.sentences = data;
@@ -84,8 +84,8 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
     });
   }
 
-  // Get new sentences and add them to factory.sentences array
-  // Then update latest timestamp so next time we don't get extra sentences
+  /* Get new sentences and add them to factory.sentences array.
+  ** Then update latest timestamp so next time we don't get extra sentences. */
   factory.getNew = function() {
     if (factory.latestTimestamp) {
       return $http.get('/sentences/new/' + factory.latestTimestamp)

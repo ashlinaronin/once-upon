@@ -13,9 +13,7 @@ $rootScope, $timeout) {
     text: null
   };
 
-  // factory.countdownClock;
   factory.countingDown = false;
-
 
 
   /////////////////////// Logic to send outgoing socket messages to the server
@@ -23,7 +21,6 @@ $rootScope, $timeout) {
   factory.beginRecording = function() {
     // if the user has begun recording, stop the clock and clear the time on it
     $rootScope.$apply(function() {
-      // clearInterval(factory.countdownClock);
       factory.countingDown = false;
     });
 
@@ -68,8 +65,8 @@ $rootScope, $timeout) {
     factory.countingDown = true;
 
     var updateCountdown = function() {
-      // check first if elsewhere we stopped counting bc user started recording
-      // if so, turn off the clock and reset count
+      // Check first if elsewhere we stopped counting bc a user started recording.
+      // If so, turn off the clock and reset count.
       if (!factory.countingDown) {
         count = 30;
         clearInterval(countdownClock);
@@ -125,10 +122,11 @@ $rootScope, $timeout) {
       }
 
       // Every custom event handler needs to apply its scope
-      // Syntax is a bit different in service
+      // Syntax is a bit different in a service than in a controller--
+      // here we use $rootScope instead of local $scope.
       $rootScope.$apply(function() {
-        factory.userPosition = msg.userPosition; // 'waiting' or 'active'
-        factory.totalUsers = msg.totalUsers; // waiting position or other info
+        factory.userPosition = msg.userPosition;
+        factory.totalUsers = msg.totalUsers;
       });
     });
 
@@ -148,13 +146,13 @@ $rootScope, $timeout) {
       });
     });
 
-    // Whoever was recording has finished, so we should get new messages
+    // Whoever was recording has finished, so the client should load any new messages
     socket.on('end recording', function(msg) {
       $rootScope.$apply(function() {
         factory.currentMessage.inProgress = false;
         factory.currentMessage.text = null;
         SentencesFactory.getNew();
-        // TODO: move this to directive later
+        // TODO: move this DOM manipulation to custom directive
         $("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
       });
     });

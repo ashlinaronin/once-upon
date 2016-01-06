@@ -17,7 +17,7 @@ nav#navbar {
   background: url('../images/textural-sm.png');
   cursor: pointer;
 
-  // animate folding out navbar
+  // Animate folding out navbar
   transition: all 0.3s ease-in-out;
   &.expanded {
     width: 400px;
@@ -39,7 +39,7 @@ nav#navbar {
     }
   }
 
-  // shouldn't need all the prefixes here cuz we have a gulp task adding them
+  // Shouldn't need all the prefixes here cuz we have a gulp task adding them
   #navbar-content {
     position: relative;
     left: 0;
