@@ -1,5 +1,6 @@
 var setup = function(io, PubSub) {
   var recordQueue = [];
+  var leechers = [];
 
   // Called when Mongo db tells us via PubSub that audio upload finished
   var onAudioFileUploadedSubscriber = function(msg, data, socket) {
@@ -12,23 +13,42 @@ var setup = function(io, PubSub) {
     // a message telling them their new status
     recordQueue.push(recordQueue.shift());
     updateAllSocketStatuses();
-
   };
 
   var token = PubSub.subscribe('FILE_AUDIO_UPLOADED', onAudioFileUploadedSubscriber);
 
 
   io.on('connection', function(socket) {
-    // Assume user will be waiting by default
-    recordQueue.push(socket);
+    // Before putting user into a queue, ask for some information about the client
+    io.to(socket.id).emit('record capability query');
 
-    // Update everyone's status so ppl can see there is a new connection
-    updateAllSocketStatuses();
+    socket.on('record capability response', function(msg) {
+      if (msg.canRecord) {
+        // Assume user will be waiting by default
+        recordQueue.push(socket);
 
-    console.log('got a connection, users connected:');
-    recordQueue.forEach(function(socket) {
-      console.log(socket.id);
+        // Update everyone's status so ppl can see there is a new connection
+        updateAllSocketStatuses();
+
+        console.log('got a new recorder, recorders connected:');
+        recordQueue.forEach(function(socket) {
+          console.log(socket.id);
+        });
+      } else {
+        // For the time being, just keep track of non-recording users in a separate queue
+        leechers.push(socket);
+
+        console.log('got a new leecher, leechers connected:');
+        leechers.forEach(function(socket) {
+          console.log(socket.id);
+        });
+      }
     });
+
+
+
+
+
 
     // maybe can refactor these three...
     // if we get a begin recording msg, pass it on to everyone
@@ -62,7 +82,7 @@ var setup = function(io, PubSub) {
       if (queuePosition > -1) {
         recordQueue.splice(queuePosition, 1);
       } else {
-        console.log('some weird error with socket disconnection');
+        console.log('Socket disconnection error');
       }
 
       console.log(socket.id + ' disconnected');
@@ -76,7 +96,9 @@ var setup = function(io, PubSub) {
 
   });
 
-  // everytime we update all socket statuses, tell everyone how many people are waiting
+  // Every time we update all socket statuses, tell everyone how many people are waiting
+  // When we update all socket statuses, don't need to deal with the leechers,
+  // just update people waiting to record.
   var updateAllSocketStatuses = function() {
     recordQueue.forEach(function(socket) {
       checkStatusAndEmitMessage(socket);

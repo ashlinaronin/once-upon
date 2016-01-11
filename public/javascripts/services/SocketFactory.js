@@ -1,7 +1,10 @@
 onceUpon.factory('SocketFactory', function SocketFactory(SentencesFactory,
-$rootScope, $timeout) {
+$rootScope, $timeout, Modernizr) {
   var factory = {};
   var socket;
+
+  // Keep track of whether or not this client can record
+  factory.canRecord = Modernizr.getusermedia && Modernizr.speechrecognition;
 
   factory.userPosition = null;
   factory.totalUsers = null;
@@ -111,6 +114,13 @@ $rootScope, $timeout) {
   //////////////////// Logic to process incoming socket messages from the server
   angular.element(document).ready(function() {
     socket = io();
+
+    // When server asks, tell it whether or not we can record
+    socket.on('record capability query', function(msg) {
+      socket.emit('record capability response',
+        { canRecord: factory.canRecord }
+      );
+    });
 
     // Update user status and conditionally start countdown
     socket.on('status', function(msg) {

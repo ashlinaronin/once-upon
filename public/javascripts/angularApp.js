@@ -1,5 +1,8 @@
 var onceUpon = angular.module('onceUpon', ['ui.router', 'ngAnimate']);
 
+// set up Modernizr so we can access it from other parts of the app
+onceUpon.constant('Modernizr', Modernizr);
+
 onceUpon.config(function($stateProvider, $urlRouterProvider) {
   /* By using the resolve property here, we make sure that anytime our home state
   ** is entered, we automatically query all posts from our backend before the
