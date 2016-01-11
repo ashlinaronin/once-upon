@@ -11,8 +11,8 @@ onceUpon.directive('onceAudio', function(SentencesFactory) {
     attrs.$observe('onceAudio', function(sentenceId) {
       // Use plain ol' src here, not ng-src, because we are
       // basically doing what ng-src does, and the audio
-      // won't actually load with ng-src here.  Maybe because
-      // of the order that the DOM is processed.
+      // won't actually load with ng-src here. This is probably because
+      // of the order in which the DOM is rendered.
       element.attr('src', '/getRecording/' + sentenceId);
 
       scope.sentences = SentencesFactory.sentences;
@@ -86,9 +86,10 @@ onceUpon.directive('oncePlayFrom', function(SentencesFactory) {
 });
 
 
-
+/*
+** Directive to show and hide the explanatory navbar.
+*/
 onceUpon.directive('navbarExpand', function($animate) {
-  // not currently using 'show-content' attribute, delete it if we dont end up using it
   function link (scope, element, attrs) {
     element.bind('click', function() {
       var content = element.find('#navbar-content');

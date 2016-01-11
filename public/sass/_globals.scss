@@ -64,7 +64,6 @@ $zen-gutters: 0px;
   margin-right: 100px;
   border: 25px solid transparent;
   border-image:url('../images/hud-box.svg') 20 20 stretch;
-  // border-image-outset: -1;
   overflow: scroll;
   @include zen-grid-container();
 

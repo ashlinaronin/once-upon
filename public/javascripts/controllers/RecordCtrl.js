@@ -1,29 +1,24 @@
 onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, SocketFactory, $http) {
     $scope.SentencesFactory = SentencesFactory;
-
-    // connect current message to socket factory so we can emit it
     $scope.SocketFactory = SocketFactory;
 
-    // recorder object must be scoped to the whole controller
+    // Recorder, context, and recognition objects must be scoped to the whole controller
     $scope.rec;
     $scope.context;
     $scope.mediaStreamSource;
-
-    // Recognition object scoped to the whole controller
     $scope.recognition;
+
+    // Keep track of current sentence values and state
     $scope.interim;
-    $scope.chunks = [];
     $scope.final = null;
     $scope.recognizing = false;
 
     $scope.start = function() {
       $scope.rec.record();
       $scope.recognition.start();
-      // console.log('recording');
     }
 
     $scope.save = function() {
-
       $scope.rec.stop();
       $scope.recognition.stop();
 
@@ -32,16 +27,18 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
       $scope.SentencesFactory.saveSentence($scope.rec, $scope.text);
     }
 
-    // Initialize Speech Recognition object
-    $scope.initRecognize = function() {
-      if ('webkitSpeechRecognition' in window) {
+    // Initialize Speech Recognition object and handlers
+    var initRecognize = function() {
+      if (!('webkitSpeechRecognition' in window)) {
+        console.log("Your browser does not support speech recognition. Please use the latest version of Google Chrome.");
+      } else {
         $scope.recognition = new webkitSpeechRecognition();
 
         // We want to see the interim results
         $scope.recognition.interimResults = true;
 
         // Don't continue speech recognition if user pauses
-        // Because they only have one shot to record anyway...?
+        // Because as it is now, they have one opportunity to record
         $scope.recognition.continuous = false;
 
         // Using American English for now
@@ -49,7 +46,6 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
         // Do these things when speech recognition is enabled
         $scope.recognition.onstart = function() {
-          // console.log('started recognition');
           $scope.recognizing = true;
           $scope.SocketFactory.beginRecording();
 
@@ -73,31 +69,19 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
             $scope.$apply();
           } else {
             $scope.final = sentence;
-            // $scope.heardSentences.push(sentence);
-
-            // $scope.recognition.stop();
-            // $scope.SocketFactory.endRecording();
 
             // Set the text to this sentence transcription
             // and save all to the db
             $scope.text = sentence;
             $scope.save();
 
-
-            // Now we're not sending the end recording message til after
-            // db success callback
+            // Send a socket message to the server to tell everyone that this
+            // user has finished recording
             $scope.SocketFactory.endRecording();
 
             // We've got a final result, clear the interim results.
             $scope.interim = null;
             $scope.final = null;
-
-            // We're done, stop the voice recognition.
-            // (Now we don't want to stop because it's continuous)
-            // we could stop if user presses a button maybe
-            // if ($scope.recognizing) {
-            //   $scope.recognition.stop();
-            // }
 
             // Every custom handler needs to apply its scope
             $scope.$apply();
@@ -106,11 +90,9 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
         $scope.recognition.onerror = function(event) {
           if (event.error === "not-allowed") {
-            $scope.message = "I'm sorry, what was that?";
-            console.log("error not allowed");
+            console.log("Speech recognition not allowed");
           } else {
-            $scope.message = "I'm sorry!! Something went wrong.";
-            console.log("other error");
+            console.log("Other speech recognition error");
           }
 
           // Every custom event handler needs to apply its scope
@@ -119,22 +101,15 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
         $scope.recognition.onend = function() {
           $scope.recognizing = false;
-          // console.log("recognition ended");
 
-          // do more in here?
-          // here's a hack to re-start recognition after the preset time limit
+          // Here's a hack to re-start recognition after the preset time limit
+          // Disabled for now because we are using a short input window
           // recognition.start();
 
           // Every custom event handler needs to apply its scope
           $scope.$apply();
         };
-
-
-      } else {
-        // webkitSpeechRecognition not found
-        $scope.message = "Please use the latest version of Google Chrome.";
-        window.setTimeout(function() {}, 1000);
-      };
+      }
     }
 
     // getUserMedia success and error callbacks
@@ -164,7 +139,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
 
       // Initialize the speech recognition object,
       // but don't start recognition yet
-      // We start that along with recording when user pressed button
-      $scope.initRecognize();
+      // We start that along with recording when user presses button
+      initRecognize();
     });
 });

@@ -27,7 +27,6 @@ router.get('/', function(req, res, next) {
 router.post('/sentences', function(request, response, next) {
   // save sentence to mongo here
   var sentence = new Sentence(request.body);
-  console.dir(sentence);
 
   // Call Mongoose's built-in save function for Sentence
   // and pass it a callback to handle error and success cases
@@ -43,7 +42,6 @@ router.post('/sentences', function(request, response, next) {
 
 // GET /sentences (all)
 router.get('/sentences', function(request, response, next) {
-  console.log('in sentences get all');
   Sentence.find(function(error, sentences) {
     if (error) {
       return next(error);
@@ -59,7 +57,7 @@ router.get('/sentences', function(request, response, next) {
 // $lt = less than
 router.get('/sentences/new/:timestamp', function(request, response, next) {
   if (!request.params.timestamp) {
-    return next('no timestamp in get req');
+    return next('No timestamp in new sentence GET request');
   }
 
   Sentence.find({
@@ -73,7 +71,7 @@ router.get('/sentences/new/:timestamp', function(request, response, next) {
       return next(error);
     }
 
-    // if no error, send back sentences
+    // If no error, send back sentences
     response.json(sentences);
   });
 });
@@ -125,7 +123,7 @@ router.post('/saveRecording', function(request, response, next) {
 
     // Handlers for the stream that's actually writing to GFS
     writeStream.on('error', function (err) {
-      console.log('error saving ' + file.filename);
+      console.log('Error saving ' + file.filename);
       return next(err); // early return on err
     });
 
@@ -145,16 +143,6 @@ router.post('/saveRecording', function(request, response, next) {
 
 // GET /getRecording/:sentenceId
 router.get('/getRecording/:sentenceId', function(request, response, next) {
-  // Trying to check for sentences that somehow don't have audio...
-  // This doesn't quite work yet...
-  // Sentence.findOne({_id: request.params.sentenceId}, function(sentence) {
-  //   if (!sentence) {
-  //     console.log('no exist')
-  //     return next();
-  //   } else {
-  //     console.log('yes si exist');
-  //   }
-  // });
 
   // Write headers so that the browser knows it's an audio file
   response.writeHead(200,
@@ -168,7 +156,6 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
     filename: request.params.sentenceId + '.mp3'
   });
 
-
   // Error handling, e.g. file does not exist
   readStream.on('error', function (err) {
     return next(err);
@@ -178,9 +165,6 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
   readStream.on('end', function (data) {
     response.end();
   });
-
-
-
 
   // Decode the base64 stream and pipe it to the response
   readStream.pipe(base64.decode()).pipe(response);
