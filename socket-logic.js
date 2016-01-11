@@ -77,10 +77,13 @@ var setup = function(io, PubSub) {
     });
 
     socket.on('disconnect', function() {
-      // Take this socket out of the queue
+      // Take this socket out of the queue or leecher list
       var queuePosition = recordQueue.indexOf(socket);
+      var leecherPosition = leechers.indexOf(socket);
       if (queuePosition > -1) {
         recordQueue.splice(queuePosition, 1);
+      } else if (leecherPosition > -1) {
+        leechers.splice(leecherPosition, 1);
       } else {
         console.log('Socket disconnection error');
       }
@@ -89,7 +92,8 @@ var setup = function(io, PubSub) {
 
       // now that somebody disconnected, we should check everybody else's status
       updateAllSocketStatuses();
-      console.log(recordQueue.length + ' users connected');
+      console.log(recordQueue.length + ' recorders connected');
+      console.log(leechers.length + ' leechers connected');
     });
 
 

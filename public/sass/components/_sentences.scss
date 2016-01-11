@@ -1,14 +1,17 @@
 #sentences-panel {
   height: 500px;
   overflow: scroll;
-  padding-top: 25px;
-  padding-bottom: 30px;
+  // padding-top: 25px;
+  // padding-bottom: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
   #sentences-panel-content {
     ul#sentences-list {
       list-style: none;
       // line-height: 1.8;
       font-family: 'Cutive Mono', monospace;
-      font-size: smaller;
+      font-size: 1.4em;
+
       li {
         margin: 0 0 25px 0;
       }
@@ -21,6 +24,13 @@
           background: linear-gradient(to left, #333, black);
         }
       }
+
+      // trying to remove margin above first sentence, looks kinda weird either way
+      // margin: 0;
+      // li:first-child p {
+      //   color: green;
+      //   margin-top: 0;
+      // }
 
       // not being used rn
       li.active-sentence {
@@ -37,4 +47,16 @@
       }
     }
   }
+}
+
+// If no getUserMedia / speech recognition, just show sentences panel full-width
+// Has to be "or" because firefox has getUserMedia but no speech recognition
+.no-getusermedia #sentences-panel, .no-speechrecognition #sentences-panel {
+  ul#sentences-list {
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+  }
+
 }
