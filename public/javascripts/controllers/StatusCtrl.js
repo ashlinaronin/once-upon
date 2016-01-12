@@ -16,6 +16,19 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     return negArray;
   }
 
+  // Helper function to get the appropriate status text for a given index in the
+  // recording queue. index is backwards because of the way ng-repeat is set-up
+  // to count.
+  $scope.getStatusText = function(index) {
+    if (index === $scope.totalUsers-1) {
+      return 'speaking';
+    } else if (index === $scope.totalUsers-2) {
+      return 'next';
+    } else {
+      return 'waiting';
+    }
+  }
+
 
 
   // Really should refactor these... but scope watchgroup was not working...
