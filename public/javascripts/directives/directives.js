@@ -122,3 +122,29 @@ onceUpon.directive('navbarExpand', function($animate) {
     link: link
   };
 });
+
+
+
+/*
+** Directive to handle automatic scrolling of the sentences panel.
+*/
+onceUpon.directive('scroller', function($animate, SocketFactory) {
+  function link (scope, element, attrs) {
+    scope.currentMessage = SocketFactory.currentMessage;
+
+    scope.$watch(function() {
+      return SocketFactory.currentMessage;
+    }, function(newVal, oldVal) {
+      console.log(newVal);
+      if (newVal.inProgress) {
+        console.log('socketfactory says we have a new current message in directive');
+      }
+    });
+  };
+
+  return {
+    restrict: 'A',
+    scope: true,
+    link: link
+  };
+});
