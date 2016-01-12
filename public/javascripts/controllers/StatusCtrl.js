@@ -44,6 +44,17 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     $scope.totalUsers = newVal;
   });
 
+  // Trying to simplify all of these watch statements.
+  // This works but it will actually update the values of all the watched
+  // variables when any single one of them changes, which isn't what we want.
+  // $scope.$watchGroup([
+  //   function() {return SocketFactory.userPosition },
+  //   function() { return SocketFactory.totalUsers }
+  // ], function (newVals, oldVals) {
+  //   $scope.userPosition = newVals[0];
+  //   $scope.totalUsers = newVals[1];
+  // });
+
   $scope.$watch(function() {
     return SocketFactory.remainingTime;
   }, function(newVal, oldVal) {
@@ -53,6 +64,7 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.$watch(function() {
     return SocketFactory.currentMessage;
   }, function(newVal, oldVal) {
+    // Only scroll to the bottom at the beginning of a new message
     if (!$scope.currentMessage.inProgress && newVal) {
       // this DOM manipulation should probably not be in the controller.
       // but i'm not sure where to put it. maybe we need a scroll directive on
@@ -61,7 +73,6 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     }
 
     $scope.currentMessage = newVal;
-    console.log(newVal);
   });
 
   $scope.$watch(function() {
