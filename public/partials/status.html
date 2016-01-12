@@ -2,8 +2,7 @@
   <ul id="status-list">
     <li ng-repeat="user in range(totalUsers) track by $index"
       ng-class="(userPosition == user) ? 'active-status' : 'waiting-status'">
-      {{getStatusText($index)}}
-      <!-- {{$last ? 'speaking' : 'waiting'}} -->
+      {{getStatusText(user)}}
       <span ng-show="((userPosition == user) && (user == 0) && (countingDown))">{{remainingTime}}</span>
     </li>
   </ul>
