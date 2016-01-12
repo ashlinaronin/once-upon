@@ -1,10 +1,16 @@
-<div id="sentences-panel-content">
+<div id="sentences-panel-content" ng-class="{'in-progress': currentMessage.inProgress}">
   <ul id="sentences-list">
     <li once-play-from="{{sentence._id}}" ng-repeat="sentence in sentences" class="sentence">
       <p>{{sentence.text}}</p>
       <audio once-audio="{{sentence._id}}" sentence="sentence" id="{{sentence._id}}">
         Your browser does not support the <code>audio</code> element.
       </audio>
+    </li>
+    <li ng-show="currentMessage.inProgress"
+        ng-class="(userPosition == 0) ? 'active-sentence-you' : 'active-sentence-friend'">
+      <p>
+        {{currentMessage.text}}
+      </p>
     </li>
   </ul>
 </div>

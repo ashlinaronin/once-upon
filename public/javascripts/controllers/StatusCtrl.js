@@ -53,7 +53,15 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.$watch(function() {
     return SocketFactory.currentMessage;
   }, function(newVal, oldVal) {
+    if (!$scope.currentMessage.inProgress && newVal) {
+      // this DOM manipulation should probably not be in the controller.
+      // but i'm not sure where to put it. maybe we need a scroll directive on
+      // the whole panel that handles various different behaviors
+      $("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
+    }
+
     $scope.currentMessage = newVal;
+    console.log(newVal);
   });
 
   $scope.$watch(function() {
