@@ -6,8 +6,14 @@
       <span ng-show="((userPosition == user) && (user == 0) && (countingDown))">{{remainingTime}}</span>
     </li>
   </ul>
+  <div id="current-message" ng-show="currentMessage.inProgress">
+    <span ng-show="userPosition !== 0"><em>friend</em>:</span>
+    <span ng-show="userPosition === 0"><em>you</em>:</span>
+    {{currentMessage.text}}
+  </div>
 
-  <!-- <div id="current-message" ng-show="currentMessage.inProgress && (userPosition != 0)">
-    <em>friend</em>: {{currentMessage.text}}
+  <!-- for styling purposes, put a static div in there -->
+  <!-- <div id="current-message">
+    <em>rob</em>: i am going to the store.
   </div> -->
 </div>

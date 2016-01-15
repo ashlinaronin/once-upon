@@ -7,14 +7,10 @@
   padding-right: 40px;
   padding-bottom: 220px;
   #sentences-panel-content {
-    &.in-progress {
-      background: grey;
-    }
-
     ul#sentences-list {
       list-style: none;
       // line-height: 1.8;
-      font-family: 'Cutive Mono', monospace;
+      //font-family: 'Cutive Mono', monospace;
       font-size: 1.4em;
       // padding-bottom: 200px;
 

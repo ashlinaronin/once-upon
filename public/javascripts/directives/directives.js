@@ -136,7 +136,9 @@ onceUpon.directive('scroller', function($animate, SocketFactory) {
       return SocketFactory.hasNew;
     }, function(newVal, oldVal) {
       if (newVal === true) {
-        element.animate({scrollTop:element[0].scrollHeight}, 1000);
+        // adding 300px to account for the padding added at the bottom of the
+        // sentences panel
+        element.animate({scrollTop:element[0].scrollHeight+300}, 1000);
       }
     });
   };
