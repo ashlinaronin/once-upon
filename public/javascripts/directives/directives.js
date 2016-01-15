@@ -130,14 +130,13 @@ onceUpon.directive('navbarExpand', function($animate) {
 */
 onceUpon.directive('scroller', function($animate, SocketFactory) {
   function link (scope, element, attrs) {
-    scope.currentMessage = SocketFactory.currentMessage;
 
+    // If we get a new message, scroll down to it.
     scope.$watch(function() {
-      return SocketFactory.currentMessage;
+      return SocketFactory.hasNew;
     }, function(newVal, oldVal) {
-      console.log(newVal);
-      if (newVal.inProgress) {
-        console.log('socketfactory says we have a new current message in directive');
+      if (newVal === true) {
+        element.animate({scrollTop:element[0].scrollHeight}, 1000);
       }
     });
   };

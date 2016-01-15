@@ -16,6 +16,8 @@ $rootScope, $timeout, Modernizr) {
     text: null
   };
 
+  factory.hasNew = false;
+
   factory.countingDown = false;
 
 
@@ -162,8 +164,15 @@ $rootScope, $timeout, Modernizr) {
         factory.currentMessage.inProgress = false;
         factory.currentMessage.text = null;
         SentencesFactory.getNew();
+
+        // let's true keeping this hasNew flag on for only 1s
+        factory.hasNew = true;
+        setTimeout(function() {
+          factory.hasNew = false;
+        }, 1000);
+
         // TODO: move this DOM manipulation to custom directive
-        $("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
+        //$("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
       });
     });
   });
