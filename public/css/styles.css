@@ -210,24 +210,31 @@ nav#navbar #navbar-content.showing {
   overflow: visible;
   padding: 30px;
 }
-/* line 5, ../sass/components/_record.scss */
-#record-panel img {
+/* line 7, ../sass/components/_record.scss */
+#record-panel #record img {
   width: 90px;
   height: 90px;
   margin-left: 30px;
   cursor: pointer;
 }
-/* line 10, ../sass/components/_record.scss */
-#record-panel img:hover, #record-panel img:focus {
+/* line 12, ../sass/components/_record.scss */
+#record-panel #record img:hover, #record-panel #record img:focus {
   opacity: 0.8;
 }
-/* line 32, ../sass/components/_record.scss */
+/* line 16, ../sass/components/_record.scss */
+#record-panel #record #record-text {
+  position: relative;
+  left: 47px;
+  top: 74px;
+  color: black;
+}
+/* line 41, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-size: larger;
   padding: 30px;
 }
 
-/* line 41, ../sass/components/_record.scss */
+/* line 50, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }
