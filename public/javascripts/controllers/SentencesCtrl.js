@@ -5,6 +5,8 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
     $scope.currentMessage = SocketFactory.currentMessage;
     $scope.userPosition = SocketFactory.userPosition;
 
+    $scope.sentenceIds;
+
     // this variable will contain the id of the currently playing audio clip
     // accessing / playing and stopping particular thing by id in the factory method
     $scope.playing = null;
@@ -27,20 +29,49 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       return SentencesFactory.sentences;
     }, function(newValue, oldValue) {
       $scope.sentences = newValue;
+      $scope.sentenceIds = $scope.sentences.map(function(sentence) {
+        return sentence._id;
+      });
+      console.dir($scope.sentenceIds);
     });
 
 
 
     // playback stuff can go here, this controller isn't doing anything else right?
     // lets try this and see if it works, if not can put in directive
+    // one other way to do it would be instead of using sentenceid, to play audio
+    // by order in queue.... dunno which is better. this seems to work for now.
 
-    $scope.playFrom = function(sentenceId) {
-      // if something else is playing, stop it and start playing this one
+    // very similar to old directive version but not relying on dom bindings,
+    // instead tracking state more specifically and going from there
+
+    $scope.playAudio = function(sentenceId) {
+      // If something else is playing, stop it and start playing this one
       $scope.stopAll();
+
+      // Play this audio, change class of its parent, and track its state
+      var thisAudio = $('audio#' + sentenceId);
+      thisAudio[0].play();
+      thisAudio.parent().addClass('playing');
       $scope.playing = sentenceId;
-      var thisAudio = $('audio#' + sentenceId)[0];
-      thisAudio.play();
-      console.log('finished? ' + thisAudio.ended);
+
+      // Before we play the next track, lazy load it
+      
+
+      // When this audio finishes, play the next one if available
+      thisAudio[0].addEventListener('ended', function() {
+        thisAudio.parent().removeClass('playing');
+        var nextAudio = $scope.sentenceIds[$scope.sentenceIds.indexOf(sentenceId)+1];
+        if (nextAudio) {
+          $scope.playAudio(nextAudio);
+        }
+      });
+
+
+
+      // load the audio for the next one by changing src
+      // before playing it
+      // then play it
 
     }
 

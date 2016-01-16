@@ -71,8 +71,8 @@ onceUpon.directive('oncePlayFrom', function(SentencesFactory) {
     element.bind('click', function() {
       element.find('audio')[0].play();
       element.addClass('playing');
-      SentencesFactory.currentlyPlaying = element[0];
-      console.dir(SentencesFactory.currentlyPlaying);
+      //SentencesFactory.currentlyPlaying = element[0];
+      //console.dir(SentencesFactory.currentlyPlaying);
     });
   };
 

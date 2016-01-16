@@ -1,7 +1,7 @@
 <button ng-click="stopAll()" id="stop-playback">stop</button>
 <div id="sentences-panel-content" ng-class="{'in-progress': currentMessage.inProgress}">
   <ul id="sentences-list" playback>
-    <li ng-click="playFrom(sentence._id)" ng-repeat="sentence in sentences" class="sentence">
+    <li ng-click="playAudio(sentence._id)" ng-repeat="sentence in sentences" class="sentence">
       <p>{{sentence.text}}</p>
       <audio once-audio="{{sentence._id}}" sentence="sentence" id="{{sentence._id}}">
         Your browser does not support the <code>audio</code> element.
