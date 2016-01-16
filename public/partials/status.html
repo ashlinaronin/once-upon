@@ -6,9 +6,8 @@
       <span ng-show="((userPosition == user) && (user == 0) && (countingDown))">{{remainingTime}}</span>
     </li>
   </ul>
-  <div id="current-message" ng-show="currentMessage.inProgress">
+  <div id="current-message" ng-show="currentMessage.inProgress && userPosition !== 0">
     <span ng-show="userPosition !== 0"><em>friend</em>:</span>
-    <span ng-show="userPosition === 0"><em>you</em>:</span>
     {{currentMessage.text}}
   </div>
 
