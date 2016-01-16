@@ -75,9 +75,10 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
 
     $scope.stopAll = function() {
       if ($scope.playing) {
-        var playingAudio = $('audio#' + $scope.playing)[0];
-        playingAudio.pause();
-        playingAudio.currentTime = 0; // reset this clip back to beginning
+        var playingAudio = $('audio#' + $scope.playing);
+        playingAudio[0].pause();
+        playingAudio[0].currentTime = 0; // reset this clip back to beginning
+        playingAudio.parent().removeClass('playing');
         $scope.playing = null;
       }
     }
