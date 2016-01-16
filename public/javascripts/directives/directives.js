@@ -15,32 +15,32 @@ onceUpon.directive('onceAudio', function(SentencesFactory) {
       // of the order in which the DOM is rendered.
       element.attr('src', '/getRecording/' + sentenceId);
 
-      scope.sentences = SentencesFactory.sentences;
-
-      // Reset bindings whenever we get new sentences
-      scope.$watch(function() {
-        return SentencesFactory.sentences;
-      },
-      function(newVal, oldVal) {
-        scope.sentences = newVal;
-        var thisIndex = SentencesFactory.sentences.indexOf(scope.sentence);
-        var numSentences = SentencesFactory.sentences.length;
-
-        if (thisIndex < (numSentences-1)) { // there is a next sentence
-          element.bind('ended', function() {
-            var nextSentence = element.context.parentElement.nextElementSibling;
-            element.parent().removeClass('playing');
-            angular.element(nextSentence).addClass('playing');
-            nextSentence.lastElementChild.play();
-            SentencesFactory.currentlyPlaying = nextSentence;
-          });
-        } else { // no next sentence
-          element.bind('ended', function() {
-            SentencesFactory.currentlyPlaying = null;
-            element.parent().removeClass('playing');
-          });
-        }
-      });
+      // scope.sentences = SentencesFactory.sentences;
+      //
+      // // Reset bindings whenever we get new sentences
+      // scope.$watch(function() {
+      //   return SentencesFactory.sentences;
+      // },
+      // function(newVal, oldVal) {
+      //   scope.sentences = newVal;
+      //   var thisIndex = SentencesFactory.sentences.indexOf(scope.sentence);
+      //   var numSentences = SentencesFactory.sentences.length;
+      //
+      //   if (thisIndex < (numSentences-1)) { // there is a next sentence
+      //     element.bind('ended', function() {
+      //       var nextSentence = element.context.parentElement.nextElementSibling;
+      //       element.parent().removeClass('playing');
+      //       angular.element(nextSentence).addClass('playing');
+      //       nextSentence.lastElementChild.play();
+      //       SentencesFactory.currentlyPlaying = nextSentence;
+      //     });
+      //   } else { // no next sentence
+      //     element.bind('ended', function() {
+      //       SentencesFactory.currentlyPlaying = null;
+      //       element.parent().removeClass('playing');
+      //     });
+      //   }
+      // });
     });
   }
 
@@ -141,6 +141,25 @@ onceUpon.directive('scroller', function($animate, SocketFactory) {
         element.animate({scrollTop:element[0].scrollHeight+300}, 1000);
       }
     });
+  };
+
+  return {
+    restrict: 'A',
+    scope: true,
+    link: link
+  };
+});
+
+
+
+// Directive to handle audio playback
+onceUpon.directive('playback', function($animate) {
+  function link (scope, element, attrs) {
+    console.dir(element);
+    console.dir(attrs);
+    console.dir(element[0].children.length);
+    console.dir(attrs.$$element[0].children[0]);
+
   };
 
   return {
