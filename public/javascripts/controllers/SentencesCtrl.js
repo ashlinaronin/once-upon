@@ -46,6 +46,9 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
     // instead tracking state more specifically and going from there
 
     $scope.playAudio = function(sentenceId) {
+      // Make sure this audio is loaded first
+      $scope.loadAudio(sentenceId);
+
       // If something else is playing, stop it and start playing this one
       $scope.stopAll();
 
@@ -56,23 +59,18 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       $scope.playing = sentenceId;
 
       // Before we play the next track, lazy load it
-      
+      var nextAudio = $scope.sentenceIds[$scope.sentenceIds.indexOf(sentenceId)+1];
+      if (nextAudio) {
+        $scope.loadAudio(nextAudio);
+      }
 
       // When this audio finishes, play the next one if available
       thisAudio[0].addEventListener('ended', function() {
         thisAudio.parent().removeClass('playing');
-        var nextAudio = $scope.sentenceIds[$scope.sentenceIds.indexOf(sentenceId)+1];
         if (nextAudio) {
           $scope.playAudio(nextAudio);
         }
       });
-
-
-
-      // load the audio for the next one by changing src
-      // before playing it
-      // then play it
-
     }
 
     $scope.stopAll = function() {
@@ -81,6 +79,13 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
         playingAudio.pause();
         playingAudio.currentTime = 0; // reset this clip back to beginning
         $scope.playing = null;
+      }
+    }
+
+    $scope.loadAudio = function(sentenceId) {
+      var thisAudio = $('audio#' + sentenceId);
+      if (!thisAudio.attr('src')) {
+        thisAudio.attr('src', '/getRecording/' + sentenceId);
       }
     }
 
