@@ -32,7 +32,6 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       $scope.sentenceIds = $scope.sentences.map(function(sentence) {
         return sentence._id;
       });
-      console.dir($scope.sentenceIds);
     });
 
 

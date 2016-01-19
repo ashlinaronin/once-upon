@@ -155,10 +155,7 @@ onceUpon.directive('scroller', function($animate, SocketFactory) {
 // Directive to handle audio playback
 onceUpon.directive('playback', function($animate) {
   function link (scope, element, attrs) {
-    console.dir(element);
-    console.dir(attrs);
-    console.dir(element[0].children.length);
-    console.dir(attrs.$$element[0].children[0]);
+    // not doin nothin right now
 
   };
 

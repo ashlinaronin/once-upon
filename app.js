@@ -9,9 +9,9 @@ var PubSub = require('pubsub-js');
 // Set up mongoose by loading our data models
 // Must be before routes, users and app
 var mongoose = require('mongoose');
-console.log(process.env.MONGOLAB_URI);
-console.dir(process.env);
-mongoose.connect('mongodb://localhost/once');
+//mongoose.connect('mongodb://localhost/once');
+console.log('mongo uri: ' + process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGOLAB_URI);
 require('./models/Sentence');
 
 var routes = require('./routes/index');
@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR || 'public'))
 // app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR)));
 
 
-console.log('env is ' + process.env.PUBLIC_DIR);
+console.log('env public dir is ' + process.env.PUBLIC_DIR);
 
 
 app.use('/', routes);
