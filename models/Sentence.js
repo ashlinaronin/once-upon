@@ -5,11 +5,7 @@ var SentenceSchema = new mongoose.Schema({
   index: Number,
   text: String,
   audio: Buffer,
-  timestamp: Date,
-  user: {
-    ip: Number,
-    location: String
-  }
+  timestamp: Date
 });
 
 
