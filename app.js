@@ -9,6 +9,8 @@ var PubSub = require('pubsub-js');
 // Set up mongoose by loading our data models
 // Must be before routes, users and app
 var mongoose = require('mongoose');
+console.log(process.env.MONGOLAB_URI);
+console.dir(process.env);
 mongoose.connect('mongodb://localhost/once');
 require('./models/Sentence');
 
