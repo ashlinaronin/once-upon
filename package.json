@@ -1,6 +1,9 @@
 {
   "name": "once-upon",
   "version": "0.0.0",
+  "engines": {
+    "node": "0.12.5"
+  },
   "private": true,
   "scripts": {
     "start": "node app.js",
