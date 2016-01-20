@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "postinstall": "bower install"
+    "postinstall": "cd public; bower install"
   },
   "dependencies": {
     "base64-stream": "^0.1.3",
