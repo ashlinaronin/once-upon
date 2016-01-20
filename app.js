@@ -19,9 +19,11 @@ var users = require('./routes/users');
 
 
 // This setup thanks to jfriend00 on stack overflow
+// Apparently Heroku dynamically assigns a port, so we need to use an
+// environment variable here to allow it to do that.
 var app = express();
-var server = app.listen(3000, function() {
-  console.log("Server started on port 3000");
+var server = app.listen(process.env.PORT || 3000, function() {
+  console.log("Server started on port " + (process.env.PORT || 3000));
 });
 var io = require('socket.io').listen(server);
 // Require an external module containing the socket logic
