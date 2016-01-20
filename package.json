@@ -2,7 +2,7 @@
   "name": "once-upon",
   "version": "0.0.0",
   "engines": {
-    "node": "0.12.5"
+    "node": "5.4.1"
   },
   "private": true,
   "scripts": {

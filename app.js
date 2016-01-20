@@ -21,7 +21,7 @@ var users = require('./routes/users');
 
 
 // This setup thanks to jfriend00 on stack overflow
-// Apparently Heroku dynamically assigns a port, so we need to use an
+// Also, apparently Heroku dynamically assigns a port, so we need to use an
 // environment variable here to allow it to do that.
 var app = express();
 var server = app.listen(process.env.PORT || 3000, function() {
@@ -29,7 +29,7 @@ var server = app.listen(process.env.PORT || 3000, function() {
 });
 var io = require('socket.io').listen(server);
 // Require an external module containing the socket logic
-// and pass it the io object so it can access it
+// and pass it the io object and PubSub so it can access them
 require('./socket-logic')(io, PubSub);
 
 // view engine setup
@@ -44,17 +44,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
+
+// Serve from public dir in env var or use 'public' by default
 app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR || 'public')));
-
-// app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR)));
-
-
-console.log('env public dir is ' + process.env.PUBLIC_DIR);
-
 
 app.use('/', routes);
 app.use('/users', users);
-
 
 
 
