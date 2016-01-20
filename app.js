@@ -11,7 +11,9 @@ var PubSub = require('pubsub-js');
 var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/once');
 console.log('mongo uri: ' + process.env.MONGOLAB_URI);
-mongoose.connect(process.env.MONGOLAB_URI);
+
+// run with local db if we don't have the env variable
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/once');
 require('./models/Sentence');
 
 var routes = require('./routes/index');

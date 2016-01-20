@@ -146,7 +146,7 @@ router.get('/getRecording/:sentenceId', function(request, response, next) {
 
   // Write headers so that the browser knows it's an audio file
   response.writeHead(200,
-    {'Content-Type:': 'audio/mp3',
+    {'Content-Type': 'audio/mp3',
     'Content-Disposition': 'attachment; filename="' +
       request.params.sentenceId  + '.mp3"'}
   );
