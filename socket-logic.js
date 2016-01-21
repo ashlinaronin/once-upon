@@ -6,8 +6,9 @@ var setup = function(io, PubSub) {
   var onAudioFileUploadedSubscriber = function(msg, data, socket) {
     console.log("onAudioFileUploadedSubscriber: " + msg);
 
-    // Send the message to everyone that the recording has finished
-    io.emit('end recording');
+    // Send the message to everyone that the recording has been saved
+    // Server is the only one to ever send this message
+    io.emit('recording saved');
 
     // we move the active user to the end of the queue and send everybody
     // a message telling them their new status
@@ -15,7 +16,7 @@ var setup = function(io, PubSub) {
     updateAllSocketStatuses();
   };
 
-  var token = PubSub.subscribe('FILE_AUDIO_UPLOADED', onAudioFileUploadedSubscriber);
+  var token = PubSub.subscribe('AUDIO_FILE_UPLOADED', onAudioFileUploadedSubscriber);
 
 
   io.on('connection', function(socket) {

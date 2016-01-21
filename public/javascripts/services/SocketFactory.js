@@ -13,7 +13,8 @@ $rootScope, $timeout, Modernizr) {
   factory.currentMessage = {
     userId: null,
     inProgress: false,
-    text: null
+    text: null,
+    uploading: false
   };
 
   factory.hasNew = false;
@@ -32,7 +33,8 @@ $rootScope, $timeout, Modernizr) {
     var newMsg = {
       userId: socket.io.engine.id,
       inProgress: true,
-      text: null
+      text: null,
+      uploading: false
     };
     socket.emit('begin recording', newMsg);
     factory.currentMessage = newMsg;
@@ -43,7 +45,8 @@ $rootScope, $timeout, Modernizr) {
     var newMsg = {
       userId: socket.io.engine.id,
       inProgress: true,
-      text: currentText
+      text: currentText,
+      uploading: false
     };
     socket.emit('word', newMsg);
     factory.currentMessage = newMsg;
@@ -54,7 +57,8 @@ $rootScope, $timeout, Modernizr) {
     var newMsg = {
       userId: socket.io.engine.id,
       inProgress: false,
-      text: null
+      text: null,
+      uploading: true
     };
     socket.emit('end recording', newMsg);
     factory.currentMessage = newMsg;
@@ -92,7 +96,8 @@ $rootScope, $timeout, Modernizr) {
         var newMsg = {
           userId: socket.io.engine.id,
           inProgress: false,
-          text: null
+          text: null,
+          uploading: false
         };
 
         // Tell the server that the active contributor has lost their chance
@@ -158,11 +163,20 @@ $rootScope, $timeout, Modernizr) {
       });
     });
 
-    // Whoever was recording has finished, so the client should load any new messages
     socket.on('end recording', function(msg) {
+      $rootScope.$apply(function() {
+        // do something here
+        console.log('got end recording msg');
+      });
+    });
+
+    // Whoever was recording has finished, so the client should load any new messages
+    socket.on('recording saved', function(msg) {
+      // console.log('got end recording');
       $rootScope.$apply(function() {
         factory.currentMessage.inProgress = false;
         factory.currentMessage.text = null;
+        factory.currentMessage.uploading = false;
         SentencesFactory.getNew();
 
         // let's true keeping this hasNew flag on for only 1s
