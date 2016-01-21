@@ -132,7 +132,11 @@ router.post('/saveRecording', function(request, response, next) {
       console.log(file.filename + ' written To DB');
       response.json({filename: file.filename});
 
-      PubSub.publish( 'FILE_AUDIO_UPLOADED');
+      // try waiting a second after file is uploaded to send the message? hacky
+      //PubSub.publish('FILE_AUDIO_UPLOADED');
+      setTimeout(function() {
+        PubSub.publish('FILE_AUDIO_UPLOADED');
+      }, 1000);
 
     });
 
