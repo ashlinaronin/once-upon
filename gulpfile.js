@@ -11,6 +11,7 @@
 // use env variable dev or prod to grab minified cdn for libs
 
 var gulp = require('gulp');
+var inject = require('gulp-inject');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var compass = require('gulp-compass');
@@ -19,6 +20,7 @@ var csso = require('gulp-csso');
 var jshint = require('gulp-jshint');
 var ngAnnotate = require('gulp-ng-annotate');
 var stylish = require('jshint-stylish');
+var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var gulpIf = require('gulp-if');
@@ -35,12 +37,18 @@ var destDir = './dst';
 
 // not using bower yet but i could
 // just custom one file can update later
+// make sure we do angular files in correct order
 var paths = {
   html: './public/partials/*.html',
   img: './public/images/**',
   css: './public/css/*.css',
   scss: './public/sass/**/*.scss',
-  js: './public/javascripts/**/*.js',
+  js: [
+    './public/javascripts/lib/*.js',
+    './public/javascripts/angularApp.js',
+    './public/javascripts/services/*.js',
+    './public/javascripts/directives/*.js',
+    './public/javascripts/controllers/*.js'],
   bower: './public/bower_components/lamejs/lame.all.js'
 }
 
@@ -101,6 +109,9 @@ gulp.task('img', function () {
 gulp.task('js-min', function () {
   return gulp.src(paths.js)
     .pipe(ngAnnotate())
+    .pipe(maps.init())
+      .pipe(concat('all.js'))
+    .pipe(maps.write())
     .pipe(uglify({preserveComments: 'some'}))
     .pipe(gulp.dest(destDir + '/javascripts'))
     .pipe(size({title: 'scripts'}));
@@ -112,8 +123,22 @@ gulp.task('jshint', function() {
     .pipe(reload({stream: true, once: true}))
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(gulpIf(!browserSync.active, jshint.reporter('fail')));
+    .pipe(gulpIf(!browserSync.active, jshint.reporter('fail')))
 });
+
+gulp.task('jsize', function() {
+  return gulp.src(paths.js)
+    .pipe(size({title: 'unminified scripts'}));
+});
+
+gulp.task('index', function() {
+  var target = gulp.src('views/index.ejs');
+  var sources = gulp.src(paths.js, {read:false});
+
+  return target.pipe(inject(sources, {relative:true}))
+    .pipe(gulp.dest('./public'));
+});
+
 
 // just copy html to dest dir
 gulp.task('html', function() {
