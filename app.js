@@ -23,10 +23,12 @@ var users = require('./routes/users');
 // This setup thanks to jfriend00 on stack overflow
 // Also, apparently Heroku dynamically assigns a port, so we need to use an
 // environment variable here to allow it to do that.
+// Now running with reverse proxy in nginx on digital ocean...
 var app = express();
-var server = app.listen(process.env.PORT || 3000, function() {
-  console.log("Server started on port " + (process.env.PORT || 3000));
-});
+// var server = app.listen(process.env.PORT || 3000);
+var server = app.listen(3000, '127.0.0.1');
+console.log("Server started at 127.0.0.1:3000");
+
 var io = require('socket.io').listen(server);
 // Require an external module containing the socket logic
 // and pass it the io object and PubSub so it can access them
