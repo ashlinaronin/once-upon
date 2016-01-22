@@ -79,11 +79,10 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   factory.getAll = function() {
     return $http.get('/sentences').success(function(data) {
       factory.sentences = data;
-      console.dir(factory.sentences);
 
       // If we have sentences already, set the timestamp to the timestamp
       // when the last sentence was added
-      if (factory.sentences) {
+      if (factory.sentences.length) {
         factory.latestTimestamp =
           factory.sentences[factory.sentences.length-1].timestamp;
       }
@@ -96,7 +95,9 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
     if (factory.latestTimestamp) {
       return $http.get('/sentences/new/' + factory.latestTimestamp)
         .success(function(data) {
-          factory.sentences = factory.sentences.concat(data);
+          if (data.length) {
+            factory.sentences = factory.sentences.concat(data);
+          }
           factory.latestTimestamp = new Date().toISOString();
       });
     } else {
