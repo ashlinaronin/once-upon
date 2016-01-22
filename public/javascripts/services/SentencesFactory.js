@@ -79,8 +79,13 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   factory.getAll = function() {
     return $http.get('/sentences').success(function(data) {
       factory.sentences = data;
-      factory.latestTimestamp =
-        factory.sentences[factory.sentences.length-1].timestamp;
+
+      // If we have sentences already, set the timestamp to the timestamp
+      // when the last sentence was added
+      if (factory.sentences) {
+        factory.latestTimestamp =
+          factory.sentences[factory.sentences.length-1].timestamp;
+      }
     });
   }
 
