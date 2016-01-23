@@ -77,7 +77,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
 
   /* Get all sentences and update the factory's data model. */
   factory.getAll = function() {
-    return $http.get('/sentences').success(function(data) {
+    return $http.get('sentences').success(function(data) {
       factory.sentences = data;
 
       // If we have sentences already, set the timestamp to the timestamp
@@ -93,7 +93,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   ** Then update latest timestamp so next time we don't get extra sentences. */
   factory.getNew = function() {
     if (factory.latestTimestamp) {
-      return $http.get('/sentences/new/' + factory.latestTimestamp)
+      return $http.get('sentences/new/' + factory.latestTimestamp)
         .success(function(data) {
           if (data.length) {
             factory.sentences = factory.sentences.concat(data);
