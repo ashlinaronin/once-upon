@@ -48,7 +48,8 @@ app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
 
 // Serve from public dir in env var or use 'public' by default
-app.use(express.static(path.join(__dirname, process.env.PUBLIC_DIR || 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 
 app.use('/', routes);
 app.use('/users', users);
