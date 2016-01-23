@@ -120,7 +120,7 @@ $rootScope, $timeout, Modernizr) {
 
   //////////////////// Logic to process incoming socket messages from the server
   angular.element(document).ready(function() {
-    socket = io();
+    socket = io.connect(location.host+'/once');
 
     // When server asks, tell it whether or not we can record
     socket.on('record capability query', function(msg) {
