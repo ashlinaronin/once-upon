@@ -99,6 +99,7 @@ router.post('/saveRecording', function(request, response, next) {
   var sentence = new Sentence();
   sentence.timestamp = request.body.timestamp;
   sentence.text = request.body.text;
+  console.log(request.body.audio);
 
   sentence.save(function(error, sentence) {
     if (error) {
