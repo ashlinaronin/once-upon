@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 console.log('mongo uri: ' + process.env.MONGOLAB_URI);
 
 // run with local db if we don't have the env variable
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/once');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/once');
 require('./models/Sentence');
 
 var routes = require('./routes/index');
