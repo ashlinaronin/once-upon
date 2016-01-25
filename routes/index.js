@@ -95,6 +95,7 @@ router.get('/sentences/:sentenceId', function(request, response, next) {
 
 // POST /saveRecording
 router.post('/saveRecording', function(request, response, next) {
+  console.log('in /saveRecording');
    // dont bother with sentence stuff for right now
   var sentence = new Sentence();
   sentence.timestamp = request.body.timestamp;

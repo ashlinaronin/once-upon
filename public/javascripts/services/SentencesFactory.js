@@ -16,6 +16,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   // Pass text between various helper methods, which is perhaps not the most
   // elegant solution but it works.
   factory.saveSentence = function(recorder, text) {
+    console.log('in SentencesFactory.saveSentence');
     recorder.exportWAV(function blobCallback(blob) {
       recorder.clear();
 
@@ -33,6 +34,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   // Actually encode the MP3 using LAMEjs.
   // Help from https://github.com/zhuker/lamejs/blob/master/example.html
   factory.encodeMonoMP3 = function(channels, sampleRate, samples, text) {
+    console.log('in SentencesFactory.encodeMonoMP3');
     var buffer = [];
     mp3enc = new liblame.Mp3Encoder(channels, sampleRate, 192);
     var remaining = samples.length;
@@ -55,6 +57,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
 
   // Take encoded mp3 blob and send it to backend to be saved to DB
   factory.saveMP3ToDB = function(blob, text) {
+    console.log('in SentencesFactory.saveMP3ToDB');
     var reader = new FileReader();
     reader.onload = function(event) {
       $http({
