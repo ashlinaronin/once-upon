@@ -21,11 +21,24 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   // to count.
   $scope.getStatusText = function(index) {
     if (index === 0) {
-      return 'speaking';
+      if (($scope.totalUsers > 1) && ($scope.userPosition === 0)) {
+        return "your turn, " + $scope.remainingTime + "s left";
+      } else {
+        return "someone is speaking";
+      }
     } else if (index === 1) {
-      return 'next';
+      if ($scope.userPosition === 1) {
+        return "you're next";
+      } else {
+        return "next";
+      }
     } else {
-      return 'waiting';
+      if ($scope.userPosition === index) {
+        return "you're waiting";
+      } else {
+        return "waiting";
+      }
+
     }
   }
 
