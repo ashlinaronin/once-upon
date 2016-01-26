@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="864px" height="720px" viewBox="0 0 864 720" enable-background="new 0 0 864 720" xml:space="preserve">
-<g>
-	<path fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" d="M721,469c0,99-81,180-180,180H325
-		c-99,0-180-81-180-180V253c0-99,81-180,180-180h216c99,0,180,81,180,180V469z"/>
-</g>
-<polygon fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" points="307.353,172.279 634.234,361.002 307.353,549.721 "/>
+<svg version="1.1" id="play-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="582px" height="582px" viewBox="142 70 582 582" enable-background="new 142 70 582 582" xml:space="preserve">
+<path id="play-outline" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" d="M721,469c0,99-81,180-180,180H325
+	c-99,0-180-81-180-180V253c0-99,81-180,180-180h216c99,0,180,81,180,180V469z"/>
+<polygon id="play-triangle" fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" points="307.353,172.279 634.234,361.002 
+	307.353,549.721 "/>
 </svg>
