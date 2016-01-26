@@ -24,7 +24,7 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
       if (($scope.totalUsers > 1) && ($scope.userPosition === 0)) {
         return "your turn, " + $scope.remainingTime + "s left";
       } else {
-        return "someone is speaking";
+        return "speaking";
       }
     } else if (index === 1) {
       if ($scope.userPosition === 1) {
@@ -34,9 +34,9 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
       }
     } else {
       if ($scope.userPosition === index) {
-        return "you're waiting";
+        return "you're queued";
       } else {
-        return "waiting";
+        return "queued";
       }
 
     }

@@ -217,11 +217,13 @@ nav#navbar #navbar-content.showing {
 }
 /* line 27, ../sass/components/_record.scss */
 #record-panel #speech-results {
+  background: green;
   font-size: larger;
-  padding: 30px;
+  padding: 0px 30px 0px 30px;
+  margin-top: 0;
 }
 
-/* line 34, ../sass/components/_record.scss */
+/* line 36, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }

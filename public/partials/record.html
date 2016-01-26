@@ -1,11 +1,9 @@
 <div id="record" ng-show="SocketFactory.userPosition == 0 && !recognizing">
-  <!-- <div id="record-text">record</div> -->
   <img role="button" ng-click="start()" id="record-img" class="animate-record"
     src="images/recbutton.png"/>
 </div>
 
-<div id="speech-results" ng-show="(SocketFactory.userPosition == 0) && recognizing">
-  <p>
-    <em>you</em>: {{interim}}
-  </p>
+<!-- <div id="speech-results" ng-show="(SocketFactory.userPosition == 0) && recognizing"> -->
+<div id="speech-results">
+  <em>you</em>: {{interim}}
 </div>
