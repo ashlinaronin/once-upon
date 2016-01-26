@@ -192,10 +192,11 @@ nav#navbar #navbar-content.showing {
 #record-panel {
   height: 300px;
   overflow: visible;
-  padding: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   color: black;
 }
-/* line 8, ../sass/components/_record.scss */
+/* line 11, ../sass/components/_record.scss */
 #record-panel #record img {
   width: 60px;
   height: 60px;
@@ -204,26 +205,26 @@ nav#navbar #navbar-content.showing {
   bottom: 20px;
   cursor: pointer;
 }
-/* line 15, ../sass/components/_record.scss */
+/* line 18, ../sass/components/_record.scss */
 #record-panel #record img:hover, #record-panel #record img:focus {
   opacity: 0.8;
 }
-/* line 19, ../sass/components/_record.scss */
+/* line 22, ../sass/components/_record.scss */
 #record-panel #record #record-text {
   position: relative;
   left: 47px;
   top: 74px;
   color: black;
 }
-/* line 27, ../sass/components/_record.scss */
+/* line 30, ../sass/components/_record.scss */
 #record-panel #speech-results {
-  background: green;
   font-size: larger;
-  padding: 0px 30px 0px 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-top: 0;
 }
 
-/* line 36, ../sass/components/_record.scss */
+/* line 44, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }
@@ -302,7 +303,7 @@ nav#navbar #navbar-content.showing {
 /* line 5, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list {
   list-style: none;
-  line-height: 3.0;
+  line-height: 2.0;
 }
 /* line 9, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li {
@@ -311,14 +312,15 @@ nav#navbar #navbar-content.showing {
 /* line 15, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
   color: #71B8B8;
+  text-shadow: 2px 2px 2px #222;
 }
-/* line 19, ../sass/components/_status.scss */
+/* line 20, ../sass/components/_status.scss */
 #status-panel #status-panel-content #current-message {
   font-size: larger;
   padding: 30px;
 }
 
-/* line 28, ../sass/components/_status.scss */
+/* line 29, ../sass/components/_status.scss */
 .no-getusermedia #status-panel, .no-speechrecognition #status-panel {
   display: none;
 }

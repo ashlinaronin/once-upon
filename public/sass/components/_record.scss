@@ -1,7 +1,10 @@
 #record-panel {
   height: 300px;
   overflow: visible;
-  padding: 30px;
+  // padding: 30px;
+  // padding: 15px 0px 15px 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   color: black;
 
   #record {
@@ -25,10 +28,15 @@
   }
 
   #speech-results {
-    background: green;
+    // background: green;
     font-size: larger;
-    padding: 0px 30px 0px 30px;
+    // padding: 0px 20px 0px 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 0;
+    #who {
+      // text-decoration: underline wavy black;
+    }
   }
 }
 
