@@ -144,7 +144,7 @@ nav#navbar {
   height: 100%;
   overflow: hidden;
   z-index: 9000;
-  background: url("../images/textural-sm.png");
+  background: url("../images/textural-tiny.jpg");
   background-size: cover;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
