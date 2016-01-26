@@ -11,10 +11,12 @@ nav#navbar {
   left: 0;
   top: 0;
   width: 40px;
-  height: 450px;
+  // height: 450px;
+  height: 100%;
   overflow: hidden;
   z-index: 9000;
   background: url('../images/textural-sm.png');
+  background-size: cover;
   cursor: pointer;
 
   // Animate folding out navbar
@@ -30,7 +32,9 @@ nav#navbar {
 
   #navbar-header  {
     position: absolute;
-    bottom: 50px;
+    top: 30%;
+    // transform: translateY(-50%);
+    // bottom: 50px;
     @include rotateText(-90);
     margin-top: 35px;
     margin-left: -11px;

@@ -2,8 +2,8 @@ body {
   margin: 0;
   background: url('../images/fullbg-tiny.png') black;
   background-size: cover;
-  // background-repeat: no-repeat;
   font-family: 'Cutive Mono', monospace;
+  height: 100vh;
 }
 
 .container {
@@ -34,32 +34,14 @@ body {
   }
 }
 
-#upper-bg-wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 350px;
-  // background: url('../images/background-sm.png');
-  // background-size: cover;
-}
-#lower-bg-wrap {
-  position: absolute;
-  top: 350px;
-  right: 0;
-  width: 80px;
-  height: 420px;
-  // background: url('../images/background-sm.png');
-  // background-size: cover;
-}
-
 /////////// Grid
 // TODO: add media queries to stack blocks when necessary
-$zen-columns: 8;
+$zen-columns: 9;
 $zen-gutters: 0px;
 #hud-wrapper {
   color: white;
   position: relative;
+  height: 70vh;
   left: 0;
   padding-left: 0px;
   padding-right: 0px;
@@ -75,18 +57,22 @@ $zen-gutters: 0px;
   #status-panel {
     @include zen-grid-item(3, 1, left);
     // background-color: #323033;
-    height: 320px;
-    background-color: rgba(255, 255, 255, 0.6);
-    position: relative;
+    height: 66.6%;
+    background-color: rgba(255, 255, 255, 0.7);
+    // position: relative;
   }
   #sentences-panel {
-    @include zen-grid-item(5, 1, right);
+    @include zen-grid-item(6, 1, right);
     background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
   }
   #record-panel {
     @include zen-new-row(left);
     @include zen-grid-item(3, 1, left);
-    height: 180px;
+    height: 33.4%;
+    // height: 180px;
+    position: absolute;
+    bottom: 0;
     // background-color: #323033;
     background-color: rgba(255, 255, 255, 0.9);
   }

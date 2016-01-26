@@ -1,4 +1,5 @@
 #status-panel {
+  color: black;
   margin-left: -50px;
   #status-panel-content {
     ul#status-list {
@@ -6,7 +7,7 @@
       line-height: 3.0;
       //font-family: 'Cutive Mono', monospace;
       li {
-        font-size: 1.3em;
+        font-size: 1.6em;
       }
       li.waiting-status {
 
