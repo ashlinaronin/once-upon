@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  background-color: black;
+  background: url('../images/fullbg-tiny.png') black;
+  background-size: cover;
+  // background-repeat: no-repeat;
   font-family: 'Cutive Mono', monospace;
 }
 
@@ -9,7 +11,7 @@ body {
 }
 
 #title-banner-wrap {
-  background-color: black;
+  // background-color: black;
   margin-right: 100px;
   position: relative;
   left: 0px;
@@ -38,8 +40,8 @@ body {
   right: 0;
   width: 120px;
   height: 350px;
-  background: url('../images/background-sm.png');
-  background-size: cover;
+  // background: url('../images/background-sm.png');
+  // background-size: cover;
 }
 #lower-bg-wrap {
   position: absolute;
@@ -47,8 +49,8 @@ body {
   right: 0;
   width: 80px;
   height: 420px;
-  background: url('../images/background-sm.png');
-  background-size: cover;
+  // background: url('../images/background-sm.png');
+  // background-size: cover;
 }
 
 /////////// Grid
@@ -60,27 +62,33 @@ $zen-gutters: 0px;
   position: relative;
   left: 0;
   padding-left: 0px;
-  padding-right: 30px;
+  padding-right: 0px;
+  // padding-right: 30px;
   margin-left: 75px;
   margin-right: 100px;
-  border: 25px solid transparent;
-  border-image:url('../images/hud-box.svg') 20 20 stretch;
+  // border: 25px solid transparent;
+  // border-image:url('../images/hud-box.svg') 20 20 stretch;
+  border: 3px solid white;
   overflow: scroll;
   @include zen-grid-container();
 
   #status-panel {
     @include zen-grid-item(3, 1, left);
-    background-color: #323033;
+    // background-color: #323033;
+    height: 320px;
+    background-color: rgba(255, 255, 255, 0.6);
     position: relative;
   }
   #sentences-panel {
     @include zen-grid-item(5, 1, right);
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.6);
   }
   #record-panel {
     @include zen-new-row(left);
     @include zen-grid-item(3, 1, left);
-    background-color: #323033;
+    height: 180px;
+    // background-color: #323033;
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
 }
