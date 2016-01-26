@@ -42,7 +42,11 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
     // }
 
     if (index === 0) {
-      return "speaking";
+      if (($scope.totalUsers > 1) && ($scope.userPosition === 0)) {
+        return $scope.remainingTime + "s left";
+      } else {
+        return "speaking";
+      }
     } else if (index === 1) {
       return "next";
     } else {

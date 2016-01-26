@@ -3,7 +3,7 @@
     src="images/recbutton.png"/>
 </div>
 
-<!-- <div id="speech-results" ng-show="(SocketFactory.userPosition == 0) && recognizing"> -->
 <div id="speech-results">
-  <span id="who">you</span>: {{interim}}
+  <span ng-show="SocketFactory.userPosition === 0">you: {{interim}}</span>
+  <span ng-show="SocketFactory.userPosition !== 0">friend: {{SocketFactory.currentMessage.text}}</span>
 </div>
