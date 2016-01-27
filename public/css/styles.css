@@ -19,13 +19,13 @@ body {
   position: relative;
   left: 0px;
 }
-/* line 19, ../sass/_globals.scss */
+/* line 18, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 24, ../sass/_globals.scss */
+/* line 23, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -37,7 +37,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 41, ../sass/_globals.scss */
+/* line 40, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -61,7 +61,7 @@ body {
   display: table;
   clear: both;
 }
-/* line 57, ../sass/_globals.scss */
+/* line 53, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 33.33333%;
@@ -76,7 +76,7 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   position: relative;
 }
-/* line 63, ../sass/_globals.scss */
+/* line 58, ../sass/_globals.scss */
 #hud-wrapper #status-panel::after {
   content: "";
   position: absolute;
@@ -86,7 +86,7 @@ body {
   height: 3px;
   background-image: linear-gradient(to right, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 75, ../sass/_globals.scss */
+/* line 68, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 66.66667%;
@@ -100,7 +100,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
 }
-/* line 79, ../sass/_globals.scss */
+/* line 72, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel::after {
   content: "";
   position: absolute;
@@ -110,7 +110,7 @@ body {
   width: 3px;
   background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 90, ../sass/_globals.scss */
+/* line 82, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -128,21 +128,12 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* line 104, ../sass/_globals.scss */
-#title-banner-wrap, #hud-wrapper {
-  transition: 0.3s all ease-in-out;
-}
-/* line 106, ../sass/_globals.scss */
-#title-banner-wrap.pushed, #hud-wrapper.pushed {
-  left: 360px;
-}
-
-/* line 113, ../sass/_globals.scss */
+/* line 96, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
   padding: 0;
   border: 1px solid white;
 }
-/* line 116, ../sass/_globals.scss */
+/* line 99, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
   width: 88.88889%;
@@ -156,7 +147,7 @@ body {
   background-color: black;
 }
 
-/* line 9, ../sass/components/_navbar.scss */
+/* line 1, ../sass/components/_navbar.scss */
 nav#navbar {
   position: absolute;
   left: 0;
@@ -168,43 +159,44 @@ nav#navbar {
   background: url("../images/textural-tiny.jpg");
   background-size: cover;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
-/* line 24, ../sass/components/_navbar.scss */
+/* line 16, ../sass/components/_navbar.scss */
 nav#navbar.expanded {
-  width: 400px;
+  width: calc(100% - 120px);
 }
-/* line 28, ../sass/components/_navbar.scss */
+/* line 21, ../sass/components/_navbar.scss */
 nav#navbar a {
   text-decoration: none;
   color: black;
 }
-/* line 33, ../sass/components/_navbar.scss */
+/* line 26, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
-  top: 30%;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  top: 45%;
+  transform: translateY(-50%) rotate(-90deg);
   margin-top: 35px;
   margin-left: -11px;
 }
-/* line 41, ../sass/components/_navbar.scss */
+/* line 32, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
   font-family: 'Autopiaregular', Georgia, serif;
 }
-/* line 47, ../sass/components/_navbar.scss */
+/* line 38, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content {
   position: relative;
-  left: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
   padding: 40px;
+  max-width: 30%;
   opacity: 0;
-  font-family: Georgia, serif;
+  text-shadow: 2px 2px 2px #222;
+  font-size: 22px;
+  color: white;
   transition: all 0.3s ease-in-out;
 }
-/* line 56, ../sass/components/_navbar.scss */
+/* line 52, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content.showing {
   opacity: 1;
 }
@@ -217,7 +209,7 @@ nav#navbar #navbar-content.showing {
   padding-bottom: 15px;
   color: black;
 }
-/* line 11, ../sass/components/_record.scss */
+/* line 9, ../sass/components/_record.scss */
 #record-panel #record img {
   width: 60px;
   height: 60px;
@@ -226,23 +218,23 @@ nav#navbar #navbar-content.showing {
   bottom: 20px;
   cursor: pointer;
 }
-/* line 18, ../sass/components/_record.scss */
+/* line 16, ../sass/components/_record.scss */
 #record-panel #record img:hover, #record-panel #record img:focus {
   opacity: 0.8;
 }
-/* line 22, ../sass/components/_record.scss */
+/* line 20, ../sass/components/_record.scss */
 #record-panel #record.ready {
   background-color: green;
 }
-/* line 25, ../sass/components/_record.scss */
+/* line 23, ../sass/components/_record.scss */
 #record-panel #record.waiting {
   background-color: blue;
 }
-/* line 28, ../sass/components/_record.scss */
+/* line 26, ../sass/components/_record.scss */
 #record-panel #record.recording {
   background-color: red;
 }
-/* line 33, ../sass/components/_record.scss */
+/* line 31, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-size: larger;
   padding-left: 10px;
@@ -250,7 +242,7 @@ nav#navbar #navbar-content.showing {
   margin-top: 0;
 }
 
-/* line 47, ../sass/components/_record.scss */
+/* line 43, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }
@@ -263,64 +255,35 @@ nav#navbar #navbar-content.showing {
   padding-right: 40px;
   padding-bottom: 220px;
 }
-/* line 10, ../sass/components/_sentences.scss */
+/* line 8, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
   font-size: 1.4em;
   padding-right: 180px;
 }
-/* line 18, ../sass/components/_sentences.scss */
+/* line 13, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 21, ../sass/components/_sentences.scss */
+/* line 16, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
   cursor: pointer;
 }
-/* line 24, ../sass/components/_sentences.scss */
+/* line 18, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.25), black);
 }
-/* line 27, ../sass/components/_sentences.scss */
+/* line 21, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
   background: linear-gradient(to left, rgba(0, 0, 0, 0.25), black);
 }
-/* line 40, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-you {
-  position: relative;
-}
-/* line 43, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-you:before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 80%;
-  left: -20px;
-  top: 4%;
-  border-right: 2px solid #037C83;
-}
-/* line 53, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-friend {
-  position: relative;
-  color: orange;
-}
-/* line 56, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-friend:before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 80%;
-  left: -20px;
-  top: 4%;
-  border-right: 2px solid orange;
-}
-/* line 69, ../sass/components/_sentences.scss */
+/* line 27, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
-  right: 150px;
-  bottom: 19%;
+  right: 140px;
+  top: calc(115px + 70vh);
 }
-/* line 74, ../sass/components/_sentences.scss */
+/* line 32, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 50px;
   height: 50px;
@@ -329,16 +292,16 @@ nav#navbar #navbar-content.showing {
   bottom: 0;
   right: 0;
 }
-/* line 81, ../sass/components/_sentences.scss */
+/* line 39, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 84, ../sass/components/_sentences.scss */
+/* line 42, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 
-/* line 100, ../sass/components/_sentences.scss */
+/* line 55, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
@@ -354,22 +317,22 @@ nav#navbar #navbar-content.showing {
   list-style: none;
   line-height: 2.0;
 }
-/* line 9, ../sass/components/_status.scss */
+/* line 8, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li {
   font-size: 1.6em;
 }
-/* line 15, ../sass/components/_status.scss */
+/* line 14, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
   color: #71B8B8;
   text-shadow: 2px 2px 2px #222;
 }
-/* line 20, ../sass/components/_status.scss */
+/* line 19, ../sass/components/_status.scss */
 #status-panel #status-panel-content #current-message {
   font-size: larger;
   padding: 30px;
 }
 
-/* line 29, ../sass/components/_status.scss */
+/* line 27, ../sass/components/_status.scss */
 .no-getusermedia #status-panel, .no-speechrecognition #status-panel {
   display: none;
 }

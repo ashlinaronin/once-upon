@@ -1,26 +1,20 @@
 #sentences-panel {
   height: 500px;
   overflow: scroll;
-  // padding-top: 25px;
-  // padding-bottom: 30px;
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 220px;
   #sentences-panel-content {
     ul#sentences-list {
       list-style: none;
-      // line-height: 1.8;
-      //font-family: 'Cutive Mono', monospace;
       font-size: 1.4em;
       padding-right: 180px;
-      // padding-bottom: 200px;
 
       li {
         margin: 0 0 25px 0;
       }
       li.sentence {
         cursor: pointer;
-        // background: green;
         &:hover, &:focus {
           background: linear-gradient(to right, rgba(0, 0, 0, 0.25), black);
         }
@@ -28,49 +22,13 @@
           background: linear-gradient(to left, rgba(0, 0, 0, 0.25), black);
         }
       }
-
-      // trying to remove margin above first sentence, looks kinda weird either way
-      // margin: 0;
-      // li:first-child p {
-      //   color: green;
-      //   margin-top: 0;
-      // }
-
-      // can this be refactored with sass? i'm sure somehow
-      li.active-sentence-you {
-        position: relative;
-        // color: #037C83;
-        &:before {
-          content: "";
-          position: absolute;
-          width: 2px;
-          height: 80%;
-          left: -20px;
-          top: 4%;
-          border-right: 2px solid #037C83;
-        }
-      }
-      li.active-sentence-friend {
-        position: relative;
-        color: orange;
-        &:before {
-          content: "";
-          position: absolute;
-          width: 2px;
-          height: 80%;
-          left: -20px;
-          top: 4%;
-          border-right: 2px solid orange;
-        }
-      }
-
     }
 
     #playback-controls {
       position: fixed;
-      // margin-top: 100px;
-      right: 150px;
-      bottom: 19%;
+      right: 140px;
+      // height above header + height of hudbox
+      top: calc(115px + 70vh);
       img {
         width: 50px;
         height: 50px;
@@ -85,11 +43,8 @@
           visibility: hidden;
         }
       }
-      #play-button {
-      }
-      #pause-button {
-
-      }
+      #play-button {}
+      #pause-button {}
     }
   }
 }
@@ -100,8 +55,5 @@
   ul#sentences-list {
     padding-left: 20px;
     padding-right: 20px;
-
-
   }
-
 }
