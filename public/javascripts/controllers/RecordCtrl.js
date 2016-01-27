@@ -26,6 +26,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.start = function() {
       $scope.rec.record();
       $scope.recognition.start();
+      console.log('i got a start in recordctrl');
     }
 
     $scope.save = function() {

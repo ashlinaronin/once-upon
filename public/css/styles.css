@@ -222,19 +222,21 @@ nav#navbar #navbar-content.showing {
 #record-panel #record img:hover, #record-panel #record img:focus {
   opacity: 0.8;
 }
-/* line 20, ../sass/components/_record.scss */
-#record-panel #record.ready {
-  background-color: green;
+/* line 19, ../sass/components/_record.scss */
+#record-panel #record img.ready {
+  animation: pulse 0.8s infinite ease-in-out alternate;
 }
-/* line 23, ../sass/components/_record.scss */
-#record-panel #record.waiting {
-  background-color: blue;
+/* line 22, ../sass/components/_record.scss */
+#record-panel #record img.active {
+  animation: spin 1.0s linear infinite;
+  cursor: not-allowed;
 }
 /* line 26, ../sass/components/_record.scss */
-#record-panel #record.recording {
-  background-color: red;
+#record-panel #record img.waiting {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
-/* line 31, ../sass/components/_record.scss */
+/* line 35, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-size: larger;
   padding-left: 10px;
@@ -242,11 +244,27 @@ nav#navbar #navbar-content.showing {
   margin-top: 0;
 }
 
-/* line 43, ../sass/components/_record.scss */
+/* line 47, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* line 1, ../sass/components/_sentences.scss */
 #sentences-panel {
   height: 500px;

@@ -16,16 +16,20 @@
       &:hover, &:focus {
         opacity: 0.8;
       }
+      &.ready {
+        animation: pulse 0.8s infinite ease-in-out alternate;
+      }
+      &.active {
+        animation: spin 1.0s linear infinite;
+        cursor: not-allowed;
+      }
+      &.waiting {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
     }
-    &.ready {
-      background-color: green;
-    }
-    &.waiting {
-      background-color: blue;
-    }
-    &.recording {
-      background-color: red;
-    }
+
+
   }
 
   #speech-results {
@@ -42,4 +46,23 @@
 // Don't display record panel if no speech recognition or microphone
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
+}
+
+// Keyframes for animations cannot be nested
+@keyframes pulse {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
