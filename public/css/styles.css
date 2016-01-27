@@ -273,35 +273,48 @@ nav#navbar #navbar-content.showing {
   padding-right: 40px;
   padding-bottom: 220px;
 }
-/* line 8, ../sass/components/_sentences.scss */
+/* line 9, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content:after {
+  content: "";
+  width: calc(66.6% - 3px);
+  height: 25%;
+  position: absolute;
+  top: 75%;
+  right: 0;
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  z-index: 10;
+  pointer-events: none;
+}
+/* line 20, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
   font-size: 1.4em;
   padding-right: 180px;
 }
-/* line 13, ../sass/components/_sentences.scss */
+/* line 25, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 16, ../sass/components/_sentences.scss */
+/* line 28, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
   cursor: pointer;
 }
-/* line 18, ../sass/components/_sentences.scss */
+/* line 30, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.25), black);
 }
-/* line 21, ../sass/components/_sentences.scss */
+/* line 33, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
   background: linear-gradient(to left, rgba(0, 0, 0, 0.25), black);
 }
-/* line 27, ../sass/components/_sentences.scss */
+/* line 39, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 140px;
+  z-index: 100;
   top: calc(115px + 70vh);
 }
-/* line 32, ../sass/components/_sentences.scss */
+/* line 45, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 50px;
   height: 50px;
@@ -310,16 +323,16 @@ nav#navbar #navbar-content.showing {
   bottom: 0;
   right: 0;
 }
-/* line 39, ../sass/components/_sentences.scss */
+/* line 52, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 42, ../sass/components/_sentences.scss */
+/* line 55, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 
-/* line 55, ../sass/components/_sentences.scss */
+/* line 70, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
