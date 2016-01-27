@@ -58,22 +58,27 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       $scope.playing = sentenceId;
 
       // Before we play the next track, lazy load it
-      var nextAudio = $scope.sentenceIds[$scope.sentenceIds.indexOf(sentenceId)+1];
-      if (nextAudio) {
-        $scope.loadAudio(nextAudio);
+      var nextId = $scope.sentenceIds[$scope.sentenceIds.indexOf(sentenceId)+1];
+      if (nextId) {
+        $scope.loadAudio(nextId);
       }
 
       // When this audio finishes, play the next one if available
       thisAudio[0].addEventListener('ended', function() {
         thisAudio.parent().removeClass('playing');
-        if (nextAudio) {
-          $scope.playAudio(nextAudio);
+        if (nextId) {
+          $scope.playAudio(nextId);
+          if (!$scope.sentenceIsVisible(nextId)) {
+            var nextSentenceElement = $('li.sentence').get($scope.sentenceIds.indexOf(nextId));
+            $('#sentences-panel').animate({scrollTop:nextSentenceElement.offsetTop - 15}, 300);
+          };
         }
       });
     }
 
     $scope.playFromBeginning = function() {
       $scope.playAudio($scope.sentenceIds[0]);
+      $('#sentences-panel').animate({scrollTop:0}, 500);
     }
 
     $scope.stopAll = function() {
@@ -91,6 +96,15 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       if (!thisAudio.attr('src')) {
         thisAudio.attr('src', '/getRecording/' + sentenceId);
       }
+    }
+
+    // Figure out if sentence is currently being displayed in sentence panel
+    // for the purposes of automatically scrolling while playing
+    $scope.sentenceIsVisible = function(sentenceId) {
+      var thisIndex = $scope.sentenceIds.indexOf(sentenceId);
+      var thisSentence = $('li.sentence').get(thisIndex);
+      var top = $(thisSentence).position().top + $(thisSentence).height();
+      return (top > 0) && (top < $('#sentences-panel').innerHeight());
     }
 
 });
