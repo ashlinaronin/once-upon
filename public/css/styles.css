@@ -301,20 +301,21 @@ nav#navbar #navbar-content.showing {
 }
 /* line 30, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.25), black);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
-/* line 33, ../sass/components/_sentences.scss */
+/* line 35, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.25), black);
+  text-align: right;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
-/* line 39, ../sass/components/_sentences.scss */
+/* line 46, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 140px;
   z-index: 100;
   top: calc(115px + 70vh);
 }
-/* line 45, ../sass/components/_sentences.scss */
+/* line 52, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 50px;
   height: 50px;
@@ -323,16 +324,16 @@ nav#navbar #navbar-content.showing {
   bottom: 0;
   right: 0;
 }
-/* line 52, ../sass/components/_sentences.scss */
+/* line 59, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 55, ../sass/components/_sentences.scss */
+/* line 62, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 
-/* line 70, ../sass/components/_sentences.scss */
+/* line 77, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
