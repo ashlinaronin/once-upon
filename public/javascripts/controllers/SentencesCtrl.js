@@ -72,6 +72,10 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       });
     }
 
+    $scope.playFromBeginning = function() {
+      $scope.playAudio($scope.sentenceIds[0]);
+    }
+
     $scope.stopAll = function() {
       if ($scope.playing) {
         var playingAudio = $('audio#' + $scope.playing);

@@ -293,8 +293,31 @@ nav#navbar #navbar-content.showing {
   top: 4%;
   border-right: 2px solid orange;
 }
-
+/* line 69, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls {
+  position: fixed;
+  right: 150px;
+  bottom: 18%;
+}
 /* line 74, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls img {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+/* line 81, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls img:hover {
+  opacity: 0.6;
+}
+/* line 84, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls img.hidden {
+  visibility: hidden;
+}
+
+/* line 100, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
