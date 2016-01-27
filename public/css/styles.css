@@ -210,13 +210,18 @@ nav#navbar #navbar-content.showing {
   opacity: 0.8;
 }
 /* line 22, ../sass/components/_record.scss */
-#record-panel #record #record-text {
-  position: relative;
-  left: 47px;
-  top: 74px;
-  color: black;
+#record-panel #record.ready {
+  background-color: green;
 }
-/* line 30, ../sass/components/_record.scss */
+/* line 25, ../sass/components/_record.scss */
+#record-panel #record.waiting {
+  background-color: blue;
+}
+/* line 28, ../sass/components/_record.scss */
+#record-panel #record.recording {
+  background-color: red;
+}
+/* line 33, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-size: larger;
   padding-left: 10px;
@@ -224,7 +229,7 @@ nav#navbar #navbar-content.showing {
   margin-top: 0;
 }
 
-/* line 44, ../sass/components/_record.scss */
+/* line 47, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }

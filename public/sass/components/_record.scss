@@ -19,11 +19,14 @@
         opacity: 0.8;
       }
     }
-    #record-text {
-      position: relative;
-      left: 47px;
-      top: 74px;
-      color: black;
+    &.ready {
+      background-color: green;
+    }
+    &.waiting {
+      background-color: blue;
+    }
+    &.recording {
+      background-color: red;
     }
   }
 
