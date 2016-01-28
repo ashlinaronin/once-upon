@@ -4,28 +4,28 @@ body {
   margin: 0;
   background: url("../images/fullbg-tiny.png") black;
   background-size: cover;
-  font-family: 'Cutive Mono', monospace;
+  font-family: 'Source Code Pro', monospace;
   height: 100vh;
 }
 
-/* line 9, ../sass/_globals.scss */
+/* line 10, ../sass/_globals.scss */
 .container {
   margin-right: 20px;
 }
 
-/* line 13, ../sass/_globals.scss */
+/* line 14, ../sass/_globals.scss */
 #title-banner-wrap {
   margin-right: 100px;
   position: relative;
   left: 0px;
 }
-/* line 18, ../sass/_globals.scss */
+/* line 19, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 23, ../sass/_globals.scss */
+/* line 24, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -37,7 +37,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 40, ../sass/_globals.scss */
+/* line 41, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -61,7 +61,7 @@ body {
   display: table;
   clear: both;
 }
-/* line 53, ../sass/_globals.scss */
+/* line 54, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 33.33333%;
@@ -76,7 +76,7 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   position: relative;
 }
-/* line 58, ../sass/_globals.scss */
+/* line 59, ../sass/_globals.scss */
 #hud-wrapper #status-panel::after {
   content: "";
   position: absolute;
@@ -86,7 +86,7 @@ body {
   height: 3px;
   background-image: linear-gradient(to right, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 68, ../sass/_globals.scss */
+/* line 69, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 66.66667%;
@@ -100,7 +100,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
 }
-/* line 72, ../sass/_globals.scss */
+/* line 73, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel::after {
   content: "";
   position: absolute;
@@ -110,7 +110,7 @@ body {
   width: 3px;
   background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 82, ../sass/_globals.scss */
+/* line 83, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -128,12 +128,12 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* line 96, ../sass/_globals.scss */
+/* line 97, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
   padding: 0;
   border: 1px solid white;
 }
-/* line 99, ../sass/_globals.scss */
+/* line 100, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
   width: 88.88889%;
@@ -288,33 +288,34 @@ nav#navbar #navbar-content.showing {
 /* line 20, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
-  font-size: 1.4em;
+  font-size: 1.2em;
+  font-weight: 300;
   padding-right: 180px;
 }
-/* line 25, ../sass/components/_sentences.scss */
+/* line 26, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 28, ../sass/components/_sentences.scss */
+/* line 29, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
   cursor: pointer;
 }
-/* line 30, ../sass/components/_sentences.scss */
+/* line 31, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
-/* line 35, ../sass/components/_sentences.scss */
+/* line 36, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
-/* line 45, ../sass/components/_sentences.scss */
+/* line 46, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 140px;
   z-index: 100;
   top: calc(115px + 70vh);
 }
-/* line 51, ../sass/components/_sentences.scss */
+/* line 52, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 50px;
   height: 50px;
@@ -323,16 +324,16 @@ nav#navbar #navbar-content.showing {
   bottom: 0;
   right: 0;
 }
-/* line 58, ../sass/components/_sentences.scss */
+/* line 59, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 61, ../sass/components/_sentences.scss */
+/* line 62, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 
-/* line 76, ../sass/components/_sentences.scss */
+/* line 77, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
@@ -351,19 +352,19 @@ nav#navbar #navbar-content.showing {
 /* line 8, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li {
   font-size: 1.6em;
+  font-weight: 500;
 }
-/* line 14, ../sass/components/_status.scss */
+/* line 15, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
-  color: #71B8B8;
-  text-shadow: 2px 2px 2px #222;
+  color: #4F5E94;
 }
-/* line 19, ../sass/components/_status.scss */
+/* line 21, ../sass/components/_status.scss */
 #status-panel #status-panel-content #current-message {
   font-size: larger;
   padding: 30px;
 }
 
-/* line 27, ../sass/components/_status.scss */
+/* line 29, ../sass/components/_status.scss */
 .no-getusermedia #status-panel, .no-speechrecognition #status-panel {
   display: none;
 }

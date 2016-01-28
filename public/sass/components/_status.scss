@@ -7,13 +7,15 @@
       line-height: 2.0;
       li {
         font-size: 1.6em;
+        font-weight: 500;
       }
       li.waiting-status {
 
       }
       li.active-status {
-        color: #71B8B8;
-        text-shadow: 2px 2px 2px #222;
+        // color: #71B8B8;
+        color: #4F5E94;
+        // text-shadow: 2px 2px 2px #222;
       }
     }
     #current-message {

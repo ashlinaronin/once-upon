@@ -22,7 +22,7 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   $scope.getStatusText = function(index) {
     if (index === 0) {
       if (($scope.totalUsers > 1) && ($scope.userPosition === 0)) {
-        return $scope.remainingTime + "s left";
+        return "ready..." + $scope.remainingTime;
       } else {
         return "speaking";
       }

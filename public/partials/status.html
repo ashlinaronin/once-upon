@@ -1,7 +1,7 @@
 <div id="status-panel-content">
   <ul id="status-list">
     <li ng-repeat="user in range(totalUsers) track by $index"
-      ng-class="(userPosition == user) ? 'active-status' : 'waiting-status'">
+      ng-class="(userPosition === user) ? 'active-status' : 'waiting-status'">
       {{getStatusText(user)}}
     </li>
   </ul>
