@@ -2,29 +2,30 @@
 /* line 1, ../sass/_globals.scss */
 body {
   margin: 0;
-  background-color: black;
+  background: url("../images/fullbg-tiny.png") black;
+  background-size: cover;
   font-family: 'Cutive Mono', monospace;
+  height: 100vh;
 }
 
-/* line 7, ../sass/_globals.scss */
+/* line 9, ../sass/_globals.scss */
 .container {
   margin-right: 20px;
 }
 
-/* line 11, ../sass/_globals.scss */
+/* line 13, ../sass/_globals.scss */
 #title-banner-wrap {
-  background-color: black;
   margin-right: 100px;
   position: relative;
   left: 0px;
 }
-/* line 17, ../sass/_globals.scss */
+/* line 18, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 35px;
   padding-bottom: 20px;
 }
-/* line 22, ../sass/_globals.scss */
+/* line 23, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -36,39 +37,17 @@ body {
   margin-bottom: 0;
 }
 
-/* line 35, ../sass/_globals.scss */
-#upper-bg-wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 350px;
-  background: url("../images/background-sm.png");
-  background-size: cover;
-}
-
-/* line 44, ../sass/_globals.scss */
-#lower-bg-wrap {
-  position: absolute;
-  top: 350px;
-  right: 0;
-  width: 80px;
-  height: 420px;
-  background: url("../images/background-sm.png");
-  background-size: cover;
-}
-
-/* line 58, ../sass/_globals.scss */
+/* line 40, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
+  height: 70vh;
   left: 0;
   padding-left: 0px;
-  padding-right: 30px;
+  padding-right: 0px;
   margin-left: 75px;
   margin-right: 100px;
-  border: 25px solid transparent;
-  border-image: url("../images/hud-box.svg") 20 20 stretch;
+  border: 3px solid white;
   overflow: scroll;
 }
 /* line 69, ../../../../../../Library/Ruby/Gems/2.0.0/gems/zen-grids-2.0.1/sass/zen-grids/_grids.scss */
@@ -82,10 +61,10 @@ body {
   display: table;
   clear: both;
 }
-/* line 71, ../sass/_globals.scss */
+/* line 53, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
-  width: 37.5%;
+  width: 33.33333%;
   margin-left: 0%;
   margin-right: -100%;
   padding-left: 0px;
@@ -93,13 +72,24 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #323033;
+  height: 66.6%;
+  background-color: rgba(255, 255, 255, 0.7);
   position: relative;
 }
-/* line 76, ../sass/_globals.scss */
+/* line 58, ../sass/_globals.scss */
+#hud-wrapper #status-panel::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to right, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
+}
+/* line 68, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
-  width: 62.5%;
+  width: 66.66667%;
   margin-right: 0%;
   margin-left: -100%;
   padding-left: 0px;
@@ -107,13 +97,24 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
 }
-/* line 80, ../sass/_globals.scss */
+/* line 72, ../sass/_globals.scss */
+#hud-wrapper #sentences-panel::after {
+  content: "";
+  position: absolute;
+  left: 33.333%;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
+}
+/* line 82, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
-  width: 37.5%;
+  width: 33.33333%;
   margin-left: 0%;
   margin-right: -100%;
   padding-left: 0px;
@@ -121,27 +122,21 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #323033;
+  height: 33.4%;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* line 89, ../sass/_globals.scss */
-#title-banner-wrap, #hud-wrapper {
-  transition: 0.3s all ease-in-out;
-}
-/* line 91, ../sass/_globals.scss */
-#title-banner-wrap.pushed, #hud-wrapper.pushed {
-  left: 360px;
-}
-
-/* line 98, ../sass/_globals.scss */
+/* line 96, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
   padding: 0;
   border: 1px solid white;
 }
-/* line 101, ../sass/_globals.scss */
+/* line 99, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
-  width: 100%;
+  width: 88.88889%;
   margin-left: 0%;
   margin-right: -100%;
   padding-left: 0px;
@@ -152,51 +147,53 @@ body {
   background-color: black;
 }
 
-/* line 9, ../sass/components/_navbar.scss */
+/* line 1, ../sass/components/_navbar.scss */
 nav#navbar {
   position: absolute;
   left: 0;
   top: 0;
   width: 40px;
-  height: 450px;
+  height: 100%;
   overflow: hidden;
   z-index: 9000;
-  background: url("../images/textural-sm.png");
+  background: url("../images/textural-tiny.jpg");
+  background-size: cover;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
-/* line 22, ../sass/components/_navbar.scss */
+/* line 16, ../sass/components/_navbar.scss */
 nav#navbar.expanded {
-  width: 400px;
+  width: calc(100% - 120px);
 }
-/* line 26, ../sass/components/_navbar.scss */
+/* line 21, ../sass/components/_navbar.scss */
 nav#navbar a {
   text-decoration: none;
   color: black;
 }
-/* line 31, ../sass/components/_navbar.scss */
+/* line 26, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
-  bottom: 50px;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  top: 45%;
+  transform: translateY(-50%) rotate(-90deg);
   margin-top: 35px;
   margin-left: -11px;
 }
-/* line 37, ../sass/components/_navbar.scss */
+/* line 32, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header h2 {
   font-family: 'Autopiaregular', Georgia, serif;
 }
-/* line 43, ../sass/components/_navbar.scss */
+/* line 38, ../sass/components/_navbar.scss */
 nav#navbar #navbar-content {
   position: relative;
-  left: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
   padding: 40px;
+  max-width: 30%;
   opacity: 0;
-  font-family: Georgia, serif;
+  text-shadow: 2px 2px 2px #222;
+  font-size: 19px;
+  color: white;
   transition: all 0.3s ease-in-out;
 }
 /* line 52, ../sass/components/_navbar.scss */
@@ -208,37 +205,66 @@ nav#navbar #navbar-content.showing {
 #record-panel {
   height: 300px;
   overflow: visible;
-  padding: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: black;
 }
-/* line 7, ../sass/components/_record.scss */
+/* line 9, ../sass/components/_record.scss */
 #record-panel #record img {
-  width: 90px;
-  height: 90px;
-  margin-left: 30px;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
   cursor: pointer;
 }
-/* line 12, ../sass/components/_record.scss */
+/* line 16, ../sass/components/_record.scss */
 #record-panel #record img:hover, #record-panel #record img:focus {
   opacity: 0.8;
 }
-/* line 16, ../sass/components/_record.scss */
-#record-panel #record #record-text {
-  position: relative;
-  left: 47px;
-  top: 74px;
-  color: black;
+/* line 19, ../sass/components/_record.scss */
+#record-panel #record img.ready {
+  animation: pulse 0.8s infinite ease-in-out alternate;
 }
-/* line 41, ../sass/components/_record.scss */
+/* line 22, ../sass/components/_record.scss */
+#record-panel #record img.active {
+  animation: spin 1.0s linear infinite;
+  cursor: not-allowed;
+}
+/* line 26, ../sass/components/_record.scss */
+#record-panel #record img.waiting {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+/* line 35, ../sass/components/_record.scss */
 #record-panel #speech-results {
   font-size: larger;
-  padding: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 0;
 }
 
-/* line 50, ../sass/components/_record.scss */
+/* line 47, ../sass/components/_record.scss */
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* line 1, ../sass/components/_sentences.scss */
 #sentences-panel {
   height: 500px;
@@ -247,59 +273,67 @@ nav#navbar #navbar-content.showing {
   padding-right: 40px;
   padding-bottom: 220px;
 }
-/* line 10, ../sass/components/_sentences.scss */
+/* line 9, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content:after {
+  content: "";
+  width: calc(66.6% - 3px);
+  height: 25%;
+  position: absolute;
+  top: 75%;
+  right: 0;
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  z-index: 10;
+  pointer-events: none;
+}
+/* line 20, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
   font-size: 1.4em;
+  padding-right: 180px;
 }
-/* line 17, ../sass/components/_sentences.scss */
+/* line 25, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 20, ../sass/components/_sentences.scss */
+/* line 28, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
   cursor: pointer;
 }
-/* line 22, ../sass/components/_sentences.scss */
+/* line 30, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
-  background: linear-gradient(to right, #333333, black);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
-/* line 25, ../sass/components/_sentences.scss */
+/* line 35, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
-  background: linear-gradient(to left, #333, black);
+  text-align: right;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
-/* line 38, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-you {
-  position: relative;
-  color: #037C83;
+/* line 46, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls {
+  position: fixed;
+  right: 140px;
+  z-index: 100;
+  top: calc(115px + 70vh);
 }
-/* line 41, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-you:before {
-  content: "";
+/* line 52, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls img {
+  width: 50px;
+  height: 50px;
+  margin: 0;
   position: absolute;
-  width: 2px;
-  height: 80%;
-  left: -20px;
-  top: 4%;
-  border-right: 2px solid #037C83;
+  bottom: 0;
+  right: 0;
 }
-/* line 51, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-friend {
-  position: relative;
-  color: orange;
+/* line 59, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls img:hover {
+  opacity: 0.6;
 }
-/* line 54, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.active-sentence-friend:before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 80%;
-  left: -20px;
-  top: 4%;
-  border-right: 2px solid orange;
+/* line 62, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #playback-controls img.hidden {
+  visibility: hidden;
 }
 
-/* line 72, ../sass/components/_sentences.scss */
+/* line 77, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
@@ -307,22 +341,24 @@ nav#navbar #navbar-content.showing {
 
 /* line 1, ../sass/components/_status.scss */
 #status-panel {
+  color: black;
   margin-left: -50px;
 }
-/* line 4, ../sass/components/_status.scss */
+/* line 5, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list {
   list-style: none;
-  line-height: 3.0;
+  line-height: 2.0;
 }
 /* line 8, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li {
-  font-size: 1.3em;
+  font-size: 1.6em;
 }
 /* line 14, ../sass/components/_status.scss */
 #status-panel #status-panel-content ul#status-list li.active-status {
   color: #71B8B8;
+  text-shadow: 2px 2px 2px #222;
 }
-/* line 18, ../sass/components/_status.scss */
+/* line 19, ../sass/components/_status.scss */
 #status-panel #status-panel-content #current-message {
   font-size: larger;
   padding: 30px;

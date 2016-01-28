@@ -13,9 +13,20 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.final = null;
     $scope.recognizing = false;
 
+    $scope.getButtonClass = function() {
+      if ($scope.SocketFactory.userPosition === 0 && !$scope.recognizing) {
+        return "ready";
+      } else if ($scope.SocketFactory.userPosition === 0 && $scope.recognizing) {
+        return "recording";
+      } else if ($scope.SocketFactory.userPosition !== 0) {
+        return "waiting";
+      }
+    }
+
     $scope.start = function() {
       $scope.rec.record();
       $scope.recognition.start();
+      console.log('i got a start in recordctrl');
     }
 
     $scope.save = function() {

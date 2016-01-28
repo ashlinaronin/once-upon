@@ -1,7 +1,9 @@
 body {
   margin: 0;
-  background-color: black;
+  background: url('../images/fullbg-tiny.png') black;
+  background-size: cover;
   font-family: 'Cutive Mono', monospace;
+  height: 100vh;
 }
 
 .container {
@@ -9,7 +11,6 @@ body {
 }
 
 #title-banner-wrap {
-  background-color: black;
   margin-right: 100px;
   position: relative;
   left: 0px;
@@ -32,66 +33,63 @@ body {
   }
 }
 
-#upper-bg-wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 350px;
-  background: url('../images/background-sm.png');
-  background-size: cover;
-}
-#lower-bg-wrap {
-  position: absolute;
-  top: 350px;
-  right: 0;
-  width: 80px;
-  height: 420px;
-  background: url('../images/background-sm.png');
-  background-size: cover;
-}
-
 /////////// Grid
 // TODO: add media queries to stack blocks when necessary
-$zen-columns: 8;
+$zen-columns: 9;
 $zen-gutters: 0px;
 #hud-wrapper {
   color: white;
   position: relative;
+  height: 70vh;
   left: 0;
   padding-left: 0px;
-  padding-right: 30px;
+  padding-right: 0px;
   margin-left: 75px;
   margin-right: 100px;
-  border: 25px solid transparent;
-  border-image:url('../images/hud-box.svg') 20 20 stretch;
+  border: 3px solid white;
   overflow: scroll;
   @include zen-grid-container();
 
   #status-panel {
     @include zen-grid-item(3, 1, left);
-    background-color: #323033;
+    height: 66.6%;
+    background-color: rgba(255, 255, 255, 0.7);
     position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-image: linear-gradient(to right, rgba(255,191,222,1) 0%, rgba(235,214,252,1) 35%, rgba(188,224,238,1) 68%, rgba(204,255,241,1) 97%, rgba(204,255,241,1) 100%);
+    }
   }
   #sentences-panel {
-    @include zen-grid-item(5, 1, right);
-    background-color: black;
+    @include zen-grid-item(6, 1, right);
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 33.333%;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background-image: linear-gradient(to bottom, rgba(255,191,222,1) 0%, rgba(235,214,252,1) 35%, rgba(188,224,238,1) 68%, rgba(204,255,241,1) 97%, rgba(204,255,241,1) 100%);
+    }
   }
   #record-panel {
     @include zen-new-row(left);
     @include zen-grid-item(3, 1, left);
-    background-color: #323033;
-  }
-
-}
-
-// Animations for both hud and title wrapper sliding out to show navbar
-#title-banner-wrap, #hud-wrapper {
-  transition: 0.3s all ease-in-out;
-  &.pushed {
-    left: 360px;
+    height: 33.4%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
   }
 }
+
+
 
 
 // If no WebSpeechAPI or speech recognition, just show sentences panel full-width

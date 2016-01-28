@@ -1,4 +1,3 @@
-<button ng-click="stopAll()" id="stop-playback">stop</button>
 <div id="sentences-panel-content" ng-class="{'in-progress': currentMessage.inProgress}">
   <ul id="sentences-list" playback>
     <li ng-click="playAudio(sentence._id)" ng-repeat="sentence in sentences" class="sentence">
@@ -7,12 +6,9 @@
         Your browser does not support the <code>audio</code> element.
       </audio>
     </li>
-    <!-- <li ng-show="currentMessage.inProgress"
-        ng-class="(userPosition == 0) ? 'active-sentence-you' : 'active-sentence-friend'">
-      <p>
-        {{currentMessage.text}}
-      </p>
-    </li> -->
   </ul>
-
+  <div id="playback-controls">
+    <img id="play-button" src="images/playbutton.svg" ng-click="playFromBeginning()" ng-show="!playing" />
+    <img id="pause-button" src="images/pausebutton.svg" ng-click="stopAll()" ng-show="playing" />
+  </div>
 </div>

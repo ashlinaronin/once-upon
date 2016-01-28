@@ -1,22 +1,22 @@
 #status-panel {
+  color: black;
   margin-left: -50px;
   #status-panel-content {
     ul#status-list {
       list-style: none;
-      line-height: 3.0;
-      //font-family: 'Cutive Mono', monospace;
+      line-height: 2.0;
       li {
-        font-size: 1.3em;
+        font-size: 1.6em;
       }
       li.waiting-status {
 
       }
       li.active-status {
         color: #71B8B8;
+        text-shadow: 2px 2px 2px #222;
       }
     }
     #current-message {
-      //font-family: 'Cutive Mono', monospace;
       font-size: larger;
       padding: 30px;
     }

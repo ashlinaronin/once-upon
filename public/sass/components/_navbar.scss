@@ -1,26 +1,21 @@
-@mixin rotateText($degrees) {
-  -webkit-transform: rotate(#{$degrees}deg); // Safari
-  -moz-transform: rotate(#{$degrees}deg); // Firefox
-  -ms-transform: rotate(#{$degrees}deg); // IE
-  -o-transform: rotate(#{$degrees}deg); // Opera
-  transform: rotate(#{$degrees}deg); // future
-}
-
 nav#navbar {
   position: absolute;
   left: 0;
   top: 0;
   width: 40px;
-  height: 450px;
+  // height: 450px;
+  height: 100%;
   overflow: hidden;
   z-index: 9000;
-  background: url('../images/textural-sm.png');
+  background: url('../images/textural-tiny.jpg');
+  background-size: cover;
   cursor: pointer;
 
   // Animate folding out navbar
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
   &.expanded {
-    width: 400px;
+    // full screen minus distance from right side to hudbox right border
+    width: calc(100% - 120px);
   }
 
   a {
@@ -30,8 +25,8 @@ nav#navbar {
 
   #navbar-header  {
     position: absolute;
-    bottom: 50px;
-    @include rotateText(-90);
+    top: 45%;
+    transform: translateY(-50%) rotate(-90deg);
     margin-top: 35px;
     margin-left: -11px;
     h2 {
@@ -42,10 +37,15 @@ nav#navbar {
   // Shouldn't need all the prefixes here cuz we have a gulp task adding them
   #navbar-content {
     position: relative;
-    left: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
     padding: 40px;
+    max-width: 30%;
     opacity: 0;
-    font-family: Georgia, serif;
+    text-shadow: 2px 2px 2px #222;
+    font-size: 19px;
+    color: white;
 
     // Animate fading in and out navbar content
     transition: all 0.3s ease-in-out;

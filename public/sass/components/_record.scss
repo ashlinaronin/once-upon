@@ -1,52 +1,68 @@
 #record-panel {
   height: 300px;
   overflow: visible;
-  padding: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: black;
 
   #record {
     img {
-      width: 90px;
-      height: 90px;
-      margin-left: 30px;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
       cursor: pointer;
       &:hover, &:focus {
         opacity: 0.8;
       }
+      &.ready {
+        animation: pulse 0.8s infinite ease-in-out alternate;
+      }
+      &.active {
+        animation: spin 1.0s linear infinite;
+        cursor: not-allowed;
+      }
+      &.waiting {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
     }
-    #record-text {
-      position: relative;
-      left: 47px;
-      top: 74px;
-      color: black;
-    }
-  }
 
-  // trying to animate record button appearing / disappearing
-  // .animate-record {
-  //   // opacity: 1;
-  //   // line-height: 20px;
-  //   // padding: 10px;
-  //   // border: 1px solid black;
-  //   // background: white;
-  //   // & .ng-hide-remove, & .ng-hide-add {
-  //   //   transition: all linear 1.5s;
-  //   // }
-  //   // & .ng-hide {
-  //   //   opacity: 0;
-  //   //   line-height: 0;
-  //   //   padding: 0 10px;
-  //   // }
-  // }
+
+  }
 
   #speech-results {
-    //font-family: 'Cutive Mono', monospace;
     font-size: larger;
-    padding: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 0;
+    #who {
+      // text-decoration: underline wavy black;
+    }
   }
-
 }
 
 // Don't display record panel if no speech recognition or microphone
 .no-getusermedia #record-panel, .no-speechrecognition #record-panel {
   display: none;
+}
+
+// Keyframes for animations cannot be nested
+@keyframes pulse {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

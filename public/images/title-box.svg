@@ -3,12 +3,21 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%"
 	 height="100%" viewBox="0 0 247 76" enable-background="new 0 0 247 76" xml:space="preserve">
+<defs>
+	<linearGradient id="pastelGradient">
+		<stop offset="0%" stop-color="#ffbfde"/>
+		<stop offset="35%" stop-color="#ebd6fc"/>
+		<stop offset="68%" stop-color="#bce0ee"/>
+		<stop offset="100%" stop-color="#ccfff1"/>
+	</linearGradient>
+</defs>
+
 <g id="title-box-corner">
-	<line fill="none" stroke="#FFF" x1="247" y1="25.2" x2="221.5" y2="25.2"/>
-	<line fill="none" stroke="#FFF" x1="222" y1="0" x2="222" y2="24.7"/>
+	<line fill="none" stroke="#ccfff1" stroke-width="3" x1="247" y1="25.2" x2="221.5" y2="25.2"/>
+	<line fill="none" stroke="#ccfff1" stroke-width="3" x1="222" y1="0" x2="222" y2="24.7"/>
 </g>
 <g id="title-box-outline">
-	<polygon fill="none" stroke="#FFF" points="0.5,0.5 0.5,0.5 0.5,75.5 246.5,75.5 246.5,24.5 222.5,0.5
+	<polygon fill="none" stroke="url(#pastelGradient)" stroke-width="5" points="0.5,0.5 0.5,0.5 0.5,75.5 246.5,75.5 246.5,24.5 222.5,0.5
 		"/>
 </g>
 </svg>

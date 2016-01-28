@@ -1,18 +1,26 @@
 #sentences-panel {
   height: 500px;
   overflow: scroll;
-  // padding-top: 25px;
-  // padding-bottom: 30px;
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 220px;
   #sentences-panel-content {
+    // try fading text down by putting a pseudoelement with gradient over it
+    &:after {
+      content: "";
+      width: calc(66.6% - 3px); // leave rainbow border intact!
+      height: 25%;
+      position: absolute;
+      top: 75%;
+      right: 0;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+      z-index: 10;
+      pointer-events: none; // let people click the sentences through this overlay
+    }
     ul#sentences-list {
       list-style: none;
-      // line-height: 1.8;
-      //font-family: 'Cutive Mono', monospace;
       font-size: 1.4em;
-      // padding-bottom: 200px;
+      padding-right: 180px;
 
       li {
         margin: 0 0 25px 0;
@@ -20,50 +28,47 @@
       li.sentence {
         cursor: pointer;
         &:hover, &:focus {
-          background: linear-gradient(to right, #333333, black);
+          // color: black;
+          background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+          // background: linear-gradient(to right, rgba(0, 0, 0, 0.25), black);
         }
         &.playing {
-          background: linear-gradient(to left, #333, black);
+          // color: orange;
+          // color: #71B8B8;
+          // text-shadow: 2px 2px 2px #222;
+          text-align: right;
+          background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+          // background: linear-gradient(to left, rgba(0, 0, 0, 0.25), black);
         }
       }
-
-      // trying to remove margin above first sentence, looks kinda weird either way
-      // margin: 0;
-      // li:first-child p {
-      //   color: green;
-      //   margin-top: 0;
-      // }
-
-      // can this be refactored with sass? i'm sure somehow
-      li.active-sentence-you {
-        position: relative;
-        color: #037C83;
-        &:before {
-          content: "";
-          position: absolute;
-          width: 2px;
-          height: 80%;
-          left: -20px;
-          top: 4%;
-          border-right: 2px solid #037C83;
-        }
-      }
-      li.active-sentence-friend {
-        position: relative;
-        color: orange;
-        &:before {
-          content: "";
-          position: absolute;
-          width: 2px;
-          height: 80%;
-          left: -20px;
-          top: 4%;
-          border-right: 2px solid orange;
-        }
-      }
-
     }
+
+    #playback-controls {
+      position: fixed;
+      right: 140px;
+      z-index: 100;
+      // height above header + height of hudbox
+      top: calc(115px + 70vh);
+      img {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        &:hover {
+          opacity: 0.6;
+        }
+        &.hidden {
+          visibility: hidden;
+        }
+      }
+      #play-button {}
+      #pause-button {}
+    }
+
   }
+
 }
 
 // If no getUserMedia / speech recognition, just show sentences panel full-width
@@ -72,8 +77,5 @@
   ul#sentences-list {
     padding-left: 20px;
     padding-right: 20px;
-
-
   }
-
 }
