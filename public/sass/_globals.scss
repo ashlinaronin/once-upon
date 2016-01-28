@@ -96,7 +96,7 @@ $zen-gutters: 0px;
 
 
 
-// If no WebSpeechAPI or speech recognition, just show sentences panel full-width
+// If either no WebSpeechAPI or speech recognition, just show sentences panel full-width
 .no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
   #sentences-panel {
     @include zen-grid-item(9, 1, left);
