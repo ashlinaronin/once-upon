@@ -8,7 +8,8 @@
     </li>
   </ul>
   <div id="playback-controls">
-    <img id="play-button" src="images/playbutton.svg" ng-click="playFromBeginning()" ng-show="!playing" />
-    <img id="pause-button" src="images/pausebutton.svg" ng-click="stopAll()" ng-show="playing" />
+    {{playing}}
+    <img id="play-button" src="images/playbutton.svg" ng-click="playFromBeginning()" ng-show="!PlaybackFactory.playing" />
+    <img id="pause-button" src="images/pausebutton.svg" ng-click="stopAll()" ng-show="PlaybackFactory.playing" />
   </div>
 </div>

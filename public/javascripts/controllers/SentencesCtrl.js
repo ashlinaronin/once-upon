@@ -1,5 +1,5 @@
 onceUpon.controller('SentencesCtrl', function SentencesCtrl(
-  $scope, SentencesFactory, SocketFactory) {
+  $scope, SentencesFactory, SocketFactory, PlaybackFactory) {
     // Mirror the array of posts returned by the factory
     $scope.sentences = SentencesFactory.sentences;
     $scope.currentMessage = SocketFactory.currentMessage;
@@ -9,7 +9,7 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
 
     // this variable will contain the id of the currently playing audio clip
     // accessing / playing and stopping particular thing by id in the factory method
-    $scope.playing = null;
+    $scope.PlaybackFactory = PlaybackFactory;
 
     $scope.$watch(function() {
       return SocketFactory.currentMessage;
@@ -55,7 +55,8 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
       var thisAudio = $('audio#' + sentenceId);
       thisAudio[0].play();
       thisAudio.parent().addClass('playing');
-      $scope.playing = sentenceId;
+      // $scope.playing = sentenceId;
+      PlaybackFactory.playing = sentenceId;
 
       // Before we play the next track, lazy load it
       var nextId = $scope.sentenceIds[$scope.sentenceIds.indexOf(sentenceId)+1];
@@ -73,7 +74,9 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
             $('#sentences-panel').animate({scrollTop:nextSentenceElement.offsetTop - 15}, 300);
           };
         }
+        $scope.$apply(); // apply scope in custom event listeners
       });
+
     }
 
     $scope.playFromBeginning = function() {
@@ -82,12 +85,13 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
     }
 
     $scope.stopAll = function() {
-      if ($scope.playing) {
-        var playingAudio = $('audio#' + $scope.playing);
+      if (PlaybackFactory.playing) {
+        var playingAudio = $('audio#' + PlaybackFactory.playing);
         playingAudio[0].pause();
         playingAudio[0].currentTime = 0; // reset this clip back to beginning
         playingAudio.parent().removeClass('playing');
-        $scope.playing = null;
+        // $scope.playing = null;
+        PlaybackFactory.playing = null;
       }
     }
 

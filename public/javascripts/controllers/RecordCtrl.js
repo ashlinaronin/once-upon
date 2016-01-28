@@ -1,6 +1,15 @@
-onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, SocketFactory, $http) {
+onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
+      SocketFactory, PlaybackFactory, $http) {
     $scope.SentencesFactory = SentencesFactory;
     $scope.SocketFactory = SocketFactory;
+    $scope.PlaybackFactory = PlaybackFactory;
+
+    $scope.$watch(function() {
+      return PlaybackFactory.playing;
+    }, function(newVal, oldVal) {
+      console.log(newVal);
+      $scope.PlaybackFactory.playing = newVal;
+    });
 
     // Recorder, context, and recognition objects must be scoped to the whole controller
     $scope.rec;

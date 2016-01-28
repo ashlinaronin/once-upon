@@ -3,6 +3,10 @@
   <span ng-show="SocketFactory.userPosition !== 0">friend: {{SocketFactory.currentMessage.text}}</span>
 </div>
 
+<div>
+  {{PlaybackFactory.playing}}
+</div>
+
 <div id="record" record-button>
   <img ng-click="clickable && start()" id="record-img" src="images/recbutton.png"/>
 </div>
