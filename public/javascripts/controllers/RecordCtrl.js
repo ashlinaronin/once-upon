@@ -26,13 +26,11 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory, 
     $scope.start = function() {
       $scope.rec.record();
       $scope.recognition.start();
-      console.log('i got a start in recordctrl');
     }
 
     $scope.save = function() {
       $scope.rec.stop();
       $scope.recognition.stop();
-      console.log('in RecordCtrl.save');
 
       // Factory will do the actual work of saving the recording
       // We pass it the recorder object to do so
