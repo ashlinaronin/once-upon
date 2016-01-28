@@ -70,15 +70,6 @@ $zen-gutters: 0px;
     @include zen-grid-item(6, 1, right);
     background-color: rgba(0, 0, 0, 0.6);
     height: 100%;
-    &::after {
-      content: "";
-      position: absolute;
-      left: 33.333%;
-      top: 0;
-      height: 100%;
-      width: 3px;
-      background-image: linear-gradient(to bottom, rgba(255,191,222,1) 0%, rgba(235,214,252,1) 35%, rgba(188,224,238,1) 68%, rgba(204,255,241,1) 97%, rgba(204,255,241,1) 100%);
-    }
   }
   #record-panel {
     @include zen-new-row(left);
@@ -90,15 +81,24 @@ $zen-gutters: 0px;
   }
 }
 
+// Show rainbow border only if both gum and speech recognition are around
+.getusermedia.speechrecognition #sentences-panel {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 33.333%;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-image: linear-gradient(to bottom, rgba(255,191,222,1) 0%, rgba(235,214,252,1) 35%, rgba(188,224,238,1) 68%, rgba(204,255,241,1) 97%, rgba(204,255,241,1) 100%);
+  }
+}
 
 
 
 // If no WebSpeechAPI or speech recognition, just show sentences panel full-width
 .no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
-  padding: 0;
-  border: 1px solid white; // don't bother with fancy border on what we are now presuming, for better or for worse, is mobile
   #sentences-panel {
-    @include zen-grid-item(8, 1, left);
-    background-color: black;
+    @include zen-grid-item(9, 1, left);
   }
 }

@@ -100,17 +100,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
 }
-/* line 73, ../sass/_globals.scss */
-#hud-wrapper #sentences-panel::after {
-  content: "";
-  position: absolute;
-  left: 33.333%;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
-}
-/* line 83, ../sass/_globals.scss */
+/* line 74, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -128,15 +118,21 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* line 97, ../sass/_globals.scss */
-.no-getusermedia #hud-wrapper, .no-speechrecognition #hud-wrapper {
-  padding: 0;
-  border: 1px solid white;
+/* line 86, ../sass/_globals.scss */
+.getusermedia.speechrecognition #sentences-panel::after {
+  content: "";
+  position: absolute;
+  left: 33.333%;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 100, ../sass/_globals.scss */
+
+/* line 101, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
-  width: 88.88889%;
+  width: 100%;
   margin-left: 0%;
   margin-right: -100%;
   padding-left: 0px;
@@ -144,7 +140,6 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: black;
 }
 
 /* line 1, ../sass/components/_navbar.scss */
