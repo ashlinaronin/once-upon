@@ -20,27 +20,6 @@ onceUpon.controller('StatusCtrl', function StatusCtrl($scope, SocketFactory) {
   // recording queue. index is backwards because of the way ng-repeat is set-up
   // to count.
   $scope.getStatusText = function(index) {
-    // if (index === 0) {
-    //   if (($scope.totalUsers > 1) && ($scope.userPosition === 0)) {
-    //     return "your turn, " + $scope.remainingTime + "s left";
-    //   } else {
-    //     return "speaking";
-    //   }
-    // } else if (index === 1) {
-    //   if ($scope.userPosition === 1) {
-    //     return "you're next";
-    //   } else {
-    //     return "next";
-    //   }
-    // } else {
-    //   if ($scope.userPosition === index) {
-    //     return "you're queued";
-    //   } else {
-    //     return "queued";
-    //   }
-    //
-    // }
-
     if (index === 0) {
       if (($scope.totalUsers > 1) && ($scope.userPosition === 0)) {
         return $scope.remainingTime + "s left";

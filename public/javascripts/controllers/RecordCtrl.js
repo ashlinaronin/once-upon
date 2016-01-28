@@ -33,6 +33,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
     }
 
     $scope.start = function() {
+      PlaybackFactory.stopAll(); // stop all playback when recording starts
       $scope.rec.record();
       $scope.recognition.start();
     }
