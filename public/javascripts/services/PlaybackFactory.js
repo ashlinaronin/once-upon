@@ -41,6 +41,9 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
           var nextSentenceElement = $('li.sentence').get(factory.sentenceIds.indexOf(nextId));
           $('#sentences-panel').animate({scrollTop:nextSentenceElement.offsetTop - 15}, 300);
         };
+      } else {
+        // No next audio, so update playing var to indicate that
+        factory.playing = null;
       }
       $rootScope.$apply(); // apply scope in custom event listeners
     });
