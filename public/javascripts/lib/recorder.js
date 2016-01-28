@@ -1,6 +1,6 @@
 (function(window){
   // Somehow needed to put the whole path from /public here to load the worker
-  var WORKER_PATH = '/javascripts/lib/recorderWorker.js';
+  var WORKER_PATH = 'javascripts/lib/recorderWorker.js';
 
   var Recorder = function(source, cfg){
     var config = cfg || {};

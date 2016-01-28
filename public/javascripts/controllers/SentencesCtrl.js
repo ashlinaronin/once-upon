@@ -94,7 +94,7 @@ onceUpon.controller('SentencesCtrl', function SentencesCtrl(
     $scope.loadAudio = function(sentenceId) {
       var thisAudio = $('audio#' + sentenceId);
       if (!thisAudio.attr('src')) {
-        thisAudio.attr('src', '/getRecording/' + sentenceId);
+        thisAudio.attr('src', 'getRecording/' + sentenceId);
       }
     }
 
