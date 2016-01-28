@@ -98,8 +98,10 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
     if (factory.latestTimestamp) {
       return $http.get('sentences/new/' + factory.latestTimestamp)
         .success(function(data) {
+          console.dir(data);
           if (data.length) {
             factory.sentences = factory.sentences.concat(data);
+            console.dir(factory.sentences);
           }
           factory.latestTimestamp = new Date().toISOString();
       });

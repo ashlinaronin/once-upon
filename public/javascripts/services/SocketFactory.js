@@ -178,6 +178,7 @@ $rootScope, $timeout, Modernizr) {
         factory.currentMessage.inProgress = false;
         factory.currentMessage.text = null;
         factory.currentMessage.uploading = false;
+        console.log('got recording saved, getting new');
         SentencesFactory.getNew();
 
         // let's true keeping this hasNew flag on for only 1s
