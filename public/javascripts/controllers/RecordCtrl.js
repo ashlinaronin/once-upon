@@ -1,5 +1,5 @@
 onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
-      SocketFactory, PlaybackFactory, $http) {
+      SocketFactory, PlaybackFactory, $http, Modernizr) {
     // only SocketFactory needs to be exposed to controller scope for template
     $scope.SocketFactory = SocketFactory;
 
@@ -137,21 +137,24 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
 
     // Initialize microphone when this partial is loaded
     angular.element(document).ready(function() {
-      // Support multiple browser implementations of getUserMedia
-      navigator.getUserMedia = (navigator.getUserMedia ||
-                                navigator.webkitGetUserMedia ||
-                                navigator.mozGetUserMedia ||
-                                navigator.msGetUserMedia ||
-                                navigator.mediaDevices.getUserMedia);
+      // only load microphone if we have both gUM and speech recognition
+      if (Modernizr.getusermedia && Modernizr.speechrecognition) {
+        // Support multiple browser implementations of getUserMedia
+        navigator.getUserMedia = (navigator.getUserMedia ||
+                                  navigator.webkitGetUserMedia ||
+                                  navigator.mozGetUserMedia ||
+                                  navigator.msGetUserMedia ||
+                                  navigator.mediaDevices.getUserMedia);
 
-      navigator.getUserMedia(
-        {audio:true, video: false},
-        gumSuccess, gumError
-      );
+        navigator.getUserMedia(
+          {audio:true, video: false},
+          gumSuccess, gumError
+        );
 
-      // Initialize the speech recognition object,
-      // but don't start recognition yet
-      // We start that along with recording when user presses button
-      initRecognize();
+        // Initialize the speech recognition object,
+        // but don't start recognition yet
+        // We start that along with recording when user presses button
+        initRecognize();
+      }
     });
 });
