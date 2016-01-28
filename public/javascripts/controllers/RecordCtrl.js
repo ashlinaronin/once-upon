@@ -1,15 +1,7 @@
 onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
       SocketFactory, PlaybackFactory, $http) {
-    $scope.SentencesFactory = SentencesFactory;
+    // only SocketFactory needs to be exposed to controller scope for template
     $scope.SocketFactory = SocketFactory;
-    $scope.PlaybackFactory = PlaybackFactory;
-
-    $scope.$watch(function() {
-      return PlaybackFactory.playing;
-    }, function(newVal, oldVal) {
-      console.log(newVal);
-      $scope.PlaybackFactory.playing = newVal;
-    });
 
     // Recorder, context, and recognition objects must be scoped to the whole controller
     $scope.rec;
@@ -23,11 +15,11 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
     $scope.recognizing = false;
 
     $scope.getButtonClass = function() {
-      if ($scope.SocketFactory.userPosition === 0 && !$scope.recognizing) {
+      if (SocketFactory.userPosition === 0 && !$scope.recognizing) {
         return "ready";
-      } else if ($scope.SocketFactory.userPosition === 0 && $scope.recognizing) {
+      } else if (SocketFactory.userPosition === 0 && $scope.recognizing) {
         return "recording";
-      } else if ($scope.SocketFactory.userPosition !== 0) {
+      } else if (SocketFactory.userPosition !== 0) {
         return "waiting";
       }
     }
@@ -44,7 +36,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
 
       // Factory will do the actual work of saving the recording
       // We pass it the recorder object to do so
-      $scope.SentencesFactory.saveSentence($scope.rec, $scope.text);
+      SentencesFactory.saveSentence($scope.rec, $scope.text);
     }
 
     // Initialize Speech Recognition object and handlers
@@ -67,7 +59,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
         // Do these things when speech recognition is enabled
         $scope.recognition.onstart = function() {
           $scope.recognizing = true;
-          $scope.SocketFactory.beginRecording();
+          SocketFactory.beginRecording();
 
           // Every custom event handler needs to apply its scope
           $scope.$apply();
@@ -85,7 +77,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
           // Display interim results
           if (!event.results[sentenceIndex].isFinal) {
             $scope.interim = sentence;
-            $scope.SocketFactory.updateText(sentence);
+            SocketFactory.updateText(sentence);
             $scope.$apply();
           } else {
             $scope.final = sentence;
@@ -97,7 +89,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
 
             // Send a socket message to the server to tell everyone that this
             // user has finished recording
-            $scope.SocketFactory.endRecording();
+            SocketFactory.endRecording();
 
             // We've got a final result, clear the interim results.
             $scope.interim = null;
