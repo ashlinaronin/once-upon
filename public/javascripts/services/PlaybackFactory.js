@@ -3,6 +3,7 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
 
   factory.sentenceIds;
   factory.playing = null;
+  factory.audio = $('audio#playback');
 
   // Watch sentences for changes if another user updated
   // Boil down the sentences array into just sentence ids for our purposes here
@@ -14,38 +15,19 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
     });
   });
 
-  factory.playAudio = function(sentenceId) {
-    // Make sure this audio is loaded first
-    factory.loadAudio(sentenceId);
 
+  factory.init = function() {
+    // When the playing audio finishes, play the next audio if available
+    factory.audio[0].addEventListener('ended', function() {
+      $('li.sentence#' + factory.playing).removeClass('playing');
 
-    // If something else is playing, stop it and start playing this one
-    factory.stopAll();
-
-    // Play this audio, change class of its parent, and track its state
-    var thisAudio = $('audio#' + sentenceId);
-    thisAudio[0].play();
-    console.log('playing ' + sentenceId);
-    thisAudio.parent().addClass('playing');
-    factory.playing = sentenceId;
-
-    // Before we play the next track, lazy load it
-    var nextId = factory.sentenceIds[factory.sentenceIds.indexOf(sentenceId)+1];
-    if (nextId) {
-      factory.loadAudio(nextId);
-    }
-
-    // When this audio finishes, play the next one if available
-    thisAudio[0].addEventListener('ended', function() {
-      console.log(sentenceId + ' ended');
-      thisAudio.parent().removeClass('playing');
-      // console.log('next is ' + nextId);
+      var nextId = factory.sentenceIds[factory.sentenceIds.indexOf(factory.playing)+1];
       if (nextId) {
         factory.playAudio(nextId);
         // If next sentence is not visible, scroll to it automatically
         if (!factory.sentenceIsVisible(nextId)) {
-          var nextSentenceElement = $('li.sentence').get(factory.sentenceIds.indexOf(nextId));
-          $('#sentences-panel').animate({scrollTop:nextSentenceElement.offsetTop - 15}, 300);
+          var nextSentenceElement = $('li.sentence#' + nextId);
+          $('#sentences-panel').animate({scrollTop:nextSentenceElement[0].offsetTop - 15}, 300);
         };
       } else {
         // No next audio, so update playing var to indicate that
@@ -53,7 +35,20 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
       }
       $rootScope.$apply(); // apply scope in custom event listeners
     });
+  }
 
+  factory.playAudio = function(sentenceId) {
+    // Stop the currently playing clip
+    factory.stopAll();
+
+    // Load and play the new clip
+    factory.audio[0].src = "getRecording/" + sentenceId;
+    factory.audio[0].load();
+    factory.audio[0].play();
+
+    // Keep track of what's playing visually and programmatically
+    $('li.sentence#' + sentenceId).addClass('playing');
+    factory.playing = sentenceId;
   }
 
   factory.playFromBeginning = function() {
@@ -63,31 +58,23 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
 
   factory.stopAll = function() {
     if (factory.playing) {
-      var playingAudio = $('audio#' + factory.playing);
-      playingAudio[0].pause();
-      playingAudio[0].currentTime = 0; // reset this clip back to beginning
-      playingAudio.parent().removeClass('playing');
+      factory.audio[0].pause();
+      factory.audio[0].currentTime = 0; // reset this clip back to beginning
+      $('li.sentence#' + factory.playing).removeClass('playing');
       factory.playing = null;
-    }
-  }
-
-  factory.loadAudio = function(sentenceId) {
-    var thisAudio = $('audio#' + sentenceId);
-    if (!thisAudio.attr('src')) {
-      console.log('loading ' + sentenceId);
-      thisAudio.attr('src', 'getRecording/' + sentenceId);
-      thisAudio.load();
     }
   }
 
   // Figure out if sentence is currently being displayed in sentence panel
   // for the purposes of automatically scrolling while playing
   factory.sentenceIsVisible = function(sentenceId) {
-    var thisIndex = factory.sentenceIds.indexOf(sentenceId);
-    var thisSentence = $('li.sentence').get(thisIndex);
+    var thisSentence = $('li.sentence#' + sentenceId);
     var top = $(thisSentence).position().top + $(thisSentence).height();
     return (top > 0) && (top < $('#sentences-panel').innerHeight());
   }
+
+  // gotta actually run the init
+  factory.init();
 
   return factory;
 });
