@@ -5,6 +5,7 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
   factory.playing = null;
 
   // Watch sentences for changes if another user updated
+  // Boil down the sentences array into just sentence ids for our purposes here
   $rootScope.$watch(function() {
     return SentencesFactory.sentences;
   }, function(newValue, oldValue) {
@@ -17,12 +18,14 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
     // Make sure this audio is loaded first
     factory.loadAudio(sentenceId);
 
+
     // If something else is playing, stop it and start playing this one
     factory.stopAll();
 
     // Play this audio, change class of its parent, and track its state
     var thisAudio = $('audio#' + sentenceId);
     thisAudio[0].play();
+    console.log('playing ' + sentenceId);
     thisAudio.parent().addClass('playing');
     factory.playing = sentenceId;
 
@@ -34,9 +37,12 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
 
     // When this audio finishes, play the next one if available
     thisAudio[0].addEventListener('ended', function() {
+      console.log(sentenceId + ' ended');
       thisAudio.parent().removeClass('playing');
+      // console.log('next is ' + nextId);
       if (nextId) {
         factory.playAudio(nextId);
+        // If next sentence is not visible, scroll to it automatically
         if (!factory.sentenceIsVisible(nextId)) {
           var nextSentenceElement = $('li.sentence').get(factory.sentenceIds.indexOf(nextId));
           $('#sentences-panel').animate({scrollTop:nextSentenceElement.offsetTop - 15}, 300);
@@ -68,7 +74,9 @@ onceUpon.factory('PlaybackFactory', function PlaybackFactory($rootScope, Sentenc
   factory.loadAudio = function(sentenceId) {
     var thisAudio = $('audio#' + sentenceId);
     if (!thisAudio.attr('src')) {
+      console.log('loading ' + sentenceId);
       thisAudio.attr('src', 'getRecording/' + sentenceId);
+      thisAudio.load();
     }
   }
 
