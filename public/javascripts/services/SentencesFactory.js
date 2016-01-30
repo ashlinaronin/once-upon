@@ -97,8 +97,9 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         .success(function(data) {
           if (data.length) {
             factory.sentences = factory.sentences.concat(data);
+            factory.latestTimestamp =
+              factory.sentences[factory.sentences.length-1].timestamp;
           }
-          factory.latestTimestamp = new Date().toISOString();
       });
     } else {
       return factory.getAll();
