@@ -59,11 +59,11 @@ router.get('/sentences/new/:timestamp', function(request, response, next) {
   if (!request.params.timestamp) {
     return next('No timestamp in new sentence GET request');
   }
+  console.log('getting new after timestamp ' + request.params.timestamp);
 
   Sentence.find({
     'timestamp': {
-      '$gt': request.params.timestamp,
-      '$lt': new Date()
+      '$gt': request.params.timestamp
     }
   },
   function dbCallback (error, sentences) {

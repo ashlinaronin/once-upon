@@ -9,7 +9,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   var factory = {};
   var liblame = new lamejs();
   factory.sentences = [];
-  factory.latestTimestamp = null;
+  factory.lastTimestamp = null;
   factory.currentlyPlaying = null;
 
   // Given recorder object, export a wav blob, read it and pass to mp3 encoder.
@@ -63,7 +63,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         data: {
           audio: event.target.result,
           text: text,
-          timestamp: new Date()
+          timestamp: new Date().toISOString()
         }
       }).then(function successCallback(response) {
         // Do something after http post req goes through, nothing yet
@@ -83,8 +83,9 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
       // If we have sentences already, set the timestamp to the timestamp
       // when the last sentence was added
       if (factory.sentences.length) {
-        factory.latestTimestamp =
+        factory.lastTimestamp =
           factory.sentences[factory.sentences.length-1].timestamp;
+          console.log('factory.lastTimestamp',factory.lastTimestamp);
       }
     });
   }
@@ -92,13 +93,14 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   /* Get new sentences and add them to factory.sentences array.
   ** Then update latest timestamp so next time we don't get extra sentences. */
   factory.getNew = function() {
-    console.log('factory.latestTimestamp',factory.latestTimestamp);
-    if (factory.latestTimestamp) {
-      return $http.get('sentences/new/' + factory.latestTimestamp)
+    console.log('factory.lastTimestamp',factory.lastTimestamp);
+    if (factory.lastTimestamp) {
+      return $http.get('sentences/new/' + factory.lastTimestamp)
         .success(function(data) {
+          console.dir(data);
           if (data.length) {
             factory.sentences = factory.sentences.concat(data);
-            factory.latestTimestamp =
+            factory.lastTimestamp =
               factory.sentences[factory.sentences.length-1].timestamp;
           }
       });
