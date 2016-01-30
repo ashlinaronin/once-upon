@@ -92,6 +92,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   /* Get new sentences and add them to factory.sentences array.
   ** Then update latest timestamp so next time we don't get extra sentences. */
   factory.getNew = function() {
+    console.log('factory.latestTimestamp',factory.latestTimestamp);
     if (factory.latestTimestamp) {
       return $http.get('sentences/new/' + factory.latestTimestamp)
         .success(function(data) {
