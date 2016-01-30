@@ -167,18 +167,15 @@ $rootScope, $timeout, Modernizr) {
     socket.on('end recording', function(msg) {
       $rootScope.$apply(function() {
         // do something here
-        console.log('got end recording msg');
       });
     });
 
     // Whoever was recording has finished, so the client should load any new messages
     socket.on('recording saved', function(msg) {
-      // console.log('got end recording');
       $rootScope.$apply(function() {
         factory.currentMessage.inProgress = false;
         factory.currentMessage.text = null;
         factory.currentMessage.uploading = false;
-        console.log('got recording saved, getting new');
         SentencesFactory.getNew();
 
         // let's true keeping this hasNew flag on for only 1s
@@ -187,8 +184,6 @@ $rootScope, $timeout, Modernizr) {
           factory.hasNew = false;
         }, 1000);
 
-        // TODO: move this DOM manipulation to custom directive
-        //$("#sentences-panel").animate({scrollTop:$("#sentences-panel")[0].scrollHeight}, 1000);
       });
     });
   });

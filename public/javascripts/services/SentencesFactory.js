@@ -85,7 +85,6 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
       if (factory.sentences.length) {
         factory.lastTimestamp =
           factory.sentences[factory.sentences.length-1].timestamp;
-          console.log('factory.lastTimestamp',factory.lastTimestamp);
       }
     });
   }
@@ -93,7 +92,6 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
   /* Get new sentences and add them to factory.sentences array.
   ** Then update latest timestamp so next time we don't get extra sentences. */
   factory.getNew = function() {
-    console.log('factory.lastTimestamp',factory.lastTimestamp);
     if (factory.lastTimestamp) {
       return $http.get('sentences/new/' + factory.lastTimestamp)
         .success(function(data) {

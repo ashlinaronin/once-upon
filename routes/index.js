@@ -59,7 +59,6 @@ router.get('/sentences/new/:timestamp', function(request, response, next) {
   if (!request.params.timestamp) {
     return next('No timestamp in new sentence GET request');
   }
-  console.log('getting new after timestamp ' + request.params.timestamp);
 
   Sentence.find({
     'timestamp': {
@@ -95,12 +94,9 @@ router.get('/sentences/:sentenceId', function(request, response, next) {
 
 // POST /saveRecording
 router.post('/saveRecording', function(request, response, next) {
-  console.log('in /saveRecording');
-   // dont bother with sentence stuff for right now
   var sentence = new Sentence();
   sentence.timestamp = request.body.timestamp;
   sentence.text = request.body.text;
-  console.log(request.body.audio);
 
   sentence.save(function(error, sentence) {
     if (error) {
