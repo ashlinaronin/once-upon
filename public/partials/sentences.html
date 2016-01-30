@@ -2,14 +2,13 @@
   <ul id="sentences-list" playback>
     <li ng-click="PlaybackFactory.playAudio(sentence._id)" ng-repeat="sentence in SentencesFactory.sentences" class="sentence" id="{{sentence._id}}">
       <p>{{sentence.text}}</p>
-      <!-- <audio sentence="sentence" id="{{sentence._id}}">
-        Your browser does not support the <code>audio</code> element.
-      </audio> -->
     </li>
   </ul>
   <div id="playback-controls">
-    <!-- try playing back everything from one DOM element audio-->
-    <audio id="playback">Your browser does not support the <code>audio</code> element.</audio>
+    <audio id="playback">
+      Your browser does not support the <code>audio</code> element.
+      Try using a newer version of Chrome, Safari or Firefox.
+    </audio>
     {{playing}}
     <img id="play-button" src="images/playbutton.svg" ng-click="PlaybackFactory.playFromBeginning()" ng-show="!PlaybackFactory.playing" />
     <img id="pause-button" src="images/pausebutton.svg" ng-click="PlaybackFactory.stopAll()" ng-show="PlaybackFactory.playing" />
