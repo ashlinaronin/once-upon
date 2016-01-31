@@ -22,9 +22,5 @@
   "dependencies": {
     "angular-animate": "1.4.8",
     "lamejs": "git://github.com/zzarcon/lamejs.git#master",
-    "jquery": "1.11.3",
-    "socket.io": "1.2.0",
-    "angular": "1.4.8",
-    "angular-ui-router": "0.2.15"
   }
 }
