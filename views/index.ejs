@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=0.75">
 
-    <!-- <%if (settings.env === 'production') { %>
+    <%if (settings.env === 'production') { %>
       <base href="/once/"></base>
     <% } else { %>
       <base href="/"></base>
-    <% } %> -->
-
-    <base href="/"></base>
+    <% } %>
 
     <link rel="stylesheet" href="css/styles.css" charset="utf-8">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/autopia" type="text/css"/>
@@ -35,12 +33,16 @@
       </div>
     </div>
 
-    <%if (settings.env === 'production') { %>  
+    <%if (settings.env !== 'development') { %>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-      <script src="javascripts/all.js"></script>
+      <script src="bower_components/angular-animate.min.js"></script>
+      <script src="bower_components/lame.min.js"></script>
+      <script src="javascripts/lib/modernizr-custom.min.js"></script>
+      <script src="javascripts/lib/recorder.js"></script>
+      <script src="javascripts/main.js"></script>
 
     <% } else { %>
       <!-- libs -->
@@ -50,10 +52,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
-
-      <script src="javascripts/lib/recorder.js"></script>
-      <script src="javascripts/lib/recorderWorker.js"></script>
       <script src="bower_components/lamejs/lame.all.js"></script>
+      <script src="javascripts/lib/recorder.js"></script>
 
       <!-- app -->
       <script src="javascripts/angularApp.js"></script>

@@ -44,7 +44,6 @@ var paths = {
   css: './public/css/*.css',
   scss: './public/sass/**/*.scss',
   js: [
-    './public/javascripts/lib/*.js',
     './public/javascripts/angularApp.js',
     './public/javascripts/services/*.js',
     './public/javascripts/directives/*.js',
@@ -52,7 +51,8 @@ var paths = {
   bower: [
     './public/bower_components/lamejs/lame.min.js',
     './public/bower_components/angular-animate/angular-animate.min.js'
-  ]
+  ],
+  lib: './public/javascripts/lib/*.js'
 }
 
 gulp.task('sass-dev', function() {
@@ -112,11 +112,11 @@ gulp.task('img', function () {
 gulp.task('js-min', function () {
   console.dir(paths.js);
   return gulp.src(paths.js)
+    // .pipe(maps.init())
+    .pipe(concat('main.js'))
     .pipe(ngAnnotate())
-    .pipe(maps.init())
-      .pipe(concat('all.js'))
-    .pipe(maps.write())
-    // .pipe(uglify({preserveComments: 'some'}))
+    .pipe(uglify({preserveComments: 'some'}))
+    // .pipe(maps.write('./'))
     .pipe(gulp.dest(destDir + '/javascripts'))
     .pipe(size({title: 'scripts'}));
 });
@@ -130,19 +130,6 @@ gulp.task('jshint', function() {
     .pipe(gulpIf(!browserSync.active, jshint.reporter('fail')))
 });
 
-gulp.task('jsize', function() {
-  return gulp.src(paths.js)
-    .pipe(size({title: 'unminified scripts'}));
-});
-
-gulp.task('index', function() {
-  var target = gulp.src('views/index.ejs');
-  var sources = gulp.src(paths.js, {read:false});
-
-  return target.pipe(inject(sources, {relative:true}))
-    .pipe(gulp.dest('./public'));
-});
-
 
 // just copy html to dest dir
 gulp.task('html', function() {
@@ -152,7 +139,15 @@ gulp.task('html', function() {
 
 gulp.task('bower', function() {
   return gulp.src(paths.bower)
-    .pipe(gulp.dest(destDir + '/bower_components/lamejs'));
+    .pipe(gulp.dest(destDir + '/bower_components'));
+});
+
+gulp.task('lib', function() {
+  return gulp.src(paths.lib)
+    // .pipe(maps.init())
+    .pipe(uglify())
+    // .pipe(maps.write('./'))
+    .pipe(gulp.dest(destDir + '/javascripts/lib'));
 });
 
 
@@ -179,7 +174,7 @@ gulp.task('nodemon', function(cb) {
 gulp.task('set-dist-env', function() {
   return env({
     vars: {
-      NODE_ENV: 'production'
+      NODE_ENV: 'test-production'
     }
   });
 });
@@ -203,7 +198,7 @@ gulp.task('serve:dev', ['sass-dev', 'nodemon'], function() {
 // not working yet
 // amke sure we serve from the new folder
 // so we pass an environment variable to app js
-gulp.task('serve:dist', ['index', 'build', 'set-dist-env', 'nodemon'], function() {
+gulp.task('serve:dist', ['build', 'set-dist-env', 'nodemon'], function() {
   browserSync.init({
     logPrefix: 'once-upon dist',
     proxy: 'http://localhost:3000',
@@ -220,7 +215,7 @@ gulp.task('serve:dist', ['index', 'build', 'set-dist-env', 'nodemon'], function(
 gulp.task('build', ['clean'], function(cb) {
   runSequence(
     // ['jshint'], // linting first
-    ['sass-min', 'html', 'img', 'js-min', 'bower'],
+    ['sass-min', 'html', 'img', 'js-min', 'lib', 'bower'],
     cb // then optional callback
   );
 });

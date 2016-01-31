@@ -29,12 +29,4 @@ onceUpon.config(function($stateProvider, $urlRouterProvider) {
       }]
     }
   });
-
-
-  // Stoped resolving all sentences here because it was slowing everything down
-  $stateProvider.state('record', {
-    url: "/record",
-    templateUrl: 'partials/record.html',
-    controller: 'RecordCtrl'
-  });
 });
