@@ -53,6 +53,7 @@ nav#navbar {
         display: none;
       }
       transform: translateY(-50%) rotate(-90deg);
+      -webkit-transform: translateY(-50%) rotate(-90deg);
       margin-top: 35px;
       margin-left: -11px;
     }
@@ -72,6 +73,11 @@ nav#navbar {
       opacity: 1;
     }
 
+    #no-record {
+      background-color: rgba(0, 0, 0, 0.13);
+      border-radius: 5px;
+    }
+
     @media #{$mobile} {
       font-size: 16px;
     }
@@ -79,6 +85,12 @@ nav#navbar {
       left: 50%;
       top: 50%;
       transform: translateY(-50%) translateX(-50%);
+      -webkit-transform: translateY(-50%) translateX(-50%);
+      // max-width: 30%;
+      max-width: 50%;
+      font-size: 17px;
+    }
+    @media #{$desktop-up} {
       max-width: 30%;
       font-size: 19px;
     }

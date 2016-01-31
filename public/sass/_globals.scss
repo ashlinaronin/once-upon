@@ -1,5 +1,6 @@
 $mobile: "screen and (max-width: 640px)";
 $mobile-up: "screen and (min-width: 640px)";
+$desktop-up: "screen and (min-width: 1080px)";
 
 
 body {
@@ -85,7 +86,7 @@ $zen-gutters: 0px;
   #sentences-panel {
     @include zen-grid-item(6, 1, right);
     background-color: rgba(0, 0, 0, 0.6);
-    
+
     height: 100%;
   }
   #record-panel {
