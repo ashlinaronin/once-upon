@@ -86,8 +86,6 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 66.6%;
   background-color: rgba(255, 255, 255, 0.7);
@@ -101,6 +99,7 @@ body {
   left: 0;
   width: 100%;
   height: 3px;
+  background-image: -webkit-linear-gradient(left, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
   background-image: linear-gradient(to right, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
 /* line 86, ../sass/_globals.scss */
@@ -111,8 +110,6 @@ body {
   margin-left: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
@@ -126,8 +123,6 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 33.4%;
   position: absolute;
@@ -143,6 +138,7 @@ body {
   top: 0;
   height: 100%;
   width: 3px;
+  background-image: -webkit-linear-gradient(top, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
   background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
 
@@ -154,8 +150,6 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -171,6 +165,7 @@ nav#navbar {
   background: url("../images/textural-tiny.jpg");
   background-size: cover;
   cursor: pointer;
+  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 /* line 16, ../sass/components/_navbar.scss */
@@ -197,6 +192,7 @@ nav#navbar #navbar-header {
   position: absolute;
   top: 45%;
   opacity: 1;
+  -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 /* line 42, ../sass/components/_navbar.scss */
@@ -233,6 +229,7 @@ nav#navbar #navbar-content {
   opacity: 0;
   text-shadow: 2px 2px 2px #222;
   color: white;
+  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 /* line 72, ../sass/components/_navbar.scss */
@@ -292,11 +289,13 @@ nav#navbar #navbar-content #no-record {
 }
 /* line 19, ../sass/components/_record.scss */
 #record-panel #record img.ready {
-  animation: pulse 0.8s infinite ease-in-out alternate;
+  -webkit-animation: pulse 0.8s infinite ease-in-out alternate;
+          animation: pulse 0.8s infinite ease-in-out alternate;
 }
 /* line 22, ../sass/components/_record.scss */
 #record-panel #record img.active {
-  animation: spin 1.0s linear infinite;
+  -webkit-animation: spin 1.0s linear infinite;
+          animation: spin 1.0s linear infinite;
   cursor: not-allowed;
 }
 /* line 26, ../sass/components/_record.scss */
@@ -317,20 +316,45 @@ nav#navbar #navbar-content #no-record {
   display: none;
 }
 
-@keyframes pulse {
+@-webkit-keyframes pulse {
   0% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   100% {
-    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 /* line 1, ../sass/components/_sentences.scss */
@@ -349,6 +373,7 @@ nav#navbar #navbar-content #no-record {
   position: absolute;
   top: 75%;
   right: 0;
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.5));
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
   z-index: 10;
   pointer-events: none;
@@ -376,10 +401,12 @@ nav#navbar #navbar-content #no-record {
 }
 /* line 34, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
+  background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
 /* line 37, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
+  background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
 /* line 43, ../sass/components/_sentences.scss */

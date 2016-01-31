@@ -46,11 +46,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 
-// Serve from public dir in env var or use 'public' by default
-// app.use(express.static(path.join(__dirname, 'public')));
-
+// Change static dir depending on environment
 var oneDay = 86400000;
-app.use(express.static(__dirname + '/public', {maxAge: oneDay}));
+var publicDir;
+if (app.get('env') === 'development') {
+  publicDir = '/public';
+} else {
+  publicDir = '/dst';
+}
+app.use(express.static(__dirname + publicDir, {maxAge: oneDay}));
 
 app.use('/', routes);
 app.use('/users', users);

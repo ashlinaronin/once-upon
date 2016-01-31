@@ -49,7 +49,10 @@ var paths = {
     './public/javascripts/services/*.js',
     './public/javascripts/directives/*.js',
     './public/javascripts/controllers/*.js'],
-  bower: './public/bower_components/lamejs/lame.all.js'
+  bower: [
+    './public/bower_components/lamejs/lame.min.js',
+    './public/bower_components/angular-animate/angular-animate.min.js'
+  ]
 }
 
 gulp.task('sass-dev', function() {
@@ -107,12 +110,13 @@ gulp.task('img', function () {
 
 // Minify javascript and tell us file sizes post-minification
 gulp.task('js-min', function () {
+  console.dir(paths.js);
   return gulp.src(paths.js)
     .pipe(ngAnnotate())
     .pipe(maps.init())
       .pipe(concat('all.js'))
     .pipe(maps.write())
-    .pipe(uglify({preserveComments: 'some'}))
+    // .pipe(uglify({preserveComments: 'some'}))
     .pipe(gulp.dest(destDir + '/javascripts'))
     .pipe(size({title: 'scripts'}));
 });
@@ -175,7 +179,7 @@ gulp.task('nodemon', function(cb) {
 gulp.task('set-dist-env', function() {
   return env({
     vars: {
-      PUBLIC_DIR: 'dst'
+      NODE_ENV: 'production'
     }
   });
 });
@@ -199,7 +203,7 @@ gulp.task('serve:dev', ['sass-dev', 'nodemon'], function() {
 // not working yet
 // amke sure we serve from the new folder
 // so we pass an environment variable to app js
-gulp.task('serve:dist', ['build', 'set-dist-env', 'nodemon'], function() {
+gulp.task('serve:dist', ['index', 'build', 'set-dist-env', 'nodemon'], function() {
   browserSync.init({
     logPrefix: 'once-upon dist',
     proxy: 'http://localhost:3000',
