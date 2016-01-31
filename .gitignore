@@ -5,4 +5,3 @@ public/bower_components
 public/.sass-cache/*
 .sass-cache/*
 .env
-dst/*
