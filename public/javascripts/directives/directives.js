@@ -1,6 +1,10 @@
 // Directive to show and hide the explanatory navbar.
-onceUpon.directive('navbarExpand', function($animate) {
+onceUpon.directive('navbarExpand', function($animate, Modernizr) {
   function link (scope, element, attrs) {
+    // expose Modernizr to the scope so that we can show specific content to
+    // non record enabled users
+    scope.Modernizr = Modernizr;
+
     element.bind('click', function() {
       var content = element.find('#navbar-content');
 
@@ -57,7 +61,6 @@ onceUpon.directive('recordButton', function($animate, SocketFactory) {
   function link (scope, element, attrs) {
     var recordImg = element.find('img');
     scope.clickable = false;
-    //scope.userPosition = SocketFactory.userPosition;
 
     // anytime the current message or userposition changes, fire this handler
     scope.$watchGroup(['SocketFactory.userPosition', 'SocketFactory.currentMessage'],

@@ -5,7 +5,7 @@
   padding-right: 40px;
   padding-bottom: 220px;
   #sentences-panel-content {
-    // try fading text down by putting a pseudoelement with gradient over it
+    //try fading text down by putting a pseudoelement with gradient over it
     &:after {
       content: "";
       width: calc(66.6% - 3px); // leave rainbow border intact!
@@ -21,7 +21,10 @@
       list-style: none;
       font-size: 1.2em;
       font-weight: 300;
-      padding-right: 180px;
+      padding-right: 50px;
+      @media #{$mobile-up} {
+        padding-right: 180px;
+      }
 
       li {
         margin: 0 0 25px 0;
@@ -29,26 +32,20 @@
       li.sentence {
         cursor: pointer;
         &:hover, &:focus {
-          // color: black;
           background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
-          // background: linear-gradient(to right, rgba(0, 0, 0, 0.25), black);
         }
         &.playing {
-          // color: orange;
-          // color: #71B8B8;
-          // text-shadow: 2px 2px 2px #222;
           background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
-          // background: linear-gradient(to left, rgba(0, 0, 0, 0.25), black);
         }
       }
     }
 
     #playback-controls {
       position: fixed;
-      right: 140px;
+      right: 40px;
       z-index: 100;
-      // height above header + height of hudbox
-      top: calc(115px + 70vh);
+      top: calc(95px + 70vh);
+
       img {
         width: 50px;
         height: 50px;
@@ -63,6 +60,13 @@
           visibility: hidden;
         }
       }
+
+      @media #{$mobile-up} {
+        // height above header + height of hudbox
+        top: calc(115px + 70vh);
+        right: 140px;
+      }
+
       #play-button {}
       #pause-button {}
     }
@@ -77,5 +81,11 @@
   ul#sentences-list {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  // When other panels are disabled and sentences panel is wider, make sure the
+  // gradient overlay is matched up to the new width
+  #sentences-panel-content:after {
+    width: calc(100% - 3px);
   }
 }

@@ -18,7 +18,8 @@ nav#navbar {
     width: calc(100% - 120px);
 
     // Hide question mark when expanded on mobile
-    @media screen and (max-width: 640px) {
+    @media #{$mobile} {
+      width: calc(100% - 30px);
       #navbar-header {
         opacity: 0;
       }
@@ -37,17 +38,17 @@ nav#navbar {
     // Animate ? coming in and out
     opacity: 1;
     transition: all 1s ease-in-out;
-    
+
     h2 {
       font-family: 'Autopiaregular', Georgia, serif;
     }
-    @media screen and (max-width: 640px) {
+    @media #{$mobile} {
       h2#main-header {
         display: none;
       }
       left: 15px;
     }
-    @media screen and (min-width: 640px) {
+    @media #{$mobile-up} {
       h2#mobile-header {
         display: none;
       }
@@ -71,10 +72,10 @@ nav#navbar {
       opacity: 1;
     }
 
-    @media screen and (max-width: 640px) {
+    @media #{$mobile} {
       font-size: 16px;
     }
-    @media screen and (min-width: 640px) {
+    @media #{$mobile-up} {
       left: 50%;
       top: 50%;
       transform: translateY(-50%) translateX(-50%);

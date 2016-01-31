@@ -1,3 +1,7 @@
+$mobile: "screen and (max-width: 640px)";
+$mobile-up: "screen and (min-width: 640px)";
+
+
 body {
   margin: 0;
   background: url('../images/fullbg-tiny.png') black;
@@ -18,18 +22,25 @@ body {
 
   #title-banner-text {
     margin-left: 40px;
-    padding: 35px;
-    padding-bottom: 20px;
+    padding: 25px 35px 20px 35px;
+
+    @media #{$mobile-up} {
+      padding-top: 35px;
+    }
 
     h1 {
       font-family: 'Autopiaregular', Georgia, serif;
       color: white;
       position: relative;
-      padding: 20px;
+      padding: 10px;
       background: url('../images/title-box.svg');
       background-repeat: no-repeat;
       margin-top: 0;
       margin-bottom: 0;
+
+      @media #{$mobile-up} {
+        padding: 20px;
+      }
     }
   }
 }
@@ -51,6 +62,11 @@ $zen-gutters: 0px;
   overflow: scroll;
   @include zen-grid-container();
 
+  @media #{$mobile} {
+    margin-right: 10px;
+
+  }
+
   #status-panel {
     @include zen-grid-item(3, 1, left);
     height: 66.6%;
@@ -69,6 +85,7 @@ $zen-gutters: 0px;
   #sentences-panel {
     @include zen-grid-item(6, 1, right);
     background-color: rgba(0, 0, 0, 0.6);
+    
     height: 100%;
   }
   #record-panel {
