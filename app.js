@@ -1,19 +1,15 @@
 var express = require('express');
+var compress = require('compression');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var PubSub = require('pubsub-js');
 
 // Set up mongoose by loading our data models
 // Must be before routes, users and app
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/once');
-console.log('mongo uri: ' + process.env.MONGOLAB_URI);
-
-// run with local db if we don't have the env variable
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/once');
+mongoose.connect('mongodb://127.0.0.1/once');
 require('./models/Sentence');
 
 var routes = require('./routes/index');
@@ -25,6 +21,9 @@ var users = require('./routes/users');
 // environment variable here to allow it to do that.
 // Now running with reverse proxy in nginx on digital ocean...
 var app = express();
+
+app.use(compress()); // use gzip to compress data
+
 // var server = app.listen(process.env.PORT || 3000);
 var server = app.listen(3000, '127.0.0.1');
 console.log("Server started at 127.0.0.1:3000");
@@ -37,6 +36,7 @@ require('./socket-logic')(io, PubSub);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('view cache', true);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -45,11 +45,12 @@ app.use(logger('dev'));
 // Allow larger data to be sent
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
-app.use(cookieParser());
 
 // Serve from public dir in env var or use 'public' by default
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(__dirname + '/public'));
+
+var oneDay = 86400000;
+app.use(express.static(__dirname + '/public', {maxAge: oneDay}));
 
 app.use('/', routes);
 app.use('/users', users);
