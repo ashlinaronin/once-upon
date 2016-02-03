@@ -189,12 +189,24 @@ nav#navbar a {
 nav#navbar #navbar-header {
   position: absolute;
   top: 45%;
+  transform: rotate(-90deg);
   opacity: 1;
   transition: all 1s ease-in-out;
 }
-/* line 42, ../sass/components/_navbar.scss */
-nav#navbar #navbar-header h2 {
+/* line 44, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#what, nav#navbar #navbar-header a#how {
+  transform: translateY(65%);
   font-family: 'Autopiaregular', Georgia, serif;
+  font-size: 24px;
+  position: absolute;
+}
+/* line 51, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#what {
+  left: 0;
+}
+/* line 55, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#how {
+  left: 75px;
 }
 @media screen and (max-width: 640px) {
   /* line 34, ../sass/components/_navbar.scss */
@@ -205,13 +217,11 @@ nav#navbar #navbar-header h2 {
 @media screen and (min-width: 640px) {
   /* line 34, ../sass/components/_navbar.scss */
   nav#navbar #navbar-header {
-    transform: translateY(-50%) rotate(-90deg);
-    -webkit-transform: translateY(-50%) rotate(-90deg);
     margin-top: 35px;
     margin-left: -11px;
   }
 }
-/* line 63, ../sass/components/_navbar.scss */
+/* line 76, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content {
   position: relative;
   padding: 40px;
@@ -221,23 +231,23 @@ nav#navbar .navbar-content {
   display: none;
   transition: all 0.3s ease-in-out;
 }
-/* line 73, ../sass/components/_navbar.scss */
+/* line 86, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content.showing {
   opacity: 1;
 }
-/* line 77, ../sass/components/_navbar.scss */
+/* line 90, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content #no-record {
   background-color: rgba(0, 0, 0, 0.13);
   border-radius: 5px;
 }
 @media screen and (max-width: 640px) {
-  /* line 63, ../sass/components/_navbar.scss */
+  /* line 76, ../sass/components/_navbar.scss */
   nav#navbar .navbar-content {
     font-size: 16px;
   }
 }
 @media screen and (min-width: 640px) {
-  /* line 63, ../sass/components/_navbar.scss */
+  /* line 76, ../sass/components/_navbar.scss */
   nav#navbar .navbar-content {
     left: 50%;
     top: 50%;
@@ -248,7 +258,7 @@ nav#navbar .navbar-content #no-record {
   }
 }
 @media screen and (min-width: 1080px) {
-  /* line 63, ../sass/components/_navbar.scss */
+  /* line 76, ../sass/components/_navbar.scss */
   nav#navbar .navbar-content {
     max-width: 30%;
     font-size: 19px;
