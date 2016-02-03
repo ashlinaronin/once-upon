@@ -35,11 +35,6 @@ body {
   margin-top: 0;
   margin-bottom: 0;
 }
-@media screen and (min-width: 640px) {
-  #title-banner-wrap #title-banner-text h1 {
-    padding: 20px;
-  }
-}
 
 #hud-wrapper {
   color: white;
@@ -381,7 +376,6 @@ nav#navbar #navbar-content #no-record {
 }
 @media screen and (min-width: 640px) {
   #sentences-panel #sentences-panel-content #playback-controls {
-    top: calc(115px + 70vh);
     right: 140px;
   }
 }
