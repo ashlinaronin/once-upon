@@ -3,7 +3,6 @@ nav#navbar {
   left: 0;
   top: 0;
   width: 40px;
-  // height: 450px;
   height: 100%;
   overflow: hidden;
   z-index: 9000;
@@ -16,6 +15,7 @@ nav#navbar {
   &.expanded {
     // full screen minus distance from right side to hudbox right border
     width: calc(100% - 120px);
+    cursor: pointer;
 
     // Hide question mark when expanded on mobile
     @media #{$mobile} {
@@ -77,14 +77,17 @@ nav#navbar {
     position: relative;
     padding: 40px;
     opacity: 0;
+    height: 0;
+    // display: none;
     text-shadow: 2px 2px 2px #222;
     color: white;
-    display: none;
 
     // Animate fading in and out navbar content
     transition: all 0.3s ease-in-out;
     &.showing {
+      height: inherit;
       opacity: 1;
+      display: block;
     }
 
     #no-record {

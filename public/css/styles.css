@@ -166,12 +166,13 @@ nav#navbar {
   background-size: cover;
   transition: all 0.5s ease-in-out;
 }
-/* line 16, ../sass/components/_navbar.scss */
+/* line 15, ../sass/components/_navbar.scss */
 nav#navbar.expanded {
   width: calc(100% - 120px);
+  cursor: pointer;
 }
 @media screen and (max-width: 640px) {
-  /* line 16, ../sass/components/_navbar.scss */
+  /* line 15, ../sass/components/_navbar.scss */
   nav#navbar.expanded {
     width: calc(100% - 30px);
   }
@@ -226,16 +227,18 @@ nav#navbar .navbar-content {
   position: relative;
   padding: 40px;
   opacity: 0;
+  height: 0;
   text-shadow: 2px 2px 2px #222;
   color: white;
-  display: none;
   transition: all 0.3s ease-in-out;
 }
-/* line 86, ../sass/components/_navbar.scss */
+/* line 87, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content.showing {
+  height: inherit;
   opacity: 1;
+  display: block;
 }
-/* line 90, ../sass/components/_navbar.scss */
+/* line 93, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content #no-record {
   background-color: rgba(0, 0, 0, 0.13);
   border-radius: 5px;

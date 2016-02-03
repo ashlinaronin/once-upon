@@ -1,36 +1,53 @@
 // Directive to show and hide the explanatory navbar.
 onceUpon.directive('navbarExpand', function($animate, Modernizr) {
   function link (scope, element, attrs) {
-    // expose Modernizr to the scope so that we can show specific content to
-    // non record enabled users
-    // scope.Modernizr = Modernizr;
     scope.recordEnabled = Modernizr.getusermedia && Modernizr.speechrecognition;
 
     var whatLink = element.find('#what');
     var howLink = element.find('#how');
+    var currentlyShowing = null;
+
 
     element.bind('click', function(e) {
-      // console.dir(e);
+      if (e.target.id === "what" || e.target.id === "how") {
+        var content = element.find('#navbar-content-' + e.target.id);
 
-      if (e.target !== e.currentTarget) {
-        var clickedItem = e.target.id;
-        console.log("hello " + clickedItem);
+        if (!element.hasClass('expanded')) {
+          $animate.addClass(element, 'expanded').then(showContent(content));
+        } else if (element.hasClass('expanded') && currentlyShowing !== e.target){
+          showContent(content);
+        }
+      } else {
+        // clicked anything except what? or how? links
+        if (element.hasClass('expanded')) {
+          hideNav();
+        }
       }
-      // var content = element.find('#navbar-content');
-      //
-      // if (element.hasClass('expanded')) {
-      //   $animate.removeClass(content, 'showing').then(function() {
-      //     $animate.removeClass(element, 'expanded');
-      //   });
-      // } else {
-      //   $animate.addClass(element, 'expanded').then(function() {
-      //     $animate.addClass(content, 'showing');
-      //   });
-      // }
+
       e.stopPropagation();
 
       scope.$apply(); // need to apply scope in all custom event handlers!
     });
+
+    var showContent = function(content) {
+      if (currentlyShowing) {
+        $animate.removeClass(currentlyShowing, 'showing').then(function() {
+          $animate.addClass(content, 'showing');
+        });
+      } else {
+        $animate.addClass(content, 'showing');
+      }
+      currentlyShowing = content;
+    }
+
+    var hideNav = function() {
+      if (currentlyShowing) {
+        $animate.removeClass(currentlyShowing, 'showing').then(function() {
+          $animate.removeClass(element, 'expanded');
+          currentlyShowing = null;
+        });
+      }
+    }
   };
 
   return {
