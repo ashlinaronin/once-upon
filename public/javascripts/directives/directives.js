@@ -3,20 +3,31 @@ onceUpon.directive('navbarExpand', function($animate, Modernizr) {
   function link (scope, element, attrs) {
     // expose Modernizr to the scope so that we can show specific content to
     // non record enabled users
-    scope.Modernizr = Modernizr;
+    // scope.Modernizr = Modernizr;
+    scope.recordEnabled = Modernizr.getusermedia && Modernizr.speechrecognition;
 
-    element.bind('click', function() {
-      var content = element.find('#navbar-content');
+    var whatLink = element.find('#what');
+    var howLink = element.find('#how');
 
-      if (element.hasClass('expanded')) {
-        $animate.removeClass(content, 'showing').then(function() {
-          $animate.removeClass(element, 'expanded');
-        });
-      } else {
-        $animate.addClass(element, 'expanded').then(function() {
-          $animate.addClass(content, 'showing');
-        });
+    element.bind('click', function(e) {
+      // console.dir(e);
+
+      if (e.target !== e.currentTarget) {
+        var clickedItem = e.target.id;
+        console.log("hello " + clickedItem);
       }
+      // var content = element.find('#navbar-content');
+      //
+      // if (element.hasClass('expanded')) {
+      //   $animate.removeClass(content, 'showing').then(function() {
+      //     $animate.removeClass(element, 'expanded');
+      //   });
+      // } else {
+      //   $animate.addClass(element, 'expanded').then(function() {
+      //     $animate.addClass(content, 'showing');
+      //   });
+      // }
+      e.stopPropagation();
 
       scope.$apply(); // need to apply scope in all custom event handlers!
     });

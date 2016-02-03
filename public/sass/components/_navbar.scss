@@ -9,7 +9,7 @@ nav#navbar {
   z-index: 9000;
   background: url('../images/textural-tiny.jpg');
   background-size: cover;
-  cursor: pointer;
+  // cursor: pointer;
 
   // Animate folding out navbar
   transition: all 0.5s ease-in-out;
@@ -43,15 +43,15 @@ nav#navbar {
       font-family: 'Autopiaregular', Georgia, serif;
     }
     @media #{$mobile} {
-      h2#main-header {
-        display: none;
-      }
+      // h2#main-header {
+      //   display: none;
+      // }
       left: 15px;
     }
     @media #{$mobile-up} {
-      h2#mobile-header {
-        display: none;
-      }
+      // h2#mobile-header {
+      //   display: none;
+      // }
       transform: translateY(-50%) rotate(-90deg);
       -webkit-transform: translateY(-50%) rotate(-90deg);
       margin-top: 35px;
@@ -60,12 +60,13 @@ nav#navbar {
   }
 
   // Shouldn't need all the prefixes here cuz we have a gulp task adding them
-  #navbar-content {
+.navbar-content {
     position: relative;
     padding: 40px;
     opacity: 0;
     text-shadow: 2px 2px 2px #222;
     color: white;
+    display: none;
 
     // Animate fading in and out navbar content
     transition: all 0.3s ease-in-out;
