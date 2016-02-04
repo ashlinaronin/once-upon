@@ -85,9 +85,9 @@ nav#navbar {
     // Animate fading in and out navbar content
     transition: all 0.3s ease-in-out;
     &.showing {
-      height: inherit;
+      // height: inherit;
       opacity: 1;
-      display: block;
+      // display: block;
     }
 
     #no-record {

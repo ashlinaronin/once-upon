@@ -3,6 +3,7 @@
     <li ng-click="PlaybackFactory.playAudio(sentence._id)" ng-repeat="sentence in SentencesFactory.sentences" class="sentence" id="{{sentence._id}}">
       <p>{{sentence.text}}</p>
     </li>
+    <li ng-show="SocketFactory.currentMessage.text" class="sentence being-input">{{SocketFactory.currentMessage.text}}</li>
   </ul>
   <div id="playback-controls">
     <audio id="playback">
