@@ -379,26 +379,34 @@ nav#navbar .navbar-content #no-record {
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
-/* line 42, ../sass/components/_sentences.scss */
+/* line 41, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input.visible {
+  visibility: visible;
+}
+/* line 44, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input.invisible {
+  visibility: hidden;
+}
+/* line 50, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-you {
   font-weight: 700;
   animation: 1s blink-red step-end infinite;
   -webkit-animation: 1s blink-red step-end infinite;
 }
-/* line 47, ../sass/components/_sentences.scss */
+/* line 55, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-friend {
   font-weight: 700;
   animation: 1s blink-blue step-end infinite;
   -webkit-animation: 1s blink-blue step-end infinite;
 }
-/* line 56, ../sass/components/_sentences.scss */
+/* line 64, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 40px;
   z-index: 100;
   top: calc(95px + 70vh);
 }
-/* line 62, ../sass/components/_sentences.scss */
+/* line 70, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 30px;
   height: 30px;
@@ -407,27 +415,27 @@ nav#navbar .navbar-content #no-record {
   bottom: 0;
   right: 0;
 }
-/* line 69, ../sass/components/_sentences.scss */
+/* line 77, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 72, ../sass/components/_sentences.scss */
+/* line 80, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 @media screen and (min-width: 640px) {
-  /* line 56, ../sass/components/_sentences.scss */
+  /* line 64, ../sass/components/_sentences.scss */
   #sentences-panel #sentences-panel-content #playback-controls {
     right: 140px;
   }
 }
 
-/* line 94, ../sass/components/_sentences.scss */
+/* line 102, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 101, ../sass/components/_sentences.scss */
+/* line 109, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:after {
   width: calc(100% - 3px);
 }

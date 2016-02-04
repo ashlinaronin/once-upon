@@ -4,10 +4,9 @@
         ng-repeat="sentence in SentencesFactory.sentences" class="sentence" id="{{sentence._id}}">
       <p>{{sentence.text}}</p>
     </li>
-    <li ng-show="SocketFactory.currentMessage.inProgress" class="sentence being-input">
+    <li ng-class="SocketFactory.currentMessage.inProgress ? 'visible' : 'invisible'" class="sentence being-input">
       {{SocketFactory.currentMessage.text}}<span ng-class="getCursorClass()">|</span>
     </li>
-    <!-- <li class="sentence being-input">This is some sample text that is currenlty being inputted.<span class="blinking-cursor">|</span></li> -->
   </ul>
   <div id="playback-controls">
     <audio id="playback">

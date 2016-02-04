@@ -61,17 +61,26 @@ onceUpon.directive('navbarExpand', function($animate, Modernizr) {
 
 
 // Directive to handle automatic scrolling of the sentences panel.
-onceUpon.directive('scroller', function($animate, SocketFactory) {
-  function link (scope, element, attrs) {
+onceUpon.directive('scroller', function($animate, SocketFactory, SentencesFactory) {
 
-    // If we get a new message, scroll down to it.
+  // Scroll down to bottom when this user starts recording so they can see their input
+  function link (scope, element, attrs) {
     scope.$watch(function() {
-      return SocketFactory.hasNew;
+      return SocketFactory.currentMessage.inProgress;
     }, function(newVal, oldVal) {
-      if (newVal === true) {
-        // adding 300px to account for the padding added at the bottom of the
-        // sentences panel
+      if (newVal === true && SocketFactory.userPosition === 0) {
         element.animate({scrollTop:element[0].scrollHeight+300}, 1000);
+      }
+    });
+
+    // When a new message comes in, display the new entries thing.
+    scope.$watch(function() {
+      return SentencesFactory.sentences;
+    }, function(newVal, oldVal) {
+      if (newVal.length > oldVal.length) {
+        if (SocketFactory.userPosition !== 0) {
+          console.log('someone else just finished recording, display new messages pic');
+        }
       }
     });
   };

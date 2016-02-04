@@ -38,6 +38,14 @@
           background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
         }
         &.being-input {
+          &.visible {
+            visibility: visible;
+          }
+          &.invisible {
+            visibility: hidden;
+          }
+
+
           // cursor that looks like it's being typed
           span.blinking-cursor-you {
             font-weight: 700;

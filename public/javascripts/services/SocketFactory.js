@@ -17,8 +17,6 @@ $rootScope, $timeout, Modernizr) {
     uploading: false
   };
 
-  factory.hasNew = false;
-
   factory.countingDown = false;
 
 
@@ -177,13 +175,6 @@ $rootScope, $timeout, Modernizr) {
         factory.currentMessage.text = null;
         factory.currentMessage.uploading = false;
         SentencesFactory.getNew();
-
-        // let's true keeping this hasNew flag on for only 1s
-        factory.hasNew = true;
-        setTimeout(function() {
-          factory.hasNew = false;
-        }, 1000);
-
       });
     });
   });
