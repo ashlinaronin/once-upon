@@ -38,7 +38,12 @@
           background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
         }
         &.being-input {
-          background: blue;
+          // cursor that looks like it's being typed
+          span.blinking-cursor {
+            font-weight: 700;
+            animation: 1s blink step-end infinite;
+            -webkit-animation: 1s blink step-end infinite;
+          }
         }
       }
     }
@@ -90,5 +95,25 @@
   // gradient overlay is matched up to the new width
   #sentences-panel-content:after {
     width: calc(100% - 3px);
+  }
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+    // color: #037c83;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+    // color: #037c83;
   }
 }

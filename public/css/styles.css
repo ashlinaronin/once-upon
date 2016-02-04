@@ -379,18 +379,20 @@ nav#navbar .navbar-content #no-record {
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
-/* line 40, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input {
-  background: blue;
+/* line 42, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor {
+  font-weight: 700;
+  animation: 1s blink step-end infinite;
+  -webkit-animation: 1s blink step-end infinite;
 }
-/* line 46, ../sass/components/_sentences.scss */
+/* line 51, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 40px;
   z-index: 100;
   top: calc(95px + 70vh);
 }
-/* line 52, ../sass/components/_sentences.scss */
+/* line 57, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 30px;
   height: 30px;
@@ -399,31 +401,47 @@ nav#navbar .navbar-content #no-record {
   bottom: 0;
   right: 0;
 }
-/* line 59, ../sass/components/_sentences.scss */
+/* line 64, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 62, ../sass/components/_sentences.scss */
+/* line 67, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 @media screen and (min-width: 640px) {
-  /* line 46, ../sass/components/_sentences.scss */
+  /* line 51, ../sass/components/_sentences.scss */
   #sentences-panel #sentences-panel-content #playback-controls {
     right: 140px;
   }
 }
 
-/* line 84, ../sass/components/_sentences.scss */
+/* line 89, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 91, ../sass/components/_sentences.scss */
+/* line 96, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:after {
   width: calc(100% - 3px);
 }
 
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+  }
+}
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+  }
+}
 /* line 1, ../sass/components/_status.scss */
 #status-panel {
   color: black;
