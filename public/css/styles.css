@@ -380,19 +380,25 @@ nav#navbar .navbar-content #no-record {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
 /* line 42, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor {
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-you {
   font-weight: 700;
-  animation: 1s blink step-end infinite;
-  -webkit-animation: 1s blink step-end infinite;
+  animation: 1s blink-red step-end infinite;
+  -webkit-animation: 1s blink-red step-end infinite;
 }
-/* line 51, ../sass/components/_sentences.scss */
+/* line 47, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-friend {
+  font-weight: 700;
+  animation: 1s blink-blue step-end infinite;
+  -webkit-animation: 1s blink-blue step-end infinite;
+}
+/* line 56, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 40px;
   z-index: 100;
   top: calc(95px + 70vh);
 }
-/* line 57, ../sass/components/_sentences.scss */
+/* line 62, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
   width: 30px;
   height: 30px;
@@ -401,32 +407,32 @@ nav#navbar .navbar-content #no-record {
   bottom: 0;
   right: 0;
 }
-/* line 64, ../sass/components/_sentences.scss */
+/* line 69, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 67, ../sass/components/_sentences.scss */
+/* line 72, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img.hidden {
   visibility: hidden;
 }
 @media screen and (min-width: 640px) {
-  /* line 51, ../sass/components/_sentences.scss */
+  /* line 56, ../sass/components/_sentences.scss */
   #sentences-panel #sentences-panel-content #playback-controls {
     right: 140px;
   }
 }
 
-/* line 89, ../sass/components/_sentences.scss */
+/* line 94, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 96, ../sass/components/_sentences.scss */
+/* line 101, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:after {
   width: calc(100% - 3px);
 }
 
-@keyframes "blink" {
+@keyframes "blink-red" {
   from, to {
     color: transparent;
   }
@@ -434,12 +440,28 @@ nav#navbar .navbar-content #no-record {
     color: #bb5656;
   }
 }
-@-webkit-keyframes "blink" {
+@-webkit-keyframes "blink-red" {
   from, to {
     color: transparent;
   }
   50% {
     color: #bb5656;
+  }
+}
+@keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
+  }
+}
+@-webkit-keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
   }
 }
 /* line 1, ../sass/components/_status.scss */

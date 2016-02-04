@@ -39,10 +39,15 @@
         }
         &.being-input {
           // cursor that looks like it's being typed
-          span.blinking-cursor {
+          span.blinking-cursor-you {
             font-weight: 700;
-            animation: 1s blink step-end infinite;
-            -webkit-animation: 1s blink step-end infinite;
+            animation: 1s blink-red step-end infinite;
+            -webkit-animation: 1s blink-red step-end infinite;
+          }
+          span.blinking-cursor-friend {
+            font-weight: 700;
+            animation: 1s blink-blue step-end infinite;
+            -webkit-animation: 1s blink-blue step-end infinite;
           }
         }
       }
@@ -98,22 +103,40 @@
   }
 }
 
-@keyframes "blink" {
+
+// Should abstract this into a sass function, for now just makin it happen
+@keyframes "blink-red" {
   from, to {
     color: transparent;
   }
   50% {
     color: #bb5656;
-    // color: #037c83;
   }
 }
 
-@-webkit-keyframes "blink" {
+@-webkit-keyframes "blink-red" {
   from, to {
     color: transparent;
   }
   50% {
     color: #bb5656;
-    // color: #037c83;
+  }
+}
+
+@keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
+  }
+}
+
+@-webkit-keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
   }
 }
