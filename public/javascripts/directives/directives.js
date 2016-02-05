@@ -75,14 +75,16 @@ onceUpon.directive('scroller', function($animate, SocketFactory, SentencesFactor
       }
     });
 
-    // When a new message comes in, display the new entries thing.
+    // When a new message comes in, display the new entries thing
+    // if you are not the user who recorded it.
     scope.$watch(function() {
       return SentencesFactory.sentences;
     }, function(newVal, oldVal) {
       if (newVal.length > oldVal.length) {
-        console.log('someone (me or friend) just finished recording, display new messages pic');
-        $('#new-entries').addClass('visible');
-        scope.newEntries = true;
+        if (!(SocketFactory.userPosition === SocketFactory.totalUsers-1)) {
+          $('#new-entries').addClass('visible');
+          scope.newEntries = true;
+        }
       }
     });
 
