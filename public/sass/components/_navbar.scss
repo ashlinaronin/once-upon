@@ -17,12 +17,13 @@ nav#navbar {
     width: calc(100% - 120px);
     cursor: pointer;
 
-    // Hide question mark when expanded on mobile
+    //Hide question mark when expanded on mobile
     @media #{$mobile} {
       width: calc(100% - 30px);
-      #navbar-header {
-        opacity: 0;
-      }
+      margin-left: auto;
+      // #navbar-header {
+      //   opacity: 0;
+      // }
     }
   }
 
@@ -35,6 +36,7 @@ nav#navbar {
     position: absolute;
     top: 45%;
     transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
     // -webkit-transform: translateY(-50%) rotate(-90deg);
 
     // Animate ? coming in and out
@@ -45,6 +47,7 @@ nav#navbar {
 
     a#what, a#how {
       transform: translateY(65%);
+      -webkit-transform: translateY(65%);
       font-family: 'Autopiaregular', Georgia, serif;
       font-size: 24px;
       position: absolute;
@@ -65,7 +68,7 @@ nav#navbar {
       // h2#main-header {
       //   display: none;
       // }
-      left: 15px;
+      left: -10px; //hack!
     }
     @media #{$mobile-up} {
       // h2#mobile-header {
@@ -108,6 +111,7 @@ nav#navbar {
 
     @media #{$mobile} {
       font-size: 16px;
+      left: 0;
     }
     @media #{$mobile-up} {
       font-size: 17px;
@@ -122,14 +126,26 @@ nav#navbar {
       font-size: 19px;
     }
 
-    #navbar-content-how {
+    &#navbar-content-how {
+      left: 38px;
+      font-size: 14px;
+      padding-top: 10px;
+
+
       p {
         padding-bottom: 10px;
       }
+
+
+
       @media #{$mobile-up} {
+        padding-top: 20px;
+        font-size: 17px;
+        left: 50%;
         max-width: 66%;
       }
       @media #{$desktop-up} {
+        font-size: 19px;
         max-width: none;
       }
     }
