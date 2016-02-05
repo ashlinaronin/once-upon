@@ -182,6 +182,7 @@ $rootScope, $timeout, Modernizr) {
     socket.on('abort recording', function(msg) {
       $rootScope.$apply(function() {
         // do something here
+        factory.currentMessage = msg;
       });
     });
 

@@ -78,7 +78,7 @@ onceUpon.directive('scroller', function($animate, SocketFactory, SentencesFactor
           $('#new-entries').addClass('pulsing');
         }
       }
-      if (newVal === false && SocketFactory.userPosition !== 0) {
+      if (newVal === false) {
         $('#new-entries').removeClass('pulsing');
       }
     });
