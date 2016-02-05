@@ -1,19 +1,38 @@
 #sentences-panel {
-  height: 500px;
+  // height: 500px;
   overflow: scroll;
-  padding-left: 40px;
-  padding-right: 40px;
+  // padding-left: 40px;
+  // padding-right: 40px;
   padding-bottom: 220px;
   #sentences-panel-content {
+    // hack to restore background of panel
+    &:before {
+      content: "";
+      position: absolute;
+      width: calc(66.6% - 3px);
+      height: 61px;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      pointer-events: none;
+      z-index: 0;
+      @media #{$mobile-up} {
+        height: 60px;
+      }
+
+
+    }
+
     //try fading text down by putting a pseudoelement with gradient over it
     &:after {
       content: "";
       width: calc(66.6% - 3px); // leave rainbow border intact!
-      height: 25%;
+      height: 30%;
       position: absolute;
-      top: 75%;
+      // top: calc(75% - 50px);
+      top: 70%;
       right: 0;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+      // background: green;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
       z-index: 10;
       pointer-events: none; // let people click the sentences through this overlay
     }
@@ -134,7 +153,7 @@
 
   // When other panels are disabled and sentences panel is wider, make sure the
   // gradient overlay is matched up to the new width
-  #sentences-panel-content:after {
+  #sentences-panel-content:after, #sentences-panel-content:before {
     width: calc(100% - 3px);
   }
 }
