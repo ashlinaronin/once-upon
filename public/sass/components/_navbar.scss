@@ -140,12 +140,12 @@ nav#navbar {
 
       @media #{$mobile-up} {
         padding-top: 20px;
-        font-size: 17px;
+        font-size: 15px;
         left: 50%;
-        max-width: 66%;
+        max-width: 80%;
       }
       @media #{$desktop-up} {
-        font-size: 19px;
+        font-size: 17px;
         max-width: none;
       }
     }
