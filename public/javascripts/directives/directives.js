@@ -70,8 +70,16 @@ onceUpon.directive('scroller', function($animate, SocketFactory, SentencesFactor
     scope.$watch(function() {
       return SocketFactory.currentMessage.inProgress;
     }, function(newVal, oldVal) {
-      if (newVal === true && SocketFactory.userPosition === 0) {
-        element.animate({scrollTop:element[0].scrollHeight + 300}, 1000);
+      if (newVal === true) {
+        if (SocketFactory.userPosition === 0) {
+          element.animate({scrollTop:element[0].scrollHeight + 300}, 1000);
+        } else {
+          console.log('new entries should be pulsing cuz somebody else is talking');
+          $('#new-entries').addClass('pulsing');
+        }
+      }
+      if (newVal === false && SocketFactory.userPosition !== 0) {
+        $('#new-entries').removeClass('pulsing');
       }
     });
 
