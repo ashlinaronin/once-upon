@@ -434,8 +434,13 @@ nav#navbar .navbar-content #no-record {
   left: calc(50% + 72px);
   z-index: 100;
   top: calc(95px + 70vh);
+  visibility: hidden;
 }
 /* line 99, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries.visible {
+  visibility: visible;
+}
+/* line 103, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #new-entries img {
   width: 200px;
   height: 50px;
@@ -444,17 +449,17 @@ nav#navbar .navbar-content #no-record {
   bottom: 0;
   left: 0;
 }
-/* line 106, ../sass/components/_sentences.scss */
+/* line 110, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #new-entries img:hover {
   opacity: 0.6;
 }
 
-/* line 126, ../sass/components/_sentences.scss */
+/* line 130, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 133, ../sass/components/_sentences.scss */
+/* line 137, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:after {
   width: calc(100% - 3px);
 }

@@ -95,6 +95,10 @@
       left: calc(50% + 72px);
       z-index: 100;
       top: calc(95px + 70vh);
+      visibility: hidden;
+      &.visible {
+        visibility: visible;
+      }
 
       img {
         width: 200px;

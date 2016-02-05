@@ -65,11 +65,13 @@ onceUpon.directive('scroller', function($animate, SocketFactory, SentencesFactor
 
   // Scroll down to bottom when this user starts recording so they can see their input
   function link (scope, element, attrs) {
+    scope.newEntries = false;
+
     scope.$watch(function() {
       return SocketFactory.currentMessage.inProgress;
     }, function(newVal, oldVal) {
       if (newVal === true && SocketFactory.userPosition === 0) {
-        element.animate({scrollTop:element[0].scrollHeight+300}, 1000);
+        element.animate({scrollTop:element[0].scrollHeight + 300}, 1000);
       }
     });
 
@@ -78,11 +80,26 @@ onceUpon.directive('scroller', function($animate, SocketFactory, SentencesFactor
       return SentencesFactory.sentences;
     }, function(newVal, oldVal) {
       if (newVal.length > oldVal.length) {
-        if (SocketFactory.userPosition !== 0) {
-          console.log('someone else just finished recording, display new messages pic');
-        }
+        console.log('someone (me or friend) just finished recording, display new messages pic');
+        $('#new-entries').addClass('visible');
+        scope.newEntries = true;
       }
     });
+
+    // Hide new-entries pic upon scroll all the way down
+    element.bind("scroll", function() {
+      var currentScrollPos = element[0].scrollTop + element.height() + 500;
+      if (currentScrollPos > element[0].scrollHeight) {
+        $('#new-entries').removeClass('visible');
+        scope.newEntries = false;
+      }
+    });
+
+
+    // should use a separate namespace for the directive, but for now just makin it work
+    scope.scrollToBottom = function() {
+      element.animate({scrollTop:element[0].scrollHeight + 300}, 1000);
+    }
   };
 
   return {
