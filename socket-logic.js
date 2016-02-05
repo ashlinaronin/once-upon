@@ -69,6 +69,13 @@ var setup = function(io, PubSub) {
       io.emit('end recording', msg);
     });
 
+    socket.on('abort recording', function(msg) {
+      // on abort recording we also have to update the queue
+      recordQueue.push(recordQueue.shift());
+      updateAllSocketStatuses();
+      io.emit('abort recording', msg);
+    });
+
     // this means the user lost their chance to record, bump em in line
     socket.on('countdown over', function(msg) {
       // we might as well send this msg to everyone for potential future use

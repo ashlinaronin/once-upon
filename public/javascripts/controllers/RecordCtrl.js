@@ -1,5 +1,5 @@
 onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
-      SocketFactory, PlaybackFactory, $http, Modernizr) {
+      SocketFactory, PlaybackFactory, $http, $timeout, Modernizr) {
     // only SocketFactory needs to be exposed to controller scope for template
     $scope.SocketFactory = SocketFactory;
 
@@ -14,6 +14,8 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
     $scope.final = null;
     $scope.recognizing = false;
 
+    $scope.timeRemaining = null;
+
     $scope.getButtonClass = function() {
       if (SocketFactory.userPosition === 0 && !$scope.recognizing) {
         return "ready";
@@ -26,6 +28,9 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
 
     $scope.start = function() {
       PlaybackFactory.stopAll(); // stop all playback when recording starts
+
+      $scope.startTimer();
+
       $scope.rec.record();
       $scope.recognition.start();
     }
@@ -37,6 +42,22 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
       // Factory will do the actual work of saving the recording
       // We pass it the recorder object to do so
       SentencesFactory.saveSentence($scope.rec, $scope.text);
+    }
+
+    // If after 15s of recording we haven't gotten anything, turn it off
+    $scope.startTimer = function() {
+      console.log('timer start, scope.recognizing=' + $scope.recognizing);
+      $timeout(function() {
+        console.log('timer, scope.recognizing:'+ $scope.recognizing + ', scope.final= ' + $scope.final);
+        if (!$scope.final) {
+          $scope.recognizing = false;
+          $scope.rec.stop();
+          $scope.recognition.stop();
+          SocketFactory.abortRecording();
+          $scope.interim = null;
+          $scope.final = null;
+        }
+      }, 5000);
     }
 
     // Initialize Speech Recognition object and handlers
@@ -101,6 +122,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
         };
 
         $scope.recognition.onerror = function(event) {
+          console.log("speech recognition error:" + event.error);
           if (event.error === "not-allowed") {
             console.log("Speech recognition not allowed");
           } else {

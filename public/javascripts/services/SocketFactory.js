@@ -62,6 +62,17 @@ $rootScope, $timeout, Modernizr) {
     factory.currentMessage = newMsg;
   }
 
+  factory.abortRecording = function() {
+    var newMsg = {
+      userId: socket.io.engine.id,
+      inProgress: false,
+      text: null,
+      uploading: false
+    };
+    socket.emit('abort recording', newMsg);
+    factory.currentMessage = newMsg;
+  }
+
 
   // This gets called when a user becomes active. They have 30 seconds to think
   // about what they want to say before starting the recording.
@@ -163,6 +174,12 @@ $rootScope, $timeout, Modernizr) {
     });
 
     socket.on('end recording', function(msg) {
+      $rootScope.$apply(function() {
+        // do something here
+      });
+    });
+
+    socket.on('abort recording', function(msg) {
       $rootScope.$apply(function() {
         // do something here
       });
