@@ -204,7 +204,7 @@ nav#navbar #navbar-header {
   opacity: 1;
   transition: all 1s ease-in-out;
 }
-/* line 44, ../sass/components/_navbar.scss */
+/* line 46, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header a#what, nav#navbar #navbar-header a#how {
   transform: translateY(65%);
   font-family: 'Autopiaregular', Georgia, serif;
@@ -212,10 +212,14 @@ nav#navbar #navbar-header a#what, nav#navbar #navbar-header a#how {
   position: absolute;
 }
 /* line 51, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#what:hover, nav#navbar #navbar-header a#what:focus, nav#navbar #navbar-header a#how:hover, nav#navbar #navbar-header a#how:focus {
+  opacity: 0.4;
+}
+/* line 56, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header a#what {
   left: 0;
 }
-/* line 55, ../sass/components/_navbar.scss */
+/* line 60, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header a#how {
   left: 75px;
 }
@@ -232,47 +236,71 @@ nav#navbar #navbar-header a#how {
     margin-left: -11px;
   }
 }
-/* line 76, ../sass/components/_navbar.scss */
+/* line 81, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content {
-  position: relative;
+  position: absolute;
   padding: 40px;
   opacity: 0;
-  height: 0;
+  pointer-events: none;
   text-shadow: 2px 2px 2px #222;
   color: white;
   transition: all 0.3s ease-in-out;
 }
-/* line 87, ../sass/components/_navbar.scss */
+/* line 89, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content ol {
+  padding-left: 0;
+}
+/* line 92, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content ol li {
+  margin: 0 0 10px 0;
+}
+/* line 100, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content.showing {
   opacity: 1;
 }
-/* line 93, ../sass/components/_navbar.scss */
+/* line 104, ../sass/components/_navbar.scss */
 nav#navbar .navbar-content #no-record {
   background-color: rgba(0, 0, 0, 0.13);
   border-radius: 5px;
 }
 @media screen and (max-width: 640px) {
-  /* line 76, ../sass/components/_navbar.scss */
+  /* line 81, ../sass/components/_navbar.scss */
   nav#navbar .navbar-content {
     font-size: 16px;
   }
 }
 @media screen and (min-width: 640px) {
-  /* line 76, ../sass/components/_navbar.scss */
+  /* line 81, ../sass/components/_navbar.scss */
   nav#navbar .navbar-content {
+    font-size: 17px;
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
     -webkit-transform: translateY(-50%) translateX(-50%);
     max-width: 50%;
-    font-size: 17px;
   }
 }
 @media screen and (min-width: 1080px) {
-  /* line 76, ../sass/components/_navbar.scss */
+  /* line 81, ../sass/components/_navbar.scss */
   nav#navbar .navbar-content {
     max-width: 30%;
     font-size: 19px;
+  }
+}
+/* line 126, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content #navbar-content-how p {
+  padding-bottom: 10px;
+}
+@media screen and (min-width: 640px) {
+  /* line 125, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content #navbar-content-how {
+    max-width: 66%;
+  }
+}
+@media screen and (min-width: 1080px) {
+  /* line 125, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content #navbar-content-how {
+    max-width: none;
   }
 }
 

@@ -41,11 +41,16 @@ nav#navbar {
     opacity: 1;
     transition: all 1s ease-in-out;
 
+
+
     a#what, a#how {
       transform: translateY(65%);
       font-family: 'Autopiaregular', Georgia, serif;
       font-size: 24px;
       position: absolute;
+      &:hover, &:focus {
+        opacity: 0.4;
+      }
     }
 
     a#what {
@@ -73,21 +78,27 @@ nav#navbar {
   }
 
   // Shouldn't need all the prefixes here cuz we have a gulp task adding them
-.navbar-content {
-    position: relative;
+  .navbar-content {
+    position: absolute;
     padding: 40px;
     opacity: 0;
-    height: 0;
-    // display: none;
+    pointer-events: none;
     text-shadow: 2px 2px 2px #222;
     color: white;
+
+    ol {
+      padding-left: 0;
+
+      li {
+        margin: 0 0 10px 0;
+      }
+    }
+
 
     // Animate fading in and out navbar content
     transition: all 0.3s ease-in-out;
     &.showing {
-      // height: inherit;
       opacity: 1;
-      // display: block;
     }
 
     #no-record {
@@ -99,17 +110,29 @@ nav#navbar {
       font-size: 16px;
     }
     @media #{$mobile-up} {
+      font-size: 17px;
       left: 50%;
       top: 50%;
       transform: translateY(-50%) translateX(-50%);
       -webkit-transform: translateY(-50%) translateX(-50%);
-      // max-width: 30%;
       max-width: 50%;
-      font-size: 17px;
     }
     @media #{$desktop-up} {
       max-width: 30%;
       font-size: 19px;
     }
+
+    #navbar-content-how {
+      p {
+        padding-bottom: 10px;
+      }
+      @media #{$mobile-up} {
+        max-width: 66%;
+      }
+      @media #{$desktop-up} {
+        max-width: none;
+      }
+    }
+
   }
 }
