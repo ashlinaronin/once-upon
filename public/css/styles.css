@@ -1,5 +1,15 @@
 /* Import zen grids */
-/* line 6, ../sass/_globals.scss */
+/* line 5, ../sass/_globals.scss */
+.visible {
+  visibility: visible;
+}
+
+/* line 9, ../sass/_globals.scss */
+.invisible {
+  visibility: hidden;
+}
+
+/* line 14, ../sass/_globals.scss */
 body {
   margin: 0;
   background: url("../images/fullbg-tiny.png") black;
@@ -8,29 +18,29 @@ body {
   height: 100vh;
 }
 
-/* line 15, ../sass/_globals.scss */
+/* line 23, ../sass/_globals.scss */
 .container {
   margin-right: 20px;
 }
 
-/* line 19, ../sass/_globals.scss */
+/* line 27, ../sass/_globals.scss */
 #title-banner-wrap {
   margin-right: 100px;
   position: relative;
   left: 0px;
 }
-/* line 24, ../sass/_globals.scss */
+/* line 32, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 25px 35px 20px 35px;
 }
 @media screen and (min-width: 640px) {
-  /* line 24, ../sass/_globals.scss */
+  /* line 32, ../sass/_globals.scss */
   #title-banner-wrap #title-banner-text {
     padding-top: 35px;
   }
 }
-/* line 32, ../sass/_globals.scss */
+/* line 40, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -42,7 +52,7 @@ body {
   margin-bottom: 0;
 }
 
-/* line 53, ../sass/_globals.scss */
+/* line 61, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -67,12 +77,12 @@ body {
   clear: both;
 }
 @media screen and (max-width: 640px) {
-  /* line 53, ../sass/_globals.scss */
+  /* line 61, ../sass/_globals.scss */
   #hud-wrapper {
     margin-right: 10px;
   }
 }
-/* line 71, ../sass/_globals.scss */
+/* line 79, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 33.33333%;
@@ -87,7 +97,7 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   position: relative;
 }
-/* line 76, ../sass/_globals.scss */
+/* line 84, ../sass/_globals.scss */
 #hud-wrapper #status-panel::after {
   content: "";
   position: absolute;
@@ -97,7 +107,7 @@ body {
   height: 3px;
   background-image: linear-gradient(to right, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 86, ../sass/_globals.scss */
+/* line 94, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 66.66667%;
@@ -111,7 +121,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
 }
-/* line 92, ../sass/_globals.scss */
+/* line 100, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -129,7 +139,7 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* line 104, ../sass/_globals.scss */
+/* line 112, ../sass/_globals.scss */
 .getusermedia.speechrecognition #sentences-panel::after {
   content: "";
   position: absolute;
@@ -140,7 +150,7 @@ body {
   background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
 
-/* line 119, ../sass/_globals.scss */
+/* line 127, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
   width: 100%;
@@ -379,14 +389,6 @@ nav#navbar .navbar-content #no-record {
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
-/* line 41, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input.visible {
-  visibility: visible;
-}
-/* line 44, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input.invisible {
-  visibility: hidden;
-}
 /* line 50, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-you {
   font-weight: 700;
@@ -419,23 +421,40 @@ nav#navbar .navbar-content #no-record {
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 80, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content #playback-controls img.hidden {
-  visibility: hidden;
-}
 @media screen and (min-width: 640px) {
   /* line 64, ../sass/components/_sentences.scss */
   #sentences-panel #sentences-panel-content #playback-controls {
     right: 140px;
   }
 }
+/* line 92, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries {
+  position: fixed;
+  right: 100px;
+  left: calc(50% + 72px);
+  z-index: 100;
+  top: calc(95px + 70vh);
+}
+/* line 99, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries img {
+  width: 200px;
+  height: 50px;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+/* line 106, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries img:hover {
+  opacity: 0.6;
+}
 
-/* line 102, ../sass/components/_sentences.scss */
+/* line 126, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 109, ../sass/components/_sentences.scss */
+/* line 133, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:after {
   width: calc(100% - 3px);
 }
