@@ -86,6 +86,7 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
         factory.lastTimestamp =
           factory.sentences[factory.sentences.length-1].timestamp;
       }
+
     });
   }
 
@@ -95,7 +96,6 @@ onceUpon.factory('SentencesFactory', function SentencesFactory($http, $rootScope
     if (factory.lastTimestamp) {
       return $http.get('sentences/new/' + factory.lastTimestamp)
         .success(function(data) {
-          console.dir(data);
           if (data.length) {
             factory.sentences = factory.sentences.concat(data);
             factory.lastTimestamp =

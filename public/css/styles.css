@@ -1,5 +1,15 @@
 /* Import zen grids */
-/* line 6, ../sass/_globals.scss */
+/* line 5, ../sass/_globals.scss */
+.visible {
+  visibility: visible;
+}
+
+/* line 9, ../sass/_globals.scss */
+.invisible {
+  visibility: hidden;
+}
+
+/* line 14, ../sass/_globals.scss */
 body {
   margin: 0;
   background: url("../images/fullbg-tiny.png") black;
@@ -8,29 +18,29 @@ body {
   height: 100vh;
 }
 
-/* line 15, ../sass/_globals.scss */
+/* line 23, ../sass/_globals.scss */
 .container {
   margin-right: 20px;
 }
 
-/* line 19, ../sass/_globals.scss */
+/* line 27, ../sass/_globals.scss */
 #title-banner-wrap {
   margin-right: 100px;
   position: relative;
   left: 0px;
 }
-/* line 24, ../sass/_globals.scss */
+/* line 32, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text {
   margin-left: 40px;
   padding: 25px 35px 20px 35px;
 }
 @media screen and (min-width: 640px) {
-  /* line 24, ../sass/_globals.scss */
+  /* line 32, ../sass/_globals.scss */
   #title-banner-wrap #title-banner-text {
     padding-top: 35px;
   }
 }
-/* line 32, ../sass/_globals.scss */
+/* line 40, ../sass/_globals.scss */
 #title-banner-wrap #title-banner-text h1 {
   font-family: 'Autopiaregular', Georgia, serif;
   color: white;
@@ -41,14 +51,8 @@ body {
   margin-top: 0;
   margin-bottom: 0;
 }
-@media screen and (min-width: 640px) {
-  /* line 32, ../sass/_globals.scss */
-  #title-banner-wrap #title-banner-text h1 {
-    padding: 20px;
-  }
-}
 
-/* line 53, ../sass/_globals.scss */
+/* line 61, ../sass/_globals.scss */
 #hud-wrapper {
   color: white;
   position: relative;
@@ -73,12 +77,12 @@ body {
   clear: both;
 }
 @media screen and (max-width: 640px) {
-  /* line 53, ../sass/_globals.scss */
+  /* line 61, ../sass/_globals.scss */
   #hud-wrapper {
     margin-right: 10px;
   }
 }
-/* line 71, ../sass/_globals.scss */
+/* line 79, ../sass/_globals.scss */
 #hud-wrapper #status-panel {
   float: left;
   width: 33.33333%;
@@ -86,12 +90,14 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 66.6%;
   background-color: rgba(255, 255, 255, 0.7);
   position: relative;
 }
-/* line 76, ../sass/_globals.scss */
+/* line 84, ../sass/_globals.scss */
 #hud-wrapper #status-panel::after {
   content: "";
   position: absolute;
@@ -99,10 +105,9 @@ body {
   left: 0;
   width: 100%;
   height: 3px;
-  background-image: -webkit-linear-gradient(left, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
   background-image: linear-gradient(to right, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
-/* line 86, ../sass/_globals.scss */
+/* line 94, ../sass/_globals.scss */
 #hud-wrapper #sentences-panel {
   float: right;
   width: 66.66667%;
@@ -110,11 +115,13 @@ body {
   margin-left: -100%;
   padding-left: 0px;
   padding-right: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.6);
-  height: 100%;
+  height: calc(100% - 60px);
 }
-/* line 92, ../sass/_globals.scss */
+/* line 100, ../sass/_globals.scss */
 #hud-wrapper #record-panel {
   clear: left;
   float: left;
@@ -123,6 +130,8 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 33.4%;
   position: absolute;
@@ -130,7 +139,7 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* line 104, ../sass/_globals.scss */
+/* line 112, ../sass/_globals.scss */
 .getusermedia.speechrecognition #sentences-panel::after {
   content: "";
   position: absolute;
@@ -138,11 +147,10 @@ body {
   top: 0;
   height: 100%;
   width: 3px;
-  background-image: -webkit-linear-gradient(top, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
   background-image: linear-gradient(to bottom, #ffbfde 0%, #ebd6fc 35%, #bce0ee 68%, #ccfff1 97%, #ccfff1 100%);
 }
 
-/* line 119, ../sass/_globals.scss */
+/* line 127, ../sass/_globals.scss */
 .no-getusermedia #hud-wrapper #sentences-panel, .no-speechrecognition #hud-wrapper #sentences-panel {
   float: left;
   width: 100%;
@@ -150,6 +158,8 @@ body {
   margin-right: -100%;
   padding-left: 0px;
   padding-right: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -164,105 +174,143 @@ nav#navbar {
   z-index: 9000;
   background: url("../images/textural-tiny.jpg");
   background-size: cover;
-  cursor: pointer;
-  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-/* line 16, ../sass/components/_navbar.scss */
+/* line 15, ../sass/components/_navbar.scss */
 nav#navbar.expanded {
   width: calc(100% - 120px);
+  cursor: pointer;
 }
 @media screen and (max-width: 640px) {
-  /* line 16, ../sass/components/_navbar.scss */
+  /* line 15, ../sass/components/_navbar.scss */
   nav#navbar.expanded {
     width: calc(100% - 30px);
-  }
-  /* line 23, ../sass/components/_navbar.scss */
-  nav#navbar.expanded #navbar-header {
-    opacity: 0;
+    margin-left: auto;
   }
 }
-/* line 29, ../sass/components/_navbar.scss */
+/* line 30, ../sass/components/_navbar.scss */
 nav#navbar a {
   text-decoration: none;
   color: black;
 }
-/* line 34, ../sass/components/_navbar.scss */
+/* line 35, ../sass/components/_navbar.scss */
 nav#navbar #navbar-header {
   position: absolute;
   top: 45%;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
   opacity: 1;
-  -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
-/* line 42, ../sass/components/_navbar.scss */
-nav#navbar #navbar-header h2 {
+/* line 48, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#what, nav#navbar #navbar-header a#how {
+  transform: translateY(65%);
+  -webkit-transform: translateY(65%);
   font-family: 'Autopiaregular', Georgia, serif;
+  font-size: 24px;
+  position: absolute;
+}
+/* line 54, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#what:hover, nav#navbar #navbar-header a#what:focus, nav#navbar #navbar-header a#how:hover, nav#navbar #navbar-header a#how:focus {
+  opacity: 0.4;
+}
+/* line 59, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#what {
+  left: 0;
+}
+/* line 63, ../sass/components/_navbar.scss */
+nav#navbar #navbar-header a#how {
+  left: 75px;
 }
 @media screen and (max-width: 640px) {
-  /* line 34, ../sass/components/_navbar.scss */
+  /* line 35, ../sass/components/_navbar.scss */
   nav#navbar #navbar-header {
-    left: 15px;
-  }
-  /* line 46, ../sass/components/_navbar.scss */
-  nav#navbar #navbar-header h2#main-header {
-    display: none;
+    left: -10px;
   }
 }
 @media screen and (min-width: 640px) {
-  /* line 34, ../sass/components/_navbar.scss */
+  /* line 35, ../sass/components/_navbar.scss */
   nav#navbar #navbar-header {
-    transform: translateY(-50%) rotate(-90deg);
-    -webkit-transform: translateY(-50%) rotate(-90deg);
     margin-top: 35px;
     margin-left: -11px;
   }
-  /* line 52, ../sass/components/_navbar.scss */
-  nav#navbar #navbar-header h2#mobile-header {
-    display: none;
-  }
 }
-/* line 63, ../sass/components/_navbar.scss */
-nav#navbar #navbar-content {
-  position: relative;
+/* line 84, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content {
+  position: absolute;
   padding: 40px;
   opacity: 0;
+  pointer-events: none;
   text-shadow: 2px 2px 2px #222;
   color: white;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 72, ../sass/components/_navbar.scss */
-nav#navbar #navbar-content.showing {
+/* line 92, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content ol {
+  padding-left: 0;
+}
+/* line 95, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content ol li {
+  margin: 0 0 10px 0;
+}
+/* line 103, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content.showing {
   opacity: 1;
 }
-/* line 76, ../sass/components/_navbar.scss */
-nav#navbar #navbar-content #no-record {
+/* line 107, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content #no-record {
   background-color: rgba(0, 0, 0, 0.13);
   border-radius: 5px;
 }
 @media screen and (max-width: 640px) {
-  /* line 63, ../sass/components/_navbar.scss */
-  nav#navbar #navbar-content {
+  /* line 84, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content {
     font-size: 16px;
+    left: 0;
   }
 }
 @media screen and (min-width: 640px) {
-  /* line 63, ../sass/components/_navbar.scss */
-  nav#navbar #navbar-content {
+  /* line 84, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content {
+    font-size: 17px;
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%);
     -webkit-transform: translateY(-50%) translateX(-50%);
     max-width: 50%;
-    font-size: 17px;
   }
 }
 @media screen and (min-width: 1080px) {
-  /* line 63, ../sass/components/_navbar.scss */
-  nav#navbar #navbar-content {
+  /* line 84, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content {
     max-width: 30%;
     font-size: 19px;
+  }
+}
+/* line 129, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content#navbar-content-how {
+  left: 38px;
+  font-size: 14px;
+  padding-top: 10px;
+}
+/* line 135, ../sass/components/_navbar.scss */
+nav#navbar .navbar-content#navbar-content-how p {
+  padding-bottom: 10px;
+}
+@media screen and (min-width: 640px) {
+  /* line 129, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content#navbar-content-how {
+    padding-top: 20px;
+    font-size: 17px;
+    left: 50%;
+    max-width: 66%;
+  }
+}
+@media screen and (min-width: 1080px) {
+  /* line 129, ../sass/components/_navbar.scss */
+  nav#navbar .navbar-content#navbar-content-how {
+    font-size: 19px;
+    max-width: none;
   }
 }
 
@@ -289,13 +337,11 @@ nav#navbar #navbar-content #no-record {
 }
 /* line 19, ../sass/components/_record.scss */
 #record-panel #record img.ready {
-  -webkit-animation: pulse 0.8s infinite ease-in-out alternate;
-          animation: pulse 0.8s infinite ease-in-out alternate;
+  animation: pulse 0.8s infinite ease-in-out alternate;
 }
 /* line 22, ../sass/components/_record.scss */
 #record-panel #record img.active {
-  -webkit-animation: spin 1.0s linear infinite;
-          animation: spin 1.0s linear infinite;
+  animation: spin 1.0s linear infinite;
   cursor: not-allowed;
 }
 /* line 26, ../sass/components/_record.scss */
@@ -316,69 +362,57 @@ nav#navbar #navbar-content #no-record {
   display: none;
 }
 
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  100% {
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-  }
-}
-
 @keyframes pulse {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   100% {
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-  }
-}
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: scale(1.2);
   }
 }
 @keyframes spin {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 /* line 1, ../sass/components/_sentences.scss */
 #sentences-panel {
-  height: 500px;
   overflow: scroll;
-  padding-left: 40px;
-  padding-right: 40px;
   padding-bottom: 220px;
 }
 /* line 9, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content:before {
+  content: "";
+  position: absolute;
+  width: calc(66.6% - 3px);
+  height: 61px;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 0;
+}
+@media screen and (min-width: 640px) {
+  /* line 9, ../sass/components/_sentences.scss */
+  #sentences-panel #sentences-panel-content:before {
+    height: 60px;
+  }
+}
+/* line 26, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content:after {
   content: "";
   width: calc(66.6% - 3px);
-  height: 25%;
+  height: 30%;
   position: absolute;
-  top: 75%;
+  top: 70%;
   right: 0;
-  background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.5));
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
   z-index: 10;
   pointer-events: none;
 }
-/* line 20, ../sass/components/_sentences.scss */
+/* line 39, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list {
   list-style: none;
   font-size: 1.2em;
@@ -386,71 +420,170 @@ nav#navbar #navbar-content #no-record {
   padding-right: 50px;
 }
 @media screen and (min-width: 640px) {
-  /* line 20, ../sass/components/_sentences.scss */
+  /* line 39, ../sass/components/_sentences.scss */
   #sentences-panel #sentences-panel-content ul#sentences-list {
     padding-right: 180px;
   }
 }
-/* line 29, ../sass/components/_sentences.scss */
+/* line 48, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li {
   margin: 0 0 25px 0;
 }
-/* line 32, ../sass/components/_sentences.scss */
+/* line 51, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence {
   cursor: pointer;
 }
-/* line 34, ../sass/components/_sentences.scss */
+/* line 53, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:hover, #sentences-panel #sentences-panel-content ul#sentences-list li.sentence:focus {
-  background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
 }
-/* line 37, ../sass/components/_sentences.scss */
+/* line 56, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content ul#sentences-list li.sentence.playing {
-  background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
 }
-/* line 43, ../sass/components/_sentences.scss */
+/* line 61, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-you {
+  font-weight: 700;
+  animation: 1s blink-red step-end infinite;
+  -webkit-animation: 1s blink-red step-end infinite;
+}
+/* line 66, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.being-input span.blinking-cursor-friend {
+  font-weight: 700;
+  animation: 1s blink-blue step-end infinite;
+  -webkit-animation: 1s blink-blue step-end infinite;
+}
+/* line 72, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.ng-enter {
+  transition: 0.3s linear all;
+  opacity: 0;
+}
+/* line 76, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content ul#sentences-list li.sentence.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+/* line 82, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls {
   position: fixed;
   right: 40px;
   z-index: 100;
   top: calc(95px + 70vh);
 }
-/* line 49, ../sass/components/_sentences.scss */
+/* line 88, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   margin: 0;
   position: absolute;
   bottom: 0;
   right: 0;
 }
-/* line 56, ../sass/components/_sentences.scss */
+/* line 95, ../sass/components/_sentences.scss */
 #sentences-panel #sentences-panel-content #playback-controls img:hover {
   opacity: 0.6;
 }
-/* line 59, ../sass/components/_sentences.scss */
-#sentences-panel #sentences-panel-content #playback-controls img.hidden {
-  visibility: hidden;
-}
 @media screen and (min-width: 640px) {
-  /* line 43, ../sass/components/_sentences.scss */
+  /* line 82, ../sass/components/_sentences.scss */
   #sentences-panel #sentences-panel-content #playback-controls {
-    top: calc(115px + 70vh);
     right: 140px;
   }
 }
+/* line 107, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries {
+  position: fixed;
+  right: calc(50px + 43%);
+  z-index: 100;
+  top: calc(95px + 70vh);
+  cursor: pointer;
+  opacity: 0;
+}
+@media screen and (min-width: 640px) {
+  /* line 107, ../sass/components/_sentences.scss */
+  #sentences-panel #sentences-panel-content #new-entries {
+    right: calc(120px + 32%);
+  }
+}
+/* line 121, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries.visible {
+  opacity: 1;
+}
+/* line 124, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries.pulsing {
+  opacity: 1;
+  animation: 0.8s pulse-button linear infinite;
+  -webkit-animation: 0.8s pulse-button linear infinite;
+}
+/* line 131, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries img {
+  width: 100px;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+/* line 138, ../sass/components/_sentences.scss */
+#sentences-panel #sentences-panel-content #new-entries img:hover {
+  opacity: 0.6;
+}
 
-/* line 81, ../sass/components/_sentences.scss */
+/* line 149, ../sass/components/_sentences.scss */
 .no-getusermedia #sentences-panel ul#sentences-list, .no-speechrecognition #sentences-panel ul#sentences-list {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 88, ../sass/components/_sentences.scss */
-.no-getusermedia #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:after {
+/* line 156, ../sass/components/_sentences.scss */
+.no-getusermedia #sentences-panel #sentences-panel-content:after, .no-getusermedia #sentences-panel #sentences-panel-content:before, .no-speechrecognition #sentences-panel #sentences-panel-content:after, .no-speechrecognition #sentences-panel #sentences-panel-content:before {
   width: calc(100% - 3px);
 }
 
+@keyframes "blink-red" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+  }
+}
+@-webkit-keyframes "blink-red" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+  }
+}
+@keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
+  }
+}
+@-webkit-keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
+  }
+}
+@keyframes "pulse-button" {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes "pulse-button" {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
 /* line 1, ../sass/components/_status.scss */
 #status-panel {
   color: black;

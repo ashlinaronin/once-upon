@@ -1,9 +1,17 @@
 <div id="sentences-panel-content">
   <ul id="sentences-list" playback>
-    <li ng-click="PlaybackFactory.playAudio(sentence._id)" ng-repeat="sentence in SentencesFactory.sentences" class="sentence" id="{{sentence._id}}">
+    <li ng-click="PlaybackFactory.playAudio(sentence._id)"
+        ng-repeat="sentence in SentencesFactory.sentences" class="sentence" id="{{sentence._id}}">
       <p>{{sentence.text}}</p>
     </li>
+    <li ng-class="SocketFactory.currentMessage.inProgress ? 'visible' : 'invisible'" class="sentence being-input">
+      {{SocketFactory.currentMessage.text}}<span ng-class="getCursorClass()">|</span>
+    </li>
+
   </ul>
+  <div id="new-entries">
+    <img role="button" ng-click="scrollToBottom()" src="images/newentries.svg" alt="new entries" />
+  </div>
   <div id="playback-controls">
     <audio id="playback">
       Your browser does not support the <code>audio</code> element.

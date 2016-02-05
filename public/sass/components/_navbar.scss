@@ -3,26 +3,27 @@ nav#navbar {
   left: 0;
   top: 0;
   width: 40px;
-  // height: 450px;
   height: 100%;
   overflow: hidden;
   z-index: 9000;
   background: url('../images/textural-tiny.jpg');
   background-size: cover;
-  cursor: pointer;
+  // cursor: pointer;
 
   // Animate folding out navbar
   transition: all 0.5s ease-in-out;
   &.expanded {
     // full screen minus distance from right side to hudbox right border
     width: calc(100% - 120px);
+    cursor: pointer;
 
-    // Hide question mark when expanded on mobile
+    //Hide question mark when expanded on mobile
     @media #{$mobile} {
       width: calc(100% - 30px);
-      #navbar-header {
-        opacity: 0;
-      }
+      margin-left: auto;
+      // #navbar-header {
+      //   opacity: 0;
+      // }
     }
   }
 
@@ -34,38 +35,68 @@ nav#navbar {
   #navbar-header  {
     position: absolute;
     top: 45%;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    // -webkit-transform: translateY(-50%) rotate(-90deg);
 
     // Animate ? coming in and out
     opacity: 1;
     transition: all 1s ease-in-out;
 
-    h2 {
+
+
+    a#what, a#how {
+      transform: translateY(65%);
+      -webkit-transform: translateY(65%);
       font-family: 'Autopiaregular', Georgia, serif;
-    }
-    @media #{$mobile} {
-      h2#main-header {
-        display: none;
+      font-size: 24px;
+      position: absolute;
+      &:hover, &:focus {
+        opacity: 0.4;
       }
-      left: 15px;
+    }
+
+    a#what {
+      left: 0;
+    }
+
+    a#how {
+      left: 75px;
+    }
+
+    @media #{$mobile} {
+      // h2#main-header {
+      //   display: none;
+      // }
+      left: -10px; //hack!
     }
     @media #{$mobile-up} {
-      h2#mobile-header {
-        display: none;
-      }
-      transform: translateY(-50%) rotate(-90deg);
-      -webkit-transform: translateY(-50%) rotate(-90deg);
+      // h2#mobile-header {
+      //   display: none;
+      // }
+
       margin-top: 35px;
       margin-left: -11px;
     }
   }
 
   // Shouldn't need all the prefixes here cuz we have a gulp task adding them
-  #navbar-content {
-    position: relative;
+  .navbar-content {
+    position: absolute;
     padding: 40px;
     opacity: 0;
+    pointer-events: none;
     text-shadow: 2px 2px 2px #222;
     color: white;
+
+    ol {
+      padding-left: 0;
+
+      li {
+        margin: 0 0 10px 0;
+      }
+    }
+
 
     // Animate fading in and out navbar content
     transition: all 0.3s ease-in-out;
@@ -80,19 +111,44 @@ nav#navbar {
 
     @media #{$mobile} {
       font-size: 16px;
+      left: 0;
     }
     @media #{$mobile-up} {
+      font-size: 17px;
       left: 50%;
       top: 50%;
       transform: translateY(-50%) translateX(-50%);
       -webkit-transform: translateY(-50%) translateX(-50%);
-      // max-width: 30%;
       max-width: 50%;
-      font-size: 17px;
     }
     @media #{$desktop-up} {
       max-width: 30%;
       font-size: 19px;
     }
+
+    &#navbar-content-how {
+      left: 38px;
+      font-size: 14px;
+      padding-top: 10px;
+
+
+      p {
+        padding-bottom: 10px;
+      }
+
+
+
+      @media #{$mobile-up} {
+        padding-top: 20px;
+        font-size: 17px;
+        left: 50%;
+        max-width: 66%;
+      }
+      @media #{$desktop-up} {
+        font-size: 19px;
+        max-width: none;
+      }
+    }
+
   }
 }

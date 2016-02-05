@@ -1,8 +1,11 @@
 <div id="navbar-header">
-  <h2 id="main-header">what?</h2>
+  <h2 id="main-header">
+    <a id="what" href="#">what?</a>
+    <a id="how" href="#">how?</a>
+  </h2>
   <h2 id="mobile-header">?</h2>
 </div>
-<div id="navbar-content">
+<div id="navbar-what-content" class="navbar-content">
   <p>
     Once.upon is an eternal communal fable in the browser;
     an Elysium of incorporeal narrators; a glocal commons borne of the yarn.
@@ -11,7 +14,7 @@
     is passed to the next in queue. Visitors may listen back from any point.
   </p>
 
-  <p ng-hide="Modernizr.getusermedia && Modernizr.speechrecognition" id="no-record">
+  <p ng-hide="recordEnabled" id="no-record">
     Your browser doesn't support recording. If you'd like to add to the story,
     please use Google Chrome.
   </p>
@@ -19,4 +22,32 @@
   <p>
     A project by Ashlin Aronin and Andre Brown.
   </p>
+</div>
+<div id="navbar-how-content" class="navbar-content">
+  <p>
+    This story is being created by many people.
+  </p>
+
+  <ol>
+    <li>
+      Use the scroll wheel or your mouse to see what’s happened so far.
+      Click on a sentence to hear the story from that point.
+    </li>
+    <li>
+      Anyone can listen to the story at one time, but there can only be one
+      active contributor. When your status is 'ready' and the record button is
+      pulsating, you are record enabled. When you're ready, press the record button
+      and start speaking into the headset. You will see your speech transcribed
+      automatically in the record panel, and anyone else logged on to the site
+      will be able to watch your contribution in real time.
+    </li>
+    <li>
+      Once.upon will stop recording automatically after you finish speaking.
+      If you pause during your contribution, the system may cut you off.
+      This is to encourage quick turnover so many people can participate.
+    </li>
+    <li>
+      Enjoy!
+    </li>
+  </ol>
 </div>

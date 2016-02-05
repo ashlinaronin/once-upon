@@ -17,8 +17,6 @@ $rootScope, $timeout, Modernizr) {
     uploading: false
   };
 
-  factory.hasNew = false;
-
   factory.countingDown = false;
 
 
@@ -61,6 +59,17 @@ $rootScope, $timeout, Modernizr) {
       uploading: true
     };
     socket.emit('end recording', newMsg);
+    factory.currentMessage = newMsg;
+  }
+
+  factory.abortRecording = function() {
+    var newMsg = {
+      userId: socket.io.engine.id,
+      inProgress: false,
+      text: null,
+      uploading: false
+    };
+    socket.emit('abort recording', newMsg);
     factory.currentMessage = newMsg;
   }
 
@@ -170,6 +179,13 @@ $rootScope, $timeout, Modernizr) {
       });
     });
 
+    socket.on('abort recording', function(msg) {
+      $rootScope.$apply(function() {
+        // do something here
+        factory.currentMessage = msg;
+      });
+    });
+
     // Whoever was recording has finished, so the client should load any new messages
     socket.on('recording saved', function(msg) {
       $rootScope.$apply(function() {
@@ -177,13 +193,6 @@ $rootScope, $timeout, Modernizr) {
         factory.currentMessage.text = null;
         factory.currentMessage.uploading = false;
         SentencesFactory.getNew();
-
-        // let's true keeping this hasNew flag on for only 1s
-        factory.hasNew = true;
-        setTimeout(function() {
-          factory.hasNew = false;
-        }, 1000);
-
       });
     });
   });

@@ -1,19 +1,38 @@
 #sentences-panel {
-  height: 500px;
+  // height: 500px;
   overflow: scroll;
-  padding-left: 40px;
-  padding-right: 40px;
+  // padding-left: 40px;
+  // padding-right: 40px;
   padding-bottom: 220px;
   #sentences-panel-content {
+    // hack to restore background of panel
+    &:before {
+      content: "";
+      position: absolute;
+      width: calc(66.6% - 3px);
+      height: 61px;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      pointer-events: none;
+      z-index: 0;
+      @media #{$mobile-up} {
+        height: 60px;
+      }
+
+
+    }
+
     //try fading text down by putting a pseudoelement with gradient over it
     &:after {
       content: "";
       width: calc(66.6% - 3px); // leave rainbow border intact!
-      height: 25%;
+      height: 30%;
       position: absolute;
-      top: 75%;
+      // top: calc(75% - 50px);
+      top: 70%;
       right: 0;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+      // background: green;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
       z-index: 10;
       pointer-events: none; // let people click the sentences through this overlay
     }
@@ -37,6 +56,26 @@
         &.playing {
           background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(113, 184, 184, 0.6));
         }
+        &.being-input {
+          // cursor that looks like it's being typed
+          span.blinking-cursor-you {
+            font-weight: 700;
+            animation: 1s blink-red step-end infinite;
+            -webkit-animation: 1s blink-red step-end infinite;
+          }
+          span.blinking-cursor-friend {
+            font-weight: 700;
+            animation: 1s blink-blue step-end infinite;
+            -webkit-animation: 1s blink-blue step-end infinite;
+          }
+        }
+        &.ng-enter {
+          transition: 0.3s linear all;
+          opacity: 0;
+        }
+        &.ng-enter.ng-enter-active {
+          opacity: 1;
+        }
       }
     }
 
@@ -47,8 +86,8 @@
       top: calc(95px + 70vh);
 
       img {
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         margin: 0;
         position: absolute;
         bottom: 0;
@@ -56,23 +95,52 @@
         &:hover {
           opacity: 0.6;
         }
-        &.hidden {
-          visibility: hidden;
-        }
       }
 
       @media #{$mobile-up} {
         // height above header + height of hudbox
-        top: calc(115px + 70vh);
+        // top: calc(115px + 70vh);
         right: 140px;
       }
-
-      #play-button {}
-      #pause-button {}
     }
 
-  }
+    #new-entries {
+      position: fixed;
+      // right: calc(130px + 25%);
+      right: calc(50px + 43%);
+      z-index: 100;
+      top: calc(95px + 70vh);
+      cursor: pointer;
+      opacity: 0;
+      // opacity: 1; // just for layout!
 
+      @media #{$mobile-up} {
+        right: calc(120px + 32%);
+      }
+
+      &.visible {
+        opacity: 1;
+      }
+      &.pulsing {
+        opacity: 1;
+        animation: 0.8s pulse-button linear infinite;
+        -webkit-animation: 0.8s pulse-button linear infinite;
+      }
+
+
+      img {
+        width: 100px;
+        // height: 50px;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
 }
 
 // If no getUserMedia / speech recognition, just show sentences panel full-width
@@ -85,7 +153,63 @@
 
   // When other panels are disabled and sentences panel is wider, make sure the
   // gradient overlay is matched up to the new width
-  #sentences-panel-content:after {
+  #sentences-panel-content:after, #sentences-panel-content:before {
     width: calc(100% - 3px);
+  }
+}
+
+
+// Should abstract this into a sass function, for now just makin it happen
+@keyframes "blink-red" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+  }
+}
+
+@-webkit-keyframes "blink-red" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #bb5656;
+  }
+}
+
+@keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
+  }
+}
+
+@-webkit-keyframes "blink-blue" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #4F5E94;
+  }
+}
+
+@keyframes "pulse-button" {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes "pulse-button" {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }

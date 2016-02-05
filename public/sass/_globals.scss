@@ -2,6 +2,14 @@ $mobile: "screen and (max-width: 640px)";
 $mobile-up: "screen and (min-width: 640px)";
 $desktop-up: "screen and (min-width: 1080px)";
 
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
 
 body {
   margin: 0;
@@ -39,9 +47,9 @@ body {
       margin-top: 0;
       margin-bottom: 0;
 
-      @media #{$mobile-up} {
-        padding: 20px;
-      }
+      // @media #{$mobile-up} {
+      //   padding: 20px;
+      // }
     }
   }
 }
@@ -87,7 +95,7 @@ $zen-gutters: 0px;
     @include zen-grid-item(6, 1, right);
     background-color: rgba(0, 0, 0, 0.6);
 
-    height: 100%;
+    height: calc(100% - 60px);
   }
   #record-panel {
     @include zen-new-row(left);
