@@ -42,7 +42,7 @@ router.post('/sentences', function(request, response, next) {
 
 // GET /sentences (all)
 router.get('/sentences', function(request, response, next) {
-  Sentence.find(function(error, sentences) {
+  Sentence.find({}).sort({'_id':1}).exec(function(error, sentences) {
     if (error) {
       return next(error);
     }
