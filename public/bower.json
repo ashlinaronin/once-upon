@@ -21,6 +21,6 @@
   ],
   "dependencies": {
     "angular-animate": "1.4.8",
-    "lamejs": "git://github.com/zzarcon/lamejs.git#master",
+    "lamejs": "git://github.com/zzarcon/lamejs.git#master"
   }
 }
