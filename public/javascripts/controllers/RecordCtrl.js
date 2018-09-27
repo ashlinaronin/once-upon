@@ -46,9 +46,7 @@ onceUpon.controller('RecordCtrl', function RecordCtrl($scope, SentencesFactory,
 
     // If after 15s of recording we haven't gotten anything, turn it off
     $scope.startTimer = function() {
-      console.log('timer start, scope.recognizing=' + $scope.recognizing);
       $timeout(function() {
-        console.log('timer, scope.recognizing:'+ $scope.recognizing + ', scope.final= ' + $scope.final);
         if (!$scope.final) {
           $scope.recognizing = false;
           $scope.rec.stop();
