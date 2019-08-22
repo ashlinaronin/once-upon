@@ -11,15 +11,11 @@
 // use env variable dev or prod to grab minified cdn for libs
 
 var gulp = require('gulp');
-var inject = require('gulp-inject');
-var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
-var compass = require('gulp-compass');
 var maps = require('gulp-sourcemaps');
-var csso = require('gulp-csso');
+var sass = require('gulp-sass');
 var jshint = require('gulp-jshint');
 var ngAnnotate = require('gulp-ng-annotate');
-var stylish = require('jshint-stylish');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
@@ -60,12 +56,7 @@ gulp.task('sass-dev', function() {
 
   return gulp.src(paths.scss)
     .pipe(maps.init())
-    .pipe(compass({
-      config_file: './public/config.rb',
-      css: './public/css',
-      sass: './public/sass'
-    }))
-    .pipe(postcss(processors))
+    .pipe(sass().on('error', sass.logError))
     .pipe(maps.write('./'))
     .pipe(gulp.dest(srcDir + '/css'))
 
@@ -76,17 +67,9 @@ gulp.task('sass-dev', function() {
 
 // Compile sass to css dest directory with source maps, minification
 gulp.task('sass-min', function() {
-  var processors = [autoprefixer];
-
   return gulp.src(paths.scss)
     .pipe(maps.init())
-    .pipe(compass({
-      config_file: './public/config.rb',
-      css: './public/css',
-      sass: './public/sass'
-    }))
-    .pipe(postcss(processors))
-    .pipe(csso())
+    .pipe(sass().on('error', sass.logError))
     .pipe(maps.write('./'))
 
     // Concatenate

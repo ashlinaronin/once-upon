@@ -1,6 +1,7 @@
 /* Import zen grids */
-@import "zen-grids";
-@import "zen-grids/background";
+@import "../../node_modules/zen-grids/sass/zen-grids";
+@import "../fonts/Autopia-Regular/Autopia-Regular-stylesheet.css";
+//@import "../../node_modules/zen-grids/background";
 
 @import "globals";
 
