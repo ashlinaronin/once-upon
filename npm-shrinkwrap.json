@@ -793,9 +793,9 @@
       }
     },
     "bower": {
-      "version": "1.8.13",
-      "resolved": "https://registry.npmjs.org/bower/-/bower-1.8.13.tgz",
-      "integrity": "sha512-8eWko16JlCTdaZZG70kddHPed17pHEbH8/IjfP4IFkQsfEqRsyNM09Dc8cDBFkSvtQ/2lTea7A+bMhRggG2a+Q=="
+      "version": "1.8.9",
+      "resolved": "https://registry.npmjs.org/bower/-/bower-1.8.9.tgz",
+      "integrity": "sha512-10CHDLeFr1adybioNdNnj3ieMMdk4sa23RAD3oeE0o1o7yf3qS7DmCSo2uQZrLEnbCN1qqeWZxOYxv+vWuguuQ=="
     },
     "boxen": {
       "version": "5.1.2",
